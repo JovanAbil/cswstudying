@@ -1,10 +1,16 @@
+export interface TableData {
+  headers: string[];
+  rows: (string | number)[][];
+}
+
 export interface MultipleChoiceQuestion {
   id: string;
   type: 'multiple-choice';
   question: string;
-  options: { label: string; value: string }[];
+  options: { label: string; value: string; text: string }[];
   correctAnswer: string;
   explanation?: string;
+  table?: TableData;
 }
 
 export interface FreeResponseQuestion {
@@ -13,6 +19,7 @@ export interface FreeResponseQuestion {
   question: string;
   correctAnswer: string;
   explanation?: string;
+  table?: TableData;
 }
 
 export type Question = MultipleChoiceQuestion | FreeResponseQuestion;

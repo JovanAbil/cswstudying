@@ -2,13 +2,20 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Trophy, Home, RotateCcw } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
+import { Trophy, Home, CheckCircle2, XCircle } from 'lucide-react';
 import { useEffect } from 'react';
+import { Question, QuizAttempt } from '@/types/quiz';
+import QuestionTable from '@/components/QuestionTable';
+
+interface ExtendedAttempt extends QuizAttempt {
+  question: Question;
+}
 
 const Results = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { score, total, unitId, quizType } = location.state || {};
+  const { score, total, unitId, quizType, attempts } = location.state || {};
 
   useEffect(() => {
     if (!location.state) {
@@ -32,55 +39,144 @@ const Results = () => {
 
   const gradeInfo = getGrade();
 
+  const extendedAttempts = attempts as ExtendedAttempt[];
+
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="max-w-2xl w-full p-8 md:p-12">
-        <div className="text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-6">
-            <Trophy className="w-10 h-10 text-primary" />
+    <div className="min-h-screen bg-background py-8 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <Card className="p-8 md:p-12 mb-8">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-6">
+              <Trophy className="w-10 h-10 text-primary" />
+            </div>
+            
+            <h1 className="text-4xl font-bold mb-2">Quiz Complete!</h1>
+            <p className="text-muted-foreground mb-8">
+              Unit {unitId?.toUpperCase()} - {quizType === 'daily' ? 'Daily Practice' : 'Full Test'}
+            </p>
+
+            <div className="bg-muted rounded-lg p-8 mb-8">
+              <div className={`text-6xl font-bold mb-2 ${gradeInfo.color}`}>
+                {gradeInfo.grade}
+              </div>
+              <p className="text-xl font-semibold mb-4">{gradeInfo.message}</p>
+              
+              <div className="text-3xl font-bold mb-2">
+                {score} / {total}
+              </div>
+              <p className="text-muted-foreground mb-4">Correct Answers</p>
+              
+              <Progress value={percentage} className="h-3 mb-2" />
+              <p className="text-sm text-muted-foreground">{percentage}% Score</p>
+            </div>
           </div>
-          
-          <h1 className="text-4xl font-bold mb-2">Quiz Complete!</h1>
-          <p className="text-muted-foreground mb-8">
-            Unit {unitId?.toUpperCase()} - {quizType === 'daily' ? 'Daily Practice' : 'Full Test'}
+        </Card>
+
+        <Card className="p-8 mb-8">
+          <h2 className="text-2xl font-bold mb-6">Review Your Answers</h2>
+          <p className="text-muted-foreground mb-6">
+            Review each question to understand what to study next
           </p>
 
-          <div className="bg-muted rounded-lg p-8 mb-8">
-            <div className={`text-6xl font-bold mb-2 ${gradeInfo.color}`}>
-              {gradeInfo.grade}
-            </div>
-            <p className="text-xl font-semibold mb-4">{gradeInfo.message}</p>
-            
-            <div className="text-3xl font-bold mb-2">
-              {score} / {total}
-            </div>
-            <p className="text-muted-foreground mb-4">Correct Answers</p>
-            
-            <Progress value={percentage} className="h-3 mb-2" />
-            <p className="text-sm text-muted-foreground">{percentage}% Score</p>
-          </div>
+          <div className="space-y-6">
+            {extendedAttempts.map((attempt, index) => {
+              const question = attempt.question;
+              const isCorrect = attempt.isCorrect;
+              
+              return (
+                <div key={attempt.questionId}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`flex-shrink-0 mt-1 ${isCorrect ? 'text-success' : 'text-destructive'}`}>
+                      {isCorrect ? (
+                        <CheckCircle2 className="h-6 w-6" />
+                      ) : (
+                        <XCircle className="h-6 w-6" />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold mb-2">
+                        Question {index + 1}
+                      </h3>
+                      
+                      {question.table && (
+                        <div className="mb-3">
+                          <QuestionTable data={question.table} />
+                        </div>
+                      )}
+                      
+                      <p className="text-sm mb-3">{question.question}</p>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <Button
-              onClick={() => navigate('/')}
-              variant="outline"
-              size="lg"
-              className="w-full"
-            >
-              <Home className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-            <Button
-              onClick={() => navigate(`/unit/${unitId}/quiz/${quizType}`)}
-              size="lg"
-              className="w-full"
-            >
-              <RotateCcw className="mr-2 h-4 w-4" />
-              Try Again
-            </Button>
+                      {question.type === 'multiple-choice' ? (
+                        <div className="space-y-2 mb-3">
+                          {question.options.map((option) => {
+                            const isUserAnswer = attempt.userAnswer === option.value;
+                            const isCorrectAnswer = option.value === question.correctAnswer;
+                            
+                            return (
+                              <div
+                                key={option.value}
+                                className={`p-3 rounded-lg border-2 text-sm ${
+                                  isCorrectAnswer
+                                    ? 'border-success bg-success/10'
+                                    : isUserAnswer && !isCorrect
+                                    ? 'border-destructive bg-destructive/10'
+                                    : 'border-border'
+                                }`}
+                              >
+                                <span className="font-semibold mr-2">{option.label})</span>
+                                {option.text}
+                                {isCorrectAnswer && (
+                                  <span className="ml-2 text-success font-semibold">✓ Correct</span>
+                                )}
+                                {isUserAnswer && !isCorrect && (
+                                  <span className="ml-2 text-destructive font-semibold">Your answer</span>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className="space-y-2 mb-3">
+                          <div className="p-3 bg-muted rounded-lg text-sm">
+                            <p className="font-semibold mb-1">Your Answer:</p>
+                            <p>{attempt.userAnswer || '(No answer)'}</p>
+                          </div>
+                          <div className={`p-3 rounded-lg border-2 border-success bg-success/10 text-sm`}>
+                            <p className="font-semibold mb-1">Correct Answer:</p>
+                            <p>{question.correctAnswer}</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {question.explanation && (
+                        <div className="p-3 bg-primary/5 rounded-lg text-sm">
+                          <p className="font-semibold mb-1">Explanation:</p>
+                          <p className="whitespace-pre-line">{question.explanation}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {index < extendedAttempts.length - 1 && (
+                    <Separator className="my-6" />
+                  )}
+                </div>
+              );
+            })}
           </div>
+        </Card>
+
+        <div className="flex justify-center">
+          <Button
+            onClick={() => navigate('/')}
+            size="lg"
+            className="min-w-[200px]"
+          >
+            <Home className="mr-2 h-4 w-4" />
+            Back to Home
+          </Button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

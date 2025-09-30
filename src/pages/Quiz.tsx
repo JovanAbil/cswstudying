@@ -10,6 +10,7 @@ import { ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 import { unit1aQuestions } from '@/data/unit1a-questions';
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
+import QuestionTable from '@/components/QuestionTable';
 
 const Quiz = () => {
   const { unitId, quizType } = useParams();
@@ -133,6 +134,10 @@ const Quiz = () => {
         </div>
 
         <Card className="p-8">
+          {currentQuestion.table && (
+            <QuestionTable data={currentQuestion.table} />
+          )}
+          
           <h3 className="text-xl font-semibold mb-6 leading-relaxed">
             {currentQuestion.question}
           </h3>
@@ -157,7 +162,8 @@ const Quiz = () => {
                 >
                   <RadioGroupItem value={option.value} id={option.value} />
                   <Label htmlFor={option.value} className="flex-1 cursor-pointer">
-                    {option.label}
+                    <span className="font-semibold mr-2">{option.label})</span>
+                    {option.text}
                   </Label>
                   {isSubmitted && option.value === currentQuestion.correctAnswer && (
                     <CheckCircle2 className="h-5 w-5 text-success" />
