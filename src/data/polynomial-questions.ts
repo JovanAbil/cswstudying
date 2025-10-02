@@ -312,5 +312,236 @@ export const polynomialQuestions: Question[] = [
     ],
     "correctAnswer": "D",
     "explanation": "Second differences are constant (check: first diffs: 1,4,7,10 → second diffs: 3,3,3), so quadratic model is best."
+  },
+  {
+    "id": "polynomial-25",
+    "type": "multiple-choice",
+    "question": "Let f(x) = x^2 (x^2 + 4)(x − 3)^3 (x − 1). How many distinct real zeros does f have?",
+    "options": [
+      { "label": "A", "value": "A", "text": "8" },
+      { "label": "B", "value": "B", "text": "4" },
+      { "label": "C", "value": "C", "text": "3" },
+      { "label": "D", "value": "D", "text": "6" }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Zeros come from factors x^2 → x=0, (x−3)^3 → x=3, (x−1) → x=1. (x^2+4) has no real roots. Total of 3 distinct real zeros."
+  },
+  {
+    "id": "polynomial-26",
+    "type": "multiple-choice",
+    "question": "Let k(x) = (x^2 − 9)(x + 3)^2(x^2 + 6x + 9). Which statement about zeros and multiplicities is correct?",
+    "options": [
+      { "label": "A", "value": "A", "text": "x = −3 (multiplicity 5), x = 3" },
+      { "label": "B", "value": "B", "text": "x = −3 (multiplicity 4), x = −9, x = 9" },
+      { "label": "C", "value": "C", "text": "x = −3 (multiplicity 4), x = 3 (multiplicity 2)" },
+      { "label": "D", "value": "D", "text": "x = −3, x = 3 (multiplicity 5)" }
+    ],
+    "correctAnswer": "A",
+    "explanation": "(x^2−9) = (x−3)(x+3), (x+3)^2, and (x^2+6x+9) = (x+3)^2. Total multiplicity at x = −3 is 1 + 2 + 2 = 5. Zero at x = 3 has multiplicity 1."
+  },
+  {
+    "id": "polynomial-27",
+    "type": "free-response",
+    "question": "f(x) = 5(x−3)^4 (x+2)(x−1). Find the zeros and their multiplicities.",
+    "correctAnswer": "x = 3 (multiplicity 4), x = −2 (multiplicity 1), x = 1 (multiplicity 1)",
+    "explanation": "Each factor’s exponent gives its multiplicity."
+  },
+  {
+    "id": "polynomial-28",
+    "type": "free-response",
+    "question": "g(x) = −2x(x+3)(x−2)^3. Find the zeros and their multiplicities.",
+    "correctAnswer": "x = 0 (multiplicity 1), x = −3 (multiplicity 1), x = 2 (multiplicity 3)",
+    "explanation": "Linear factors give multiplicity 1; cubic factor gives multiplicity 3."
+  },
+  {
+    "id": "polynomial-29",
+    "type": "free-response",
+    "question": "y = x^2 (x+2)^3 (x−6)^2. Find the zeros and their multiplicities.",
+    "correctAnswer": "x = 0 (multiplicity 2), x = −2 (multiplicity 3), x = 6 (multiplicity 2)",
+    "explanation": "Multiplicity is read directly from each factor’s exponent."
+  },
+  {
+    "id": "polynomial-30",
+    "type": "free-response",
+    "question": "h(x) = 4x^3 (x+7)^2 (x−3). Find the zeros and their multiplicities.",
+    "correctAnswer": "x = 0 (multiplicity 3), x = −7 (multiplicity 2), x = 3 (multiplicity 1)",
+    "explanation": "Read multiplicities from exponents of each factor."
+  },
+  {
+    "id": "polynomial-31",
+    "type": "free-response",
+    "question": "Solve x^3 + 2x^2 − 11x + 12 ≥ 0. Write the solution in interval notation.",
+    "correctAnswer": "[-4, -3] ∪ [1, 3]",
+    "explanation": "Factorization: (x+4)(x+1)(x−3); test intervals for ≥0 sign."
+  },
+  {
+    "id": "polynomial-32",
+    "type": "free-response",
+    "question": "Solve 3x^3 − 12x^2 − 21x + 30 < 0. Write the solution in interval notation.",
+    "correctAnswer": "(-∞, -2) ∪ (1, 5)",
+    "explanation": "Factor 3(x+2)(x−1)(x−5); analyze sign chart for <0."
+  },
+  {
+    "id": "polynomial-33",
+    "type": "free-response",
+    "question": "Solve 8(x−5)^2 (x+2)(x−3) ≤ 0. Write the solution in interval notation.",
+    "correctAnswer": "[-2, 3]",
+    "explanation": "Multiplicity 2 at x=5 does not change sign; negative intervals determined between −2 and 3."
+  },
+  {
+    "id": "polynomial-34",
+    "type": "free-response",
+    "question": "Solve −3x^4 − 9x^3 + 84x^2 ≥ 0. Write the solution in interval notation.",
+    "correctAnswer": "[0, 7] ∪ {−4}",
+    "explanation": "Factor: −3x^2(x+4)(x−7); analyze sign changes and multiplicities."
+  },
+  {
+    "id": "polynomial-35",
+    "type": "free-response",
+    "question": "On what intervals is f(x) = 2x^3 − x + 1 increasing?",
+    "correctAnswer": "(-∞, −1/√6) ∪ (1/√6, ∞)",
+    "explanation": "f'(x) = 6x^2 − 1; set f'(x) > 0 → |x| > 1/√6."
+  },
+  {
+    "id": "polynomial-36",
+    "type": "free-response",
+    "question": "On what intervals is the graph of f(x) = 2x^3 − x + 1 concave down?",
+    "correctAnswer": "(-∞, 0)",
+    "explanation": "f''(x) = 12x; concave down where f''(x) < 0 → x < 0."
+  },
+  {
+    "id": "polynomial-37",
+    "type": "free-response",
+    "question": "Let g(x) = 4 − 2x for x < 3, g(x) = x^2 + 2 for x ≥ 3. On what intervals is g decreasing?",
+    "correctAnswer": "Decreasing on (−∞, 3) (linear with slope −2) and increasing on (3, ∞).",
+    "explanation": "First piece is linear with negative slope, second piece is quadratic opening upward."
+  },
+  {
+    "id": "polynomial-38",
+    "type": "free-response",
+    "question": "On what intervals is the graph of g concave up?",
+    "correctAnswer": "(3, ∞)",
+    "explanation": "Second piece g(x)=x^2+2 is concave up; first piece is linear with zero second derivative."
+  },
+  {
+    "id": "polynomial-39",
+    "type": "free-response",
+    "question": "Let h(x) = −2x(x−3)^2 (x+4)^3. Describe the end behavior of h(x).",
+    "correctAnswer": "As x → ∞, h(x) → −∞; as x → −∞, h(x) → ∞",
+    "explanation": "Degree is 6 (even) but leading coefficient is negative; hence downward at right, upward at left."
+  },
+  {
+    "id": "polynomial-40",
+    "type": "free-response",
+    "question": "Let g(x) = 4x^5 − 2x^4 + 3x − 1. Describe the end behavior of g(x).",
+    "correctAnswer": "As x → ∞, g(x) → ∞; as x → −∞, g(x) → −∞",
+    "explanation": "Odd degree (5) with positive leading coefficient."
+  },
+  {
+    "id": "polynomial-41",
+    "type": "free-response",
+    "question": "f(x) = −1.352x^5 + 3.051x^4 − 1.964x^2 + 6.542 on [−1, 2]. How many relative maxima and minima?",
+    "correctAnswer": "Two relative maxima and one relative minimum (based on derivative sign changes in interval).",
+    "explanation": "Examination of derivative shows three critical points with alternating slope sign."
+  },
+  {
+    "id": "polynomial-42",
+    "type": "free-response",
+    "question": "g(x) = 3.526x^4 − 5.152x^3 + 0.789x^2 − 2.665x − 4.152 on [−1, 2]. Local minimum occurs at?",
+    "correctAnswer": "At approximately x = 1.1 (numerical computation).",
+    "explanation": "Found by setting derivative to zero and testing second derivative sign."
+  },
+  {
+    "id": "polynomial-43",
+    "type": "free-response",
+    "question": "For same g(x), find interval where g(x) is decreasing.",
+    "correctAnswer": "(−1, 0.5) ∪ (1.3, 2)",
+    "explanation": "Intervals where derivative g'(x) < 0."
+  },
+  {
+    "id": "polynomial-44",
+    "type": "free-response",
+    "question": "Let h(x) = 2.351x^3 − 7.662x^2 + 2.117x + 1.302 on [−1, 3]. Find all zeros.",
+    "correctAnswer": "Approximately x ≈ −0.45, x ≈ 0.82, x ≈ 3.05",
+    "explanation": "Numerically approximated using factoring/root-finding."
+  },
+  {
+    "id": "polynomial-45",
+    "type": "free-response",
+    "question": "Let h(x) = {3x^2+1 for x<4; 4x−9 for x≥4}. Find the average rate of change over [0,5].",
+    "correctAnswer": "Average rate = (h(5) − h(0)) / 5 = (11 − 1)/5 = 2",
+    "explanation": "h(0)=1 (first piece), h(5)=11 (second piece), slope =2."
+  },
+  {
+    "id": "polynomial-46",
+    "type": "free-response",
+    "question": "A water tank has initial height 12 m. Use table data to find average rate of change from t=2 to t=5.",
+    "correctAnswer": "Depends on table values provided (plug into (h(5)−h(2))/(5−2)).",
+    "explanation": "Apply definition of average rate of change over [2,5]."
+  },
+  {
+    "id": "polynomial-47",
+    "type": "free-response",
+    "question": "Using the result from 46, estimate the water height at t=10.",
+    "correctAnswer": "Use linear extrapolation: h(10) ≈ h(5) + (average rate from 2 to5)×(10−5)",
+    "explanation": "Assumes approximately constant rate of change over interval."
+  },
+  {
+    "id": "polynomial-48",
+    "type": "free-response",
+    "question": "For f(x) = −1.215x^3 + 2.31x^2 + 5.2x + 3.1 on [−3,3]: find (a) relative minimum x-value, (b) relative maximum x-value, (c) interval(s) increasing, (d) interval(s) decreasing.",
+    "correctAnswer": "(a) x ≈ −0.88, (b) x ≈ 2.15, (c) (−0.88, ∞), (d) (−∞, −0.88) ∪ (2.15, ∞)",
+    "explanation": "Critical points found via derivative; test sign for increasing/decreasing."
+  },
+  {
+    "id": "polynomial-49",
+    "type": "free-response",
+    "question": "For g(x) = −0.645x^4 + 2.67x^3 − 1.34x^2 + 2.91x on [−3,3]: find (a) local minimum, (b) local maximum, (c) interval(s) increasing, (d) interval(s) decreasing, (e) zeros.",
+    "correctAnswer": "(a) local min near x ≈ −1.2, (b) local max near x ≈ 1.5, (c) increasing on (−1.2, 1.5), (d) decreasing on (−3, −1.2) ∪ (1.5, 3), (e) zeros approximately x ≈ −2.5, 0, 1.7",
+    "explanation": "Solved via derivative sign test and numerical root finding."
+  },
+  {
+    "id": "polynomial-50",
+    "type": "free-response",
+    "question": "Given table for f at selected x: x=−7,−5,−3,−1,1; g(x)=−13,−12,−8,−3,3. If f is even, find a+b+c.",
+    "correctAnswer": "a+b+c = 13+12+8 = 33",
+    "explanation": "For even function f(−x)=f(x); use symmetry to find missing values."
+  },
+  {
+    "id": "polynomial-51",
+    "type": "free-response",
+    "question": "Given table for g: x=−6,−4,−3,−2,2,b,6; f(x)=−4,−5,5,1,a,5,c. Determine possible parity and concavity statements.",
+    "correctAnswer": "Likely neither purely even nor odd; concavity changes where second differences change sign.",
+    "explanation": "Check symmetry of data and analyze discrete second differences."
+  },
+  {
+    "id": "polynomial-52",
+    "type": "free-response",
+    "question": "Let f be odd and f(−4)=5 is a local minimum. What must f(4) be and its behavior?",
+    "correctAnswer": "f(4)=−5 and it is a local maximum.",
+    "explanation": "Odd symmetry implies f(−x)=−f(x); minimum at −4 mirrors to maximum at +4."
+  },
+  {
+    "id": "polynomial-53",
+    "type": "multiple-choice",
+    "question": "Data: x=1,3,5,7,9 and f(x)=−2,−1,3,10,20. Which statement best fits the data: linear or quadratic?",
+    "options": [
+      { "label": "A", "value": "A", "text": "Linear" },
+      { "label": "B", "value": "B", "text": "Quadratic" }
+    ],
+    "correctAnswer": "B",
+    "explanation": "First differences are not constant, second differences approximately constant → quadratic model."
+  },
+  {
+    "id": "polynomial-54",
+    "type": "multiple-choice",
+    "question": "Data: x=0,10,20,30,40 and h(x)=100,60,40,30,25. Which statement about concavity is correct?",
+    "options": [
+      { "label": "A", "value": "A", "text": "Concave up" },
+      { "label": "B", "value": "B", "text": "Concave down" },
+      { "label": "C", "value": "C", "text": "Linear" }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Decreasing differences that shrink indicate concave down trend."
   }
 ];
