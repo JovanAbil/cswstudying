@@ -6,25 +6,25 @@ const Index = () => {
   const navigate = useNavigate();
   
   const precalcUnits = [
-    { id: '1a', name: 'Unit 1A' },
-    { id: '1b', name: 'Unit 1B' },
-    { id: '2a', name: 'Unit 2A' },
-    { id: '2b', name: 'Unit 2B' },
-    { id: '3a', name: 'Unit 3A' },
-    { id: '3b', name: 'Unit 3B' },
-    { id: '4a', name: 'Unit 4A' },
-    { id: '4b', name: 'Unit 4B' },
+    { id: 'polynomial', name: 'Polynomial Functions' },
+    { id: 'rational', name: 'Rational Functions' },
+    { id: 'exponential', name: 'Exponential Functions' },
+    { id: 'logarithmic', name: 'Logarithmic Functions' },
+    { id: 'trigonometric', name: 'Trigonometric Functions' },
+    { id: 'polar', name: 'Polar Functions' },
+    { id: 'parametric', name: 'Parametric Functions' },
+    { id: 'vectorsMatrices', name: 'Vectors and Matrices' },
   ];
 
   const biologyUnits = [
-    { id: 'bio1', name: 'Unit 1' },
-    { id: 'bio2', name: 'Unit 2' },
-    { id: 'bio3', name: 'Unit 3' },
-    { id: 'bio4', name: 'Unit 4' },
-    { id: 'bio5', name: 'Unit 5' },
-    { id: 'bio6', name: 'Unit 6' },
-    { id: 'bio7', name: 'Unit 7' },
-    { id: 'bio8', name: 'Unit 8' },
+    { id: 'biochemistry', name: 'Biochemistry' },
+    { id: 'cellstructure', name: 'Cell Structure & Function' },
+    { id: 'cellenergetics', name: 'Cell Energetics & Photosynthesis & Cell Resp' },
+    { id: 'cellgrowth', name: 'Cell Growth & Divison' },
+    { id: 'genetics', name: 'Genetics' },
+    { id: 'molecular', name: 'Molecular Biology' },
+    { id: 'evolution', name: 'Darwins Theory of Evolution' },
+    { id: 'ecology', name: 'Ecology' },
   ];
 
   return (
