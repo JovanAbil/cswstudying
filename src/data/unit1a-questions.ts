@@ -1,7 +1,6 @@
 import { Question } from '@/types/quiz';
 
 export const unit1aQuestions: Question[] = [
-  [
   {
     "id": "1a-1",
     "type": "multiple-choice",
