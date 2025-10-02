@@ -52,10 +52,10 @@ const Quiz = () => {
     const questionCount = quizType === 'daily' ? 10 : (subject === 'biology' ? 25 : 30);
     
     let allQuestions: Question[] = [];
-    if (subject === 'precalc' && unitId === '1a') {
-      allQuestions = unit1aQuestions;
-    } else if (subject === 'biology' && unitId === 'bio1') {
-      allQuestions = bio1Questions;
+    if (subject === 'precalc' && unitId === 'polynomial') {
+      allQuestions = polynomialQuestions;
+    } else if (subject === 'biology' && unitId === 'biochemistry') {
+      allQuestions = biochemistryQuestions;
     }
     
     // Shuffle and select questions (randomize order)
