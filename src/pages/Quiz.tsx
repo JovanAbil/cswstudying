@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -30,8 +30,15 @@ import { gasesQuestions } from '@/data/gases-questions';
 import { solutionsQuestions } from '@/data/solutions-questions';
 import { reactionsQuestions } from '@/data/reactions-questions';
 import { stoichiometryQuestions } from '@/data/stoichiometry-questions';
-import { acidbaseQuestions } from '@/data/acidbase-questions';
-import { religionQuestions } from '@/data/religion-questions';
+import { acidbasesQuestions } from '@/data/acidbases-questions';
+import { religionsQuestions } from '@/data/religions-questions';
+import { worldHistoryUnit2Questions } from '@/data/world-history-unit2';
+import { worldHistoryUnit3Questions } from '@/data/world-history-unit3';
+import { worldHistoryUnit4Questions } from '@/data/world-history-unit4';
+import { worldHistoryUnit5Questions } from '@/data/world-history-unit5';
+import { worldHistoryUnit6Questions } from '@/data/world-history-unit6';
+import { worldHistoryUnit7Questions } from '@/data/world-history-unit7';
+import { worldHistoryUnit8Questions } from '@/data/world-history-unit8';
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
@@ -39,6 +46,8 @@ import QuestionTable from '@/components/QuestionTable';
 const Quiz = () => {
   const { subject, unitId, quizType } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedUnits = location.state?.selectedUnits || [];
   
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -48,28 +57,44 @@ const Quiz = () => {
   const [showGrading, setShowGrading] = useState(false);
 
   useEffect(() => {
-    // Get questions based on subject, unit and type
-    const questionCount = quizType === 'daily' ? 10 : (subject === 'biology' ? 25 : 30);
+    const questionCount = quizType === 'daily' ? 10 : 30;
+    
+    const questionMap: Record<string, Question[]> = {
+      'precalc-polynomial': polynomialQuestions, 'precalc-rational': rationalQuestions,
+      'precalc-exponential': exponentialQuestions, 'precalc-logarithmic': logarithmicQuestions,
+      'precalc-trigonometric': trigonometricQuestions, 'precalc-polar': polarQuestions,
+      'precalc-parametric': parametricQuestions, 'precalc-vectorsMatrices': vectorsMatricesQuestions,
+      'biology-biochemistry': biochemistryQuestions, 'biology-cellstructure': cellstructureQuestions,
+      'biology-cellenergetics': cellenergeticsQuestions, 'biology-cellgrowth': cellgrowthQuestions,
+      'biology-genetics': geneticsQuestions, 'biology-molecular': molecularQuestions,
+      'biology-evolution': evolutionQuestions, 'biology-ecology': ecologyQuestions,
+      'chemistry-metric': metricQuestions, 'chemistry-atomic': atomicQuestions,
+      'chemistry-compounds': compoundsQuestions, 'chemistry-gases': gasesQuestions,
+      'chemistry-solutions': solutionsQuestions, 'chemistry-reactions': reactionsQuestions,
+      'chemistry-stoichiometry': stoichiometryQuestions, 'chemistry-acidbases': acidbasesQuestions,
+      'world-history-religions': religionsQuestions, 'world-history-unit2': worldHistoryUnit2Questions,
+      'world-history-unit3': worldHistoryUnit3Questions, 'world-history-unit4': worldHistoryUnit4Questions,
+      'world-history-unit5': worldHistoryUnit5Questions, 'world-history-unit6': worldHistoryUnit6Questions,
+      'world-history-unit7': worldHistoryUnit7Questions, 'world-history-unit8': worldHistoryUnit8Questions,
+    };
     
     let allQuestions: Question[] = [];
-    if (subject === 'precalc' && unitId === 'polynomial') {
-      allQuestions = polynomialQuestions;
-    } else if (subject === 'biology' && unitId === 'biochemistry') {
-      allQuestions = biochemistryQuestions;
+    if (selectedUnits.length > 0) {
+      selectedUnits.forEach((unit: string) => {
+        allQuestions = [...allQuestions, ...(questionMap[`${subject}-${unit}`] || [])];
+      });
+    } else {
+      allQuestions = questionMap[`${subject}-${unitId}`] || [];
     }
     
-    // Shuffle and select questions (randomize order)
     const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
     const selected = shuffled.slice(0, Math.min(questionCount, shuffled.length));
     
     setQuestions(selected);
     setAttempts(selected.map(q => ({
-      questionId: q.id,
-      userAnswer: null,
-      isCorrect: null,
-      selfGraded: q.type === 'free-response'
+      questionId: q.id, userAnswer: null, isCorrect: null, selfGraded: q.type === 'free-response'
     })));
-  }, [subject, unitId, quizType]);
+  }, [subject, unitId, quizType, selectedUnits]);
 
   const currentQuestion = questions[currentIndex];
   const currentAttempt = attempts[currentIndex];
@@ -145,11 +170,11 @@ const Quiz = () => {
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Button
           variant="ghost"
-          onClick={() => navigate(`/unit/${subject}/${unitId}`)}
+          onClick={() => navigate(selectedUnits.length > 0 ? `/course-challenge/${subject}` : `/unit/${subject}/${unitId}`)}
           className="mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Unit
+          {selectedUnits.length > 0 ? 'Back to Challenge' : 'Back to Unit'}
         </Button>
 
         <div className="mb-8">

@@ -1,51 +1,83 @@
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
-import { GraduationCap, Microscope } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { GraduationCap, Microscope, Beaker, Landmark } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
   
   const precalcUnits = [
-    { id: 'polynomial', name: 'Polynomial Functions' },
-    { id: 'rational', name: 'Rational Functions' },
-    { id: 'exponential', name: 'Exponential Functions' },
-    { id: 'logarithmic', name: 'Logarithmic Functions' },
-    { id: 'trigonometric', name: 'Trigonometric Functions' },
-    { id: 'polar', name: 'Polar Functions' },
-    { id: 'parametric', name: 'Parametric Functions' },
-    { id: 'vectorsMatrices', name: 'Vectors and Matrices' },
+    { id: 'polynomial', name: 'Unit 1A' },
+    { id: 'rational', name: 'Unit 1B' },
+    { id: 'exponential', name: 'Unit 2A' },
+    { id: 'logarithmic', name: 'Unit 2B' },
+    { id: 'trigonometric', name: 'Unit 3A' },
+    { id: 'polar', name: 'Unit 3B' },
+    { id: 'parametric', name: 'Unit 4A' },
+    { id: 'vectorsMatrices', name: 'Unit 4B' },
   ];
 
   const biologyUnits = [
-    { id: 'biochemistry', name: 'Biochemistry' },
-    { id: 'cellstructure', name: 'Cell Structure & Function' },
-    { id: 'cellenergetics', name: 'Cell Energetics & Photosynthesis & Cell Resp' },
-    { id: 'cellgrowth', name: 'Cell Growth & Divison' },
-    { id: 'genetics', name: 'Genetics' },
-    { id: 'molecular', name: 'Molecular Biology' },
-    { id: 'evolution', name: 'Darwins Theory of Evolution' },
-    { id: 'ecology', name: 'Ecology' },
+    { id: 'biochemistry', name: 'Unit 1' },
+    { id: 'cellstructure', name: 'Unit 2' },
+    { id: 'cellenergetics', name: 'Unit 3' },
+    { id: 'cellgrowth', name: 'Unit 4' },
+    { id: 'genetics', name: 'Unit 5' },
+    { id: 'molecular', name: 'Unit 6' },
+    { id: 'evolution', name: 'Unit 7' },
+    { id: 'ecology', name: 'Unit 8' },
+  ];
+
+  const chemistryUnits = [
+    { id: 'metric', name: 'Unit 1' },
+    { id: 'atomic', name: 'Unit 2' },
+    { id: 'compounds', name: 'Unit 3' },
+    { id: 'gases', name: 'Unit 4' },
+    { id: 'solutions', name: 'Unit 5' },
+    { id: 'reactions', name: 'Unit 6' },
+    { id: 'stoichiometry', name: 'Unit 7' },
+    { id: 'acidbases', name: 'Unit 8' },
+  ];
+
+  const worldHistoryUnits = [
+    { id: 'religions', name: 'Unit 1' },
+    { id: 'unit2', name: 'Unit 2' },
+    { id: 'unit3', name: 'Unit 3' },
+    { id: 'unit4', name: 'Unit 4' },
+    { id: 'unit5', name: 'Unit 5' },
+    { id: 'unit6', name: 'Unit 6' },
+    { id: 'unit7', name: 'Unit 7' },
+    { id: 'unit8', name: 'Unit 8' },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-primary">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Practice Hub
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Master Classes with interactive practice tests and daily exercises!
+            Master your classes with interactive practice tests and daily exercises!
           </p>
         </div>
 
         {/* AP Precalc Section */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-              <GraduationCap className="w-8 h-8 text-primary" />
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
+                <GraduationCap className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold text-primary">AP Precalculus</h2>
             </div>
-            <h2 className="text-3xl font-bold mb-2 text-primary">AP Precalculus</h2>
+            <Button
+              onClick={() => navigate('/course-challenge/precalc')}
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              Course Challenge
+            </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {precalcUnits.map((unit) => (
@@ -55,10 +87,7 @@ const Index = () => {
                 onClick={() => navigate(`/unit/precalc/${unit.id}`)}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2 text-primary group-hover:scale-110 transition-transform">
-                    {unit.id.toUpperCase()}
-                  </div>
-                  <p className="text-sm text-muted-foreground">{unit.name}</p>
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
                 </div>
               </Card>
             ))}
@@ -66,12 +95,21 @@ const Index = () => {
         </div>
 
         {/* Biology Section */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-success/10 rounded-full mb-4">
-              <Microscope className="w-8 h-8 text-success" />
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-success/10 rounded-lg">
+                <Microscope className="w-6 h-6 text-success" />
+              </div>
+              <h2 className="text-2xl font-bold text-success">Biology</h2>
             </div>
-            <h2 className="text-3xl font-bold mb-2 text-success">Biology</h2>
+            <Button
+              onClick={() => navigate('/course-challenge/biology')}
+              variant="outline"
+              className="border-success text-success hover:bg-success hover:text-white"
+            >
+              Course Challenge
+            </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {biologyUnits.map((unit) => (
@@ -81,10 +119,71 @@ const Index = () => {
                 onClick={() => navigate(`/unit/biology/${unit.id}`)}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2 text-success group-hover:scale-110 transition-transform">
-                    {unit.id.replace('bio', 'Unit ')}
-                  </div>
-                  <p className="text-sm text-muted-foreground">{unit.name}</p>
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Chemistry Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg">
+                <Beaker className="w-6 h-6 text-accent" />
+              </div>
+              <h2 className="text-2xl font-bold text-accent">Chemistry</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/chemistry')}
+              variant="outline"
+              className="border-accent text-accent hover:bg-accent hover:text-foreground"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {chemistryUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
+                onClick={() => navigate(`/unit/chemistry/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* World History Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-destructive/10 rounded-lg">
+                <Landmark className="w-6 h-6 text-destructive" />
+              </div>
+              <h2 className="text-2xl font-bold text-destructive">World History</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/world-history')}
+              variant="outline"
+              className="border-destructive text-destructive hover:bg-destructive hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {worldHistoryUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
+                onClick={() => navigate(`/unit/world-history/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
                 </div>
               </Card>
             ))}
@@ -92,18 +191,24 @@ const Index = () => {
         </div>
 
         {/* Info Cards */}
-        <div className="mt-16 max-w-3xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6 bg-secondary/20 border-secondary">
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="p-6 bg-secondary/10 border-secondary">
               <h3 className="text-lg font-semibold mb-2 text-secondary">📚 Daily Practice</h3>
               <p className="text-sm text-muted-foreground">
                 Quick 10-question sessions to keep your skills sharp
               </p>
             </Card>
-            <Card className="p-6 bg-accent/20 border-accent">
+            <Card className="p-6 bg-accent/10 border-accent">
               <h3 className="text-lg font-semibold mb-2 text-accent">📝 Full Tests</h3>
               <p className="text-sm text-muted-foreground">
-                Comprehensive 25-30 question assessments to test your mastery
+                Comprehensive 30-question assessments to test your mastery
+              </p>
+            </Card>
+            <Card className="p-6 bg-primary/10 border-primary">
+              <h3 className="text-lg font-semibold mb-2 text-primary">🎯 Course Challenge</h3>
+              <p className="text-sm text-muted-foreground">
+                30 random questions from all units to test your overall knowledge
               </p>
             </Card>
           </div>

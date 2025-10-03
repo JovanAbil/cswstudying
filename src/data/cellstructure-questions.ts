@@ -1,5 +1,3 @@
 import { Question } from '@/types/quiz';
 
-export const cellstructureQuestions: Question[] = [{
-  
-}];
+export const cellstructureQuestions: Question[] = [];

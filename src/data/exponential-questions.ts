@@ -1,5 +1,3 @@
 import { Question } from '@/types/quiz';
 
-export const exponentialQuestions: Question[] = [{
-  
-}];
+export const exponentialQuestions: Question[] = [];
