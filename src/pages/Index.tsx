@@ -7,36 +7,36 @@ const Index = () => {
   const navigate = useNavigate();
   
   const precalcUnits = [
-    { id: 'polynomial', name: 'Unit 1A' },
-    { id: 'rational', name: 'Unit 1B' },
-    { id: 'exponential', name: 'Unit 2A' },
-    { id: 'logarithmic', name: 'Unit 2B' },
-    { id: 'trigonometric', name: 'Unit 3A' },
-    { id: 'polar', name: 'Unit 3B' },
-    { id: 'parametric', name: 'Unit 4A' },
-    { id: 'vectorsMatrices', name: 'Unit 4B' },
+    { id: 'polynomial', name: 'Polynomial' },
+    { id: 'rational', name: 'Rational' },
+    { id: 'exponential', name: 'Exponential' },
+    { id: 'logarithmic', name: 'Logarithmic' },
+    { id: 'trigonometric', name: 'Trigonometric' },
+    { id: 'polar', name: 'Polar' },
+    { id: 'parametric', name: 'Parametric' },
+    { id: 'vectorsMatrices', name: 'Vectors and Matrices' },
   ];
 
   const biologyUnits = [
-    { id: 'biochemistry', name: 'Unit 1' },
-    { id: 'cellstructure', name: 'Unit 2' },
-    { id: 'cellenergetics', name: 'Unit 3' },
-    { id: 'cellgrowth', name: 'Unit 4' },
-    { id: 'genetics', name: 'Unit 5' },
-    { id: 'molecular', name: 'Unit 6' },
-    { id: 'evolution', name: 'Unit 7' },
-    { id: 'ecology', name: 'Unit 8' },
+    { id: 'biochemistry', name: 'BioChem' },
+    { id: 'cellstructure', name: 'Cell Structure & Functions' },
+    { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
+    { id: 'cellgrowth', name: 'Cell Growth & Division' },
+    { id: 'genetics', name: 'Genetics' },
+    { id: 'molecular', name: 'Molecular Biology' },
+    { id: 'evolution', name: 'Darwins Theory of Evolution' },
+    { id: 'ecology', name: 'Ecology' },
   ];
 
   const chemistryUnits = [
-    { id: 'metric', name: 'Unit 1' },
-    { id: 'atomic', name: 'Unit 2' },
-    { id: 'compounds', name: 'Unit 3' },
-    { id: 'gases', name: 'Unit 4' },
-    { id: 'solutions', name: 'Unit 5' },
-    { id: 'reactions', name: 'Unit 6' },
-    { id: 'stoichiometry', name: 'Unit 7' },
-    { id: 'acidbases', name: 'Unit 8' },
+    { id: 'metric', name: 'Matter and Measurement' },
+    { id: 'atomic', name: 'Atomic Theory' },
+    { id: 'compounds', name: 'Compounds' },
+    { id: 'gases', name: 'Gases' },
+    { id: 'solutions', name: 'Solutions' },
+    { id: 'reactions', name: 'Chemical Reactions' },
+    { id: 'stoichiometry', name: 'Stoichiometry' },
+    { id: 'acidbases', name: 'Acids and Bases' },
   ];
 
   const worldHistoryUnits = [
