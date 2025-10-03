@@ -39,6 +39,9 @@ import { worldHistoryUnit5Questions } from '@/data/worldhistory/world-history-un
 import { worldHistoryUnit6Questions } from '@/data/worldhistory/world-history-unit6';
 import { worldHistoryUnit7Questions } from '@/data/worldhistory/world-history-unit7';
 import { worldHistoryUnit8Questions } from '@/data/worldhistory/world-history-unit8';
+import { worldHistoryUnit9Questions } from '@/data/worldhistory/world-history-unit9';
+import { worldHistoryUnit10Questions } from '@/data/worldhistory/world-history-unit10';
+import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-unit11';
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
@@ -78,6 +81,8 @@ const Quiz = () => {
       'world-history-unit3': worldHistoryUnit3Questions, 'world-history-unit4': worldHistoryUnit4Questions,
       'world-history-unit5': worldHistoryUnit5Questions, 'world-history-unit6': worldHistoryUnit6Questions,
       'world-history-unit7': worldHistoryUnit7Questions, 'world-history-unit8': worldHistoryUnit8Questions,
+      'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
+      'world-history-unit11': worldHistoryUnit11Questions,
     };
     
     let allQuestions: Question[] = [];
