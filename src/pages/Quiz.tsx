@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -47,7 +47,9 @@ const Quiz = () => {
   const { subject, unitId, quizType } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const selectedUnits = location.state?.selectedUnits || [];
+  
+  // Memoize selectedUnits to prevent infinite loop
+  const selectedUnits = useMemo(() => location.state?.selectedUnits || [], [location.state?.selectedUnits]);
   
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -90,10 +92,16 @@ const Quiz = () => {
     const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
     const selected = shuffled.slice(0, Math.min(questionCount, shuffled.length));
     
-    setQuestions(selected);
-    setAttempts(selected.map(q => ({
-      questionId: q.id, userAnswer: null, isCorrect: null, selfGraded: q.type === 'free-response'
-    })));
+    if (selected.length > 0) {
+      setQuestions(selected);
+      setAttempts(selected.map(q => ({
+        questionId: q.id, userAnswer: null, isCorrect: null, selfGraded: q.type === 'free-response'
+      })));
+      setCurrentIndex(0);
+      setCurrentAnswer('');
+      setIsSubmitted(false);
+      setShowGrading(false);
+    }
   }, [subject, unitId, quizType, selectedUnits]);
 
   const currentQuestion = questions[currentIndex];
