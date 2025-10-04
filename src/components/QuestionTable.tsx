@@ -1,4 +1,5 @@
 import { TableData } from '@/types/quiz';
+import MathText from '@/components/MathText';
 
 interface QuestionTableProps {
   data: TableData;
@@ -11,12 +12,13 @@ const QuestionTable = ({ data }: QuestionTableProps) => {
         <thead>
           <tr className="bg-muted">
             {data.headers.map((header, index) => (
-              <th
+              <MathText
                 key={index}
+                tag="th"
                 className="px-4 py-3 text-left text-sm font-semibold border-b-2 border-border"
               >
                 {header}
-              </th>
+              </MathText>
             ))}
           </tr>
         </thead>
@@ -24,12 +26,13 @@ const QuestionTable = ({ data }: QuestionTableProps) => {
           {data.rows.map((row, rowIndex) => (
             <tr key={rowIndex} className="border-b border-border">
               {row.map((cell, cellIndex) => (
-                <td
+                <MathText
                   key={cellIndex}
+                  tag="td"
                   className="px-4 py-3 text-sm"
                 >
                   {cell}
-                </td>
+                </MathText>
               ))}
             </tr>
           ))}

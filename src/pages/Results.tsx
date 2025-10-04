@@ -7,6 +7,7 @@ import { Trophy, Home, CheckCircle2, XCircle } from 'lucide-react';
 import { useEffect } from 'react';
 import { Question, QuizAttempt } from '@/types/quiz';
 import QuestionTable from '@/components/QuestionTable';
+import MathText from '@/components/MathText';
 
 interface ExtendedAttempt extends QuizAttempt {
   question: Question;
@@ -104,7 +105,7 @@ const Results = () => {
                         </div>
                       )}
                       
-                      <p className="text-sm mb-3">{question.question}</p>
+                      <MathText tag="p" className="text-sm mb-3">{question.question}</MathText>
 
                       {question.type === 'multiple-choice' ? (
                         <div className="space-y-2 mb-3">
@@ -124,7 +125,7 @@ const Results = () => {
                                 }`}
                               >
                                 <span className="font-semibold mr-2">{option.label})</span>
-                                {option.text}
+                                <MathText>{option.text}</MathText>
                                 {isCorrectAnswer && (
                                   <span className="ml-2 text-success font-semibold">✓ Correct</span>
                                 )}
@@ -139,11 +140,11 @@ const Results = () => {
                         <div className="space-y-2 mb-3">
                           <div className="p-3 bg-muted rounded-lg text-sm">
                             <p className="font-semibold mb-1">Your Answer:</p>
-                            <p>{attempt.userAnswer || '(No answer)'}</p>
+                            <MathText tag="p">{attempt.userAnswer || '(No answer)'}</MathText>
                           </div>
                           <div className={`p-3 rounded-lg border-2 border-success bg-success/10 text-sm`}>
                             <p className="font-semibold mb-1">Correct Answer:</p>
-                            <p>{question.correctAnswer}</p>
+                            <MathText tag="p">{question.correctAnswer}</MathText>
                           </div>
                         </div>
                       )}
@@ -151,7 +152,7 @@ const Results = () => {
                       {question.explanation && (
                         <div className="p-3 bg-primary/5 rounded-lg text-sm">
                           <p className="font-semibold mb-1">Explanation:</p>
-                          <p className="whitespace-pre-line">{question.explanation}</p>
+                          <MathText tag="p" className="whitespace-pre-line">{question.explanation}</MathText>
                         </div>
                       )}
                     </div>

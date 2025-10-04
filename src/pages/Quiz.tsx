@@ -45,6 +45,7 @@ import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-u
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
+import MathText from '@/components/MathText';
 
 const Quiz = () => {
   const { subject, unitId, quizType } = useParams();
@@ -232,9 +233,9 @@ const Quiz = () => {
             </div>
           )}
           
-          <h3 className="text-xl font-semibold mb-6 leading-relaxed">
+          <MathText tag="h3" className="text-xl font-semibold mb-6 leading-relaxed">
             {currentQuestion.question}
-          </h3>
+          </MathText>
 
           {currentQuestion.type === 'multiple-choice' ? (
             <RadioGroup
@@ -257,7 +258,7 @@ const Quiz = () => {
                   <RadioGroupItem value={option.value} id={option.value} />
                   <Label htmlFor={option.value} className="flex-1 cursor-pointer">
                     <span className="font-semibold mr-2">{option.label})</span>
-                    {option.text}
+                    <MathText>{option.text}</MathText>
                   </Label>
                   {isSubmitted && option.value === currentQuestion.correctAnswer && (
                     <CheckCircle2 className="h-5 w-5 text-success" />
@@ -284,14 +285,14 @@ const Quiz = () => {
           {isSubmitted && currentQuestion.explanation && (
             <div className="mt-6 p-4 bg-muted rounded-lg">
               <h4 className="font-semibold mb-2">Explanation:</h4>
-              <p className="whitespace-pre-line text-sm">{currentQuestion.explanation}</p>
+              <MathText tag="p" className="whitespace-pre-line text-sm">{currentQuestion.explanation}</MathText>
             </div>
           )}
 
           {isSubmitted && currentQuestion.type === 'free-response' && (
             <div className="mt-6 p-4 bg-primary/5 border-2 border-primary rounded-lg">
               <h4 className="font-semibold mb-2">Correct Answer:</h4>
-              <p className="text-lg mb-4">{currentQuestion.correctAnswer}</p>
+              <MathText tag="p" className="text-lg mb-4">{currentQuestion.correctAnswer}</MathText>
               
               {showGrading && (
                 <div className="space-y-3">
