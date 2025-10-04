@@ -20,7 +20,7 @@ export const rationalQuestions: Question[] = [
     {
     "id": "rational-3",
     "type": "free-response",
-    "question": "f(x) = 3x^2-1/2x^2+5x+7 What is the horizontal asymptote",
+    "question": "f(x) = (3x^2-1)/(2x^2+5x+7) What is the horizontal asymptote",
     "correctAnswer": "3/2",
     "explanation": "3x^2/2x^2"
   },
