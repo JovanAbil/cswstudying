@@ -10,7 +10,7 @@ export const rationalQuestions: Question[] = [
     "explanation": "The image shows the horizontal asymptote to be -1 which is what will never have a value but the function will try to keep approaching."
   },
   {
-    "id": "rational-1",
+    "id": "rational-2",
     "type": "free-response",
     "question": "Instructions on Image",
     "image": "/images/apprecalc/rational2.png",
