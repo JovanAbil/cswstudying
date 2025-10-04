@@ -61,7 +61,7 @@ const Index = () => {
             Practice Hub
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Master your classes with interactive practice tests and daily exercises!
+            Master your classes in CSW with interactive practice tests and daily exercises! React out to abilash.jovan@charterschool.org with a question bank of some sort along with the teacher to add classes!
           </p>
         </div>
 
@@ -72,7 +72,7 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
                 <GraduationCap className="w-6 h-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold text-primary">AP Precalculus</h2>
+              <h2 className="text-2xl font-bold text-primary">AP Precalculus (Damiani)</h2>
             </div>
             <Button
               onClick={() => navigate('/course-challenge/precalc')}
@@ -104,7 +104,7 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-success/10 rounded-lg">
                 <Microscope className="w-6 h-6 text-success" />
               </div>
-              <h2 className="text-2xl font-bold text-success">Biology</h2>
+              <h2 className="text-2xl font-bold text-success">Biology (Valenti)</h2>
             </div>
             <Button
               onClick={() => navigate('/course-challenge/biology')}
@@ -136,7 +136,7 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg">
                 <Beaker className="w-6 h-6 text-accent" />
               </div>
-              <h2 className="text-2xl font-bold text-accent">Chemistry</h2>
+              <h2 className="text-2xl font-bold text-accent">Chemistry (Massarotti)</h2>
             </div>
             <Button
               onClick={() => navigate('/course-challenge/chemistry')}
@@ -168,7 +168,7 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-destructive/10 rounded-lg">
                 <Landmark className="w-6 h-6 text-destructive" />
               </div>
-              <h2 className="text-2xl font-bold text-destructive">World History</h2>
+              <h2 className="text-2xl font-bold text-destructive">World History (Stella)</h2>
             </div>
             <Button
               onClick={() => navigate('/course-challenge/world-history')}
