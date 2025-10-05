@@ -475,8 +475,8 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-47",
     "type": "free-response",
-    "question": "Given table for f at selected x: x=−7,−5,−3,−1,1; g(x)=−13,−12,−8,−3,3. If f is even, find a+b+c.",
-    "correctAnswer": "a+b+c = 13+12+8 = 33",
+    "question": "Given table for f at selected x: x=−7,−4,a,6,7; g(x)=b,−5,5,7,12. If f is even, find a+b.",
+    "correctAnswer": "a+b = 4-12 = -8",
     "explanation": "For even function f(−x)=f(x); use symmetry to find missing values."
   },
   {
@@ -560,5 +560,60 @@ export const polynomialQuestions: Question[] = [
     ],
     "correctAnswer": "D",
     "explanation": "A function that is decreasing at a decreasing rate has a negative first derivative (decreasing) and a positive second derivative (concave up). This means the graph slopes downward but curves upward."
+  },
+  {
+    "id": "polynomial-57",
+    "type": "multiple-choice",
+    "question": "The graph of a function k is shown in the figure. Which of the following best describes the behavior of the graph of k from point A to point B?",
+    "image": "/images/apprecalc/polynomial10.png",
+    "options": [
+      { "label": "A", "value": "A", "text": "The graph of k is increasing and concave up", },
+      { "label": "B", "value": "B", "text": "The graph of k is increasing and concave down", },
+      { "label": "C", "value": "C", "text": "The graph of k is decreasing and concave up", },
+      { "label": "D", "value": "D", "text": "The graph of k is decreasing and concave down", }
+    ],
+    "correctAnswer": "C",
+    "explanation": "N/A"
+  },
+  {
+    "id": "polynomial-58",
+    "type": "multiple-choice",
+    "question": "The function g is a polynomial with the following end behavior: lim_x-->-∞ g(x) = -∞ and lim_x-->∞ g(x) = -∞",
+    "options": [
+      { "label": "A", "value": "A", "text": "-4x^7-3x^3+x-6", },
+      { "label": "B", "value": "B", "text": "-3x^6+5x^2+6x-1", },
+      { "label": "C", "value": "C", "text": "3x^3+x^2-5x+1", },
+      { "label": "D", "value": "D", "text": "2x^4-7x^3+3x^2+1", }
+    ],
+    "correctAnswer": "B",
+    "explanation": "N/A"
+  },
+  {
+    "id": "polynomial-59",
+    "type": "multiple-choice",
+    "question": "What is the average rate of change of h over the interval 0<=x<=6",
+    "image": "/images/apprecalc/polynomial5.png",
+    "options": [
+      { "label": "A", "value": "A", "text": "1/6", },
+      { "label": "B", "value": "B", "text": "2/9", },
+      { "label": "C", "value": "C", "text": "1/2", },
+      { "label": "D", "value": "D", "text": "1", }
+    ],
+    "correctAnswer": "C",
+    "explanation": "N/A"
+  },
+  {
+    "id": "polynomial-60",
+    "type": "multiple-choice",
+    "question": "The graph of the polynomial function p is shown above. Which of the following could be an expression for p?",
+    "image": "/images/apprecalc/polynomial4.png",
+    "options": [
+      { "label": "A", "value": "A", "text": "-1x/4 (x+2)(x-3)", },
+      { "label": "B", "value": "B", "text": "-1x^2/4 (x-2)(x+3)", },
+      { "label": "C", "value": "C", "text": "-1x^2/4 (x+2)(x-3)", },
+      { "label": "D", "value": "D", "text": "1x^2/4 (x+2)(x-3)", }
+    ],
+    "correctAnswer": "C",
+    "explanation": "N/A"
   },
 ];
