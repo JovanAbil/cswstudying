@@ -134,19 +134,6 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-11",
     "type": "multiple-choice",
-    "question": "Let f(x) = x^3 + 2x^2 - 21x + 18. For which x is f(x) < 0?",
-    "options": [
-      { "label": "A", "value": "A", "text": "(-∞, -6) ∪ (1, 3)" },
-      { "label": "B", "value": "B", "text": "(-∞, -3) ∪ (2, 4)" },
-      { "label": "C", "value": "C", "text": "( -6, 1 )" },
-      { "label": "D", "value": "D", "text": "(-∞, -6) only" }
-    ],
-    "correctAnswer": "A",
-    "explanation": "Provided solution: f(x) < 0 on (-∞, -6) ∪ (1, 3)."
-  },
-  {
-    "id": "polynomial-12",
-    "type": "multiple-choice",
     "question": "Let k(x) = 2x^4 + 9x^3 - 5x^2. On what intervals is k(x) ≥ 0?",
     "options": [
       { "label": "A", "value": "A", "text": "(-∞, -5] ∪ {0} ∪ [0.5, ∞)" },
@@ -158,7 +145,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Factor: 2x^2 (x+5)(x-1/2). Sign analysis yields k(x) ≥ 0 on (-∞,-5] ∪ {0} ∪ [0.5, ∞)."
   },
   {
-    "id": "polynomial-13",
+    "id": "polynomial-12",
     "type": "multiple-choice",
     "question": "Given 1 - 3i is a zero of f(x) = x^4 + 8x^3 - 15x^2 + 110x - 50. Which other zero must occur and what quadratic remains after dividing out the conjugate pair?",
     "options": [
@@ -171,7 +158,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Complex conjugate 1+3i is also root. Dividing out gives x^2 + 10x - 5; roots of that quadratic are -5 ± √30."
   },
   {
-    "id": "polynomial-14",
+    "id": "polynomial-13",
     "type": "multiple-choice",
     "question": "[Calculator] f(x) = -1.215x^3 + 2.31x^2 + 5.2x + 3.1 on [-3,3]. Where are min and max and intervals of increase/decrease?",
     "options": [
@@ -182,32 +169,6 @@ export const polynomialQuestions: Question[] = [
     ],
     "correctAnswer": "A",
     "explanation": "Provided numeric results: min ≈ -0.71838, max ≈ 1.98587. Increasing on (-0.71838,1.98587), decreasing elsewhere on [-3,3]."
-  },
-  {
-    "id": "polynomial-15",
-    "type": "multiple-choice",
-    "question": "[Calculator] For g(x) = -0.645x^4 + 2.67x^3 - 1.34x^2 + 2.91x on [-3,3], which is true?",
-    "options": [
-      { "label": "A", "value": "A", "text": "Local min: none in open interval; local max at x ≈ 2.87995; increasing on (-3, 2.87995)" },
-      { "label": "B", "value": "B", "text": "Local min at x ≈ 0; decreasing everywhere else" },
-      { "label": "C", "value": "C", "text": "Function is constant" },
-      { "label": "D", "value": "D", "text": "Multiple local minima in (-3,3)" }
-    ],
-    "correctAnswer": "A",
-    "explanation": "Provided result: local max at ≈ 2.87995, no interior local minima; increasing on (-3,2.87995), decreasing on (2.87995,3]. Zero at x=0."
-  },
-  {
-    "id": "polynomial-16",
-    "type": "multiple-choice",
-    "question": "[Calculator] Let h(x) = -0.16x^5 + 1.07x^4 - 2.67x^3 + 1.3x^2 - 3.14x on [0,6.5]. Which is true?",
-    "options": [
-      { "label": "A", "value": "A", "text": "No interior local max; absolute min at x = 6.5; decreasing on entire interval; zero at x = 0" },
-      { "label": "B", "value": "B", "text": "Increasing on entire interval" },
-      { "label": "C", "value": "C", "text": "Multiple interior maxima" },
-      { "label": "D", "value": "D", "text": "Absolute max at x = 6.5" }
-    ],
-    "correctAnswer": "A",
-    "explanation": "Provided: no interior local max, absolute min at x=6.5 (h(6.5) ≈ -645.18), decreasing on whole [0,6.5], zero only at x=0."
   },
   {
     "id": "polynomial-17",
@@ -247,19 +208,6 @@ export const polynomialQuestions: Question[] = [
     ],
     "correctAnswer": "A",
     "explanation": "Direct reading of factors: multiplicities 2,3,2 respectively."
-  },
-  {
-    "id": "polynomial-20",
-    "type": "multiple-choice",
-    "question": "Given 4x^3 (x+7)^2 (x-3). What are zeros and multiplicities?",
-    "options": [
-      { "label": "A", "value": "A", "text": "0(mult3), -7(mult2), 3(mult1)" },
-      { "label": "B", "value": "B", "text": "0(mult1), -7(mult1), 3(mult3)" },
-      { "label": "C", "value": "C", "text": "0(mult3), -7(mult1), 3(mult2)" },
-      { "label": "D", "value": "D", "text": "0(mult2), -7(mult2), 3(mult2)" }
-    ],
-    "correctAnswer": "A",
-    "explanation": "Zeros: x→0 mult3; x+7→-7 mult2; x-3→3 mult1."
   },
   {
     "id": "polynomial-21",
@@ -361,13 +309,6 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Multiplicity is read directly from each factor’s exponent."
   },
   {
-    "id": "polynomial-30",
-    "type": "free-response",
-    "question": "h(x) = 4x^3 (x+7)^2 (x−3). Find the zeros and their multiplicities.",
-    "correctAnswer": "x = 0 (multiplicity 3), x = −7 (multiplicity 2), x = 3 (multiplicity 1)",
-    "explanation": "Read multiplicities from exponents of each factor."
-  },
-  {
     "id": "polynomial-31",
     "type": "free-response",
     "question": "Solve x^3 + 2x^2 − 11x + 12 ≥ 0. Write the solution in interval notation.",
@@ -387,13 +328,6 @@ export const polynomialQuestions: Question[] = [
     "question": "Solve 8(x−5)^2 (x+2)(x−3) ≤ 0. Write the solution in interval notation.",
     "correctAnswer": "[-2, 3]",
     "explanation": "Multiplicity 2 at x=5 does not change sign; negative intervals determined between −2 and 3."
-  },
-  {
-    "id": "polynomial-34",
-    "type": "free-response",
-    "question": "Solve −3x^4 − 9x^3 + 84x^2 ≥ 0. Write the solution in interval notation.",
-    "correctAnswer": "[0, 7] ∪ {−4}",
-    "explanation": "Factor: −3x^2 (x+4)(x−7); analyze sign changes and multiplicities."
   },
   {
     "id": "polynomial-35",
@@ -447,7 +381,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-43",
     "type": "free-response",
-    "question": "Let h(x) = 2.351x^3 − 7.662x^2 + 2.117x + 1.302 on [−1, 3]. Find all zeros.",
+    "question": "[Calculator] Let h(x) = 2.351x^3 − 7.662x^2 + 2.117x + 1.302 on [−1, 3]. Find all zeros.",
     "correctAnswer": "Approximately x ≈ −0.45, x ≈ 0.82, x ≈ 3.05",
     "explanation": "Numerically approximated using factoring/root-finding."
   },
@@ -457,13 +391,6 @@ export const polynomialQuestions: Question[] = [
     "question": "Let h(x) = {3x^2+1 for x<4; 4x−9 for x≥4}. Find the average rate of change over [0,5].",
     "correctAnswer": "Average rate = (h(5) − h(0)) / 5 = (11 − 1)/5 = 2",
     "explanation": "h(0)=1 (first piece), h(5)=11 (second piece), slope =2."
-  },
-  {
-    "id": "polynomial-45",
-    "type": "free-response",
-    "question": "[Calculator] For f(x) = −1.215x^3 + 2.31x^2 + 5.2x + 3.1 on [−3,3]: find (a) relative minimum x-value, (b) relative maximum x-value, (c) interval(s) increasing, (d) interval(s) decreasing.",
-    "correctAnswer": "(a) x ≈ −0.88, (b) x ≈ 2.15, (c) (−0.88, ∞), (d) (−∞, −0.88) ∪ (2.15, ∞)",
-    "explanation": "Critical points found via derivative; test sign for increasing/decreasing."
   },
   {
     "id": "polynomial-46",
@@ -482,16 +409,9 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-48",
     "type": "free-response",
-    "question": "Given table for g: x=−6,−4,−3,−2,2,b,6; f(x)=−4,−5,5,1,a,5,c. Determine possible parity and concavity statements.",
+    "question": "Given table for x=−6,−4,−3,−2,2,b,6; f(x)=−4,−5,5,1,a,5,c. Determine possible parity and concavity statements.",
     "correctAnswer": "Likely neither purely even nor odd; concavity changes where second differences change sign.",
     "explanation": "Check symmetry of data and analyze discrete second differences."
-  },
-  {
-    "id": "polynomial-49",
-    "type": "free-response",
-    "question": "Let f be odd and f(−4)=5 is a local minimum. What must f(4) be and its behavior?",
-    "correctAnswer": "f(4)=−5 and it is a local maximum.",
-    "explanation": "Odd symmetry implies f(−x)=−f(x); minimum at −4 mirrors to maximum at +4."
   },
   {
     "id": "polynomial-50",
