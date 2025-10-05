@@ -43,7 +43,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-4",
     "type": "multiple-choice",
-    "question": "Let h(x) = -2x(x-3)^2(x+4)^3. What is the end behavior?",
+    "question": "Let h(x) = -2x(x-3)^2 (x+4)^3 . What is the end behavior?",
     "options": [
       { "label": "A", "value": "A", "text": "Even degree, negative leading ⇒ both ends → -∞" },
       { "label": "B", "value": "B", "text": "Odd degree, positive leading ⇒ -∞ as x→-∞, +∞ as x→+∞" },
@@ -82,7 +82,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-7",
     "type": "multiple-choice",
-    "question": "Let g(x) = -2x(x+4)^3(x-7)^4. On which intervals is g(x) < 0?",
+    "question": "Let g(x) = -2x(x+4)^3 (x-7)^4. On which intervals is g(x) < 0?",
     "options": [
       { "label": "A", "value": "A", "text": "(-∞, -4) ∪ (-4,0) ∪ (0,7) ∪ (7,∞)" },
       { "label": "B", "value": "B", "text": "(-4,0) ∪ (7,∞)" },
@@ -155,7 +155,7 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "All real x" }
     ],
     "correctAnswer": "A",
-    "explanation": "Factor: 2x^2(x+5)(x-1/2). Sign analysis yields k(x) ≥ 0 on (-∞,-5] ∪ {0} ∪ [0.5, ∞)."
+    "explanation": "Factor: 2x^2 (x+5)(x-1/2). Sign analysis yields k(x) ≥ 0 on (-∞,-5] ∪ {0} ∪ [0.5, ∞)."
   },
   {
     "id": "polynomial-13",
@@ -238,7 +238,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-19",
     "type": "multiple-choice",
-    "question": "Given x^2(x+2)^3(x-6)^2. What are zeros and multiplicities?",
+    "question": "Given x^2 (x+2)^3 (x-6)^2. What are zeros and multiplicities?",
     "options": [
       { "label": "A", "value": "A", "text": "0(mult2), -2(mult3), 6(mult2)" },
       { "label": "B", "value": "B", "text": "0(mult1), -2(mult2), 6(mult3)" },
@@ -264,7 +264,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-21",
     "type": "multiple-choice",
-    "question": "Even/odd/non-real zeros: f(x) = (x^2)(x^2+4)(x-3)^3(x-1). How many distinct real zeros and how many non-real?",
+    "question": "Even/odd/non-real zeros: f(x) = (x^2)(x^2+4)(x-3)^3 (x-1). How many distinct real zeros and how many non-real?",
     "options": [
       { "label": "A", "value": "A", "text": "3 distinct real zeros, 2 non-real zeros" },
       { "label": "B", "value": "B", "text": "4 distinct real zeros, 1 non-real zero" },
@@ -277,7 +277,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-22",
     "type": "multiple-choice",
-    "question": "Let k(x) = (x^2 - 9)(x+3)^2(x^2 + 6x + 9). Identify zeros and multiplicities and end behavior.",
+    "question": "Let k(x) = (x^2 - 9)(x+3)^2 (x^2 + 6x + 9). Identify zeros and multiplicities and end behavior.",
     "options": [
       { "label": "A", "value": "A", "text": "Zeros: 3(m1), -3(m5). End-behavior: both ends → -∞ (even degree, negative lead)" },
       { "label": "B", "value": "B", "text": "Zeros: 3(m2), -3(m3). End-behavior: both ends → +∞" },
@@ -285,7 +285,7 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "Zeros: 3(m3), -3(m2). End-behavior: one end → ∞, one → -∞" }
     ],
     "correctAnswer": "A",
-    "explanation": "Factorization gives (x-3)(x+3)(x+3)^2(x+3)^2 = (x-3)(x+3)^5 so zeros: 3 mult1, -3 mult5. Total degree even; leading coeff negative in original context → both ends → -∞ (matches provided answer)."
+    "explanation": "Factorization gives (x-3)(x+3)(x+3)^2 (x+3)^2 = (x-3)(x+3)^5 so zeros: 3 mult1, -3 mult5. Total degree even; leading coeff negative in original context → both ends → -∞ (matches provided answer)."
   },
   {
     "id": "polynomial-23",
@@ -329,7 +329,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-26",
     "type": "multiple-choice",
-    "question": "Let k(x) = (x^2 − 9)(x + 3)^2(x^2 + 6x + 9). Which statement about zeros and multiplicities is correct?",
+    "question": "Let k(x) = (x^2 − 9)(x + 3)^2 (x^2 + 6x + 9). Which statement about zeros and multiplicities is correct?",
     "options": [
       { "label": "A", "value": "A", "text": "x = −3 (multiplicity 5), x = 3" },
       { "label": "B", "value": "B", "text": "x = −3 (multiplicity 4), x = −9, x = 9" },
@@ -393,7 +393,7 @@ export const polynomialQuestions: Question[] = [
     "type": "free-response",
     "question": "Solve −3x^4 − 9x^3 + 84x^2 ≥ 0. Write the solution in interval notation.",
     "correctAnswer": "[0, 7] ∪ {−4}",
-    "explanation": "Factor: −3x^2(x+4)(x−7); analyze sign changes and multiplicities."
+    "explanation": "Factor: −3x^2 (x+4)(x−7); analyze sign changes and multiplicities."
   },
   {
     "id": "polynomial-35",
