@@ -251,12 +251,13 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-20",
     "type": "multiple-choice",
-    "question": "Table modeling: x:1,3,5,7,9 → f:-2,-1,3,10,20. Which model best fits?",
+    "question": "Which model best fits?",
+    "image": "/images/apprecalc/polynomial13.png",
     "options": [
       { "label": "A", "value": "A", "text": "Linear" },
       { "label": "B", "value": "B", "text": "Exponential" },
       { "label": "C", "value": "C", "text": "Cubic" },
-      { "label": "D", "value": "D", "text": "Quadratic (second differences constant)" }
+      { "label": "D", "value": "D", "text": "Quadratic" }
     ],
     "correctAnswer": "D",
     "explanation": "Second differences are constant (check: first diffs: 1,4,7,10 → second diffs: 3,3,3), so quadratic model is best."
@@ -402,21 +403,16 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-39",
     "type": "free-response",
-    "question": "Given table for f at selected x: x=−7,−4,a,6,7; g(x)=b,−5,5,7,12. If f is even, find a+b.",
-    "correctAnswer": "a+b = 4-12 = -8",
+    "question": "Given table, if f is even, find a+b.",
+    "image": "/images/apprecalc/polynomial14.png",
+    "correctAnswer": "-8",
     "explanation": "For even function f(−x)=f(x); use symmetry to find missing values."
   },
   {
     "id": "polynomial-40",
-    "type": "free-response",
-    "question": "Given table for x=−6,−4,−3,−2,2,b,6; f(x)=−4,−5,5,1,a,5,c. Determine possible parity and concavity statements.",
-    "correctAnswer": "Likely neither purely even nor odd; concavity changes where second differences change sign.",
-    "explanation": "Check symmetry of data and analyze discrete second differences."
-  },
-  {
-    "id": "polynomial-41",
     "type": "multiple-choice",
-    "question": "Data: x=1,3,5,7,9 and f(x)=−2,−1,3,10,20. Which statement best fits the data: linear or quadratic?",
+    "question": "Which statement best fits the data: linear or quadratic?",
+    "image": "/images/apprecalc/polynomial13.png",
     "options": [
       { "label": "A", "value": "A", "text": "Linear" },
       { "label": "B", "value": "B", "text": "Quadratic" }
@@ -425,9 +421,10 @@ export const polynomialQuestions: Question[] = [
     "explanation": "First differences are not constant, second differences approximately constant → quadratic model."
   },
   {
-    "id": "polynomial-42",
+    "id": "polynomial-41",
     "type": "multiple-choice",
-    "question": "Data: x=0,10,20,30,40 and h(x)=100,60,40,30,25. Which statement about concavity is correct?",
+    "question": "Which statement about concavity is correct?",
+    "image": "/images/apprecalc/polynomial15.png",
     "options": [
       { "label": "A", "value": "A", "text": "Concave up" },
       { "label": "B", "value": "B", "text": "Concave down" },
@@ -437,7 +434,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Decreasing differences that shrink indicate concave down trend."
   },
   {
-    "id": "polynomial-43",
+    "id": "polynomial-42",
     "type": "free-response",
     "question": "The graph of the polynomial function f is shown above, where −5 ≤ x ≤ 5. The function f has local extrema at x = −2 and x = 2, and the graph of f has a point of inflection at x = 0. 1a) On what intervals is f increasing?",
     "image": "/images/apprecalc/polynomial-graph-extrema1.png",
@@ -445,7 +442,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "1a) The function f is increasing where the graph has a positive slope. From the graph, this occurs on the intervals (-5, -2) and (2, 5), which are before the local maximum at x = -2 and after the local minimum at x = 2."
   },
   {
-    "id": "polynomial-44",
+    "id": "polynomial-43",
     "type": "free-response",
     "question": "The graph of the polynomial function f is shown above, where −5 ≤ x ≤ 5. The function f has local extrema at x = −2 and x = 2, and the graph of f has a point of inflection at x = 0. 1b) On what intervals is the graph of f concave down?",
     "image": "/images/apprecalc/polynomial-graph-extrema1.png",
@@ -453,7 +450,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "1b) The graph of f is concave down where the curve opens downward. From the graph and the given information that there is a point of inflection at x = 0, the function is concave down on the interval (-5, 0)."
   },
   {
-    "id": "polynomial-45",
+    "id": "polynomial-44",
     "type": "free-response",
     "question": "the graph of 𝑔 is shown above, where −5 ≤ 𝑥 ≤ 4. The graph of 𝑔 has points of inflection at 𝑥 = −1 and 𝑥 = 1. 1a) On what intervals is g decreasing?",
     "image": "/images/apprecalc/polynomial-graph-extrema2.png",
@@ -461,7 +458,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Think about it."
   },
   {
-    "id": "polynomial-46",
+    "id": "polynomial-45",
     "type": "free-response",
     "question": "the graph of 𝑔 is shown above, where −5 ≤ 𝑥 ≤ 4. The graph of 𝑔 has points of inflection at 𝑥 = −1 and 𝑥 = 1. 1b) On what intervals is the graph of g concave up?",
     "image": "/images/apprecalc/polynomial-graph-extrema2.png",
@@ -469,7 +466,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "Think about it."
   },
   {
-    "id": "polynomial-47",
+    "id": "polynomial-46",
     "type": "multiple-choice",
     "question": "The function g is decreasing at a decreasing rate. Which of the following could be the graph of g?",
     "options": [
@@ -482,7 +479,7 @@ export const polynomialQuestions: Question[] = [
     "explanation": "A function that is decreasing at a decreasing rate has a negative first derivative (decreasing) and a positive second derivative (concave up). This means the graph slopes downward but curves upward."
   },
   {
-    "id": "polynomial-48",
+    "id": "polynomial-47",
     "type": "multiple-choice",
     "question": "The graph of a function k is shown in the figure. Which of the following best describes the behavior of the graph of k from point A to point B?",
     "image": "/images/apprecalc/polynomial10.png",
@@ -493,10 +490,10 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "The graph of k is decreasing and concave down", }
     ],
     "correctAnswer": "C",
-    "explanation": "N/A"
+    "explanation": " "
   },
   {
-    "id": "polynomial-49",
+    "id": "polynomial-48",
     "type": "multiple-choice",
     "question": "The function g is a polynomial with the following end behavior: lim_x-->-∞ g(x) = -∞ and lim_x-->∞ g(x) = -∞",
     "options": [
@@ -506,10 +503,10 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "2x^4-7x^3+3x^2+1", }
     ],
     "correctAnswer": "B",
-    "explanation": "N/A"
+    "explanation": " "
   },
   {
-    "id": "polynomial-50",
+    "id": "polynomial-49",
     "type": "multiple-choice",
     "question": "What is the average rate of change of h over the interval 0<=x<=6",
     "image": "/images/apprecalc/polynomial5.png",
@@ -520,10 +517,10 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "1", }
     ],
     "correctAnswer": "C",
-    "explanation": "N/A"
+    "explanation": " "
   },
   {
-    "id": "polynomial-51",
+    "id": "polynomial-50",
     "type": "multiple-choice",
     "question": "The graph of the polynomial function p is shown above. Which of the following could be an expression for p?",
     "image": "/images/apprecalc/polynomial4.png",
@@ -534,10 +531,10 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "1x^2/4 (x+2)(x-3)", }
     ],
     "correctAnswer": "C",
-    "explanation": "N/A"
+    "explanation": " "
   },
   {
-    "id": "polynomial-52",
+    "id": "polynomial-51",
     "type": "multiple-choice",
     "question": "Selected values of the polynomial g are shown in the table above. Which of the following claim and explanation statements could be true about g?",
     "image": "/images/apprecalc/polynomial11.png",
@@ -548,6 +545,62 @@ export const polynomialQuestions: Question[] = [
       { "label": "D", "value": "D", "text": "The graph of g could be concave down because the average rates of change over consecutive equal-length input-value intervals are decreasing", }
     ],
     "correctAnswer": "D",
-    "explanation": "N/A"
+    "explanation": " "
+  },
+  {
+    "id": "polynomial-52",
+    "type": "multiple-choice",
+    "question": "The graph of the function f is shown. Which of the following statement pairs about f is correct?",
+    "image": "/images/apprecalc/polynomial3.png",
+    "options": [
+      { "label": "A", "value": "A", "text": "The rate of change of f is positive and increasing", },
+      { "label": "B", "value": "B", "text": "The rate of change of f is positive and decreasing", },
+      { "label": "C", "value": "C", "text": "The rate of change of f is negative and increasing", },
+      { "label": "D", "value": "D", "text": "The rate of change of f is negative and decreasing", }
+    ],
+    "correctAnswer": "B",
+    "explanation": " "
+  },
+  {
+    "id": "polynomial-53",
+    "type": "multiple-choice",
+    "question": "Let g be the even function with select input values shown. What is the average rate of change of g over the interval -2 <= x <= 4?",
+    "image": "/images/apprecalc/polynomial12.png",
+    "options": [
+      { "label": "A", "value": "A", "text": "-2", },
+      { "label": "B", "value": "B", "text": "-4/3", },
+      { "label": "C", "value": "C", "text": "-1/2", },
+      { "label": "D", "value": "D", "text": "5/3", }
+    ],
+    "correctAnswer": "D",
+    "explanation": " "
+  },
+  {
+    "id": "polynomial-54",
+    "type": "multiple-choice",
+    "question": "Let f(x) = 2x^2-3x+1 and g(x) = x^2-x+9. What are all the intervals for which f(x) <= g(x)",
+    "options": [
+      { "label": "A", "value": "A", "text": "[-4, 2]", },
+      { "label": "B", "value": "B", "text": "[-2, 4]", },
+      { "label": "C", "value": "C", "text": "(-∞, -4] and [2, ∞)", },
+      { "label": "D", "value": "D", "text": "(-∞, -2] and [4, ∞)", }
+    ],
+    "correctAnswer": "B",
+    "explanation": " "
+  },
+  {
+    "id": "polynomial-55",
+    "type": "free-response",
+    "question": "The water level of a water tank as it drains in 𝑡 minutes is given by the function 𝑊(𝑡), whose data values are displayed on the provided table. The initial water level (𝑡 = 0) was 12 meters high. Find the rate of change from t = 2 minutes to t = 5 minutes, state the meaning of your answer in the context of the problem. ",
+    "image": "/images/apprecalc/polynomial16.png",
+    "correctAnswer": "On the interval 2 minutes to 5 minutes, the water level of a water tank decreases by a rate of 1.1 meters per minute.",
+    "explanation": "(7.5-10.8)/(5-2) = -1.1 and since it's decreasing it will be stated as 1.1. "
+  },
+  {
+    "id": "polynomial-56",
+    "type": "free-response",
+    "question": "The number of cars in the parking lot of a gym can be modeled by the quartic polynomial C(t) = -0.016t^4+0.52t^3-5.4t^2+19t+20 where t is the number of hours since the gym opened at 6 a.m (t = 0 is 6 a.m). At 6 a.m 20 people were at the gym, find the average rate of change of C from t = 2 to t = 5, interpret your average rate of change in the context of the problem",
+    "correctAnswer": "On the interval 2 hours since 6 a.m to 5 hours since 6 a.m, the cars in the parking lot decreased by 1.768 cars per hour since 6 a.m.",
+    "explanation": "(C(5) - C(2))/5-2 = -1.768"
   },
 ];
