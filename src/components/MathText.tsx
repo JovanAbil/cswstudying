@@ -23,27 +23,12 @@ const preprocessMath = (text: string): string => {
     return `$${base}^{${exp}}$`;
   });
   
-  // Convert subscripts: x_n -> x_{n}
-  processed = processed.replace(/([a-zA-Z0-9)}\]])_([a-zA-Z0-9({\[]+)/g, (match, base, sub) => {
-    return `$${base}_{${sub}}$`;
-  });
-  
-  // Convert common functions to LaTeX
-  const functions = ['log', 'ln', 'sin', 'cos', 'tan', 'sec', 'csc', 'cot', 'arcsin', 'arccos', 'arctan', 'sqrt'];
+  // Convert only logarithmic functions and limits to LaTeX
+  const functions = ['log', 'ln', 'lim'];
   functions.forEach(func => {
     const regex = new RegExp(`\\b${func}\\s*\\(`, 'gi');
     processed = processed.replace(regex, `$\\${func}($`);
   });
-  
-  // Convert common symbols
-  processed = processed.replace(/<=(?!=)/g, '$\\leq$');
-  processed = processed.replace(/>=(?!=)/g, '$\\geq$');
-  processed = processed.replace(/!=/g, '$\\neq$');
-  processed = processed.replace(/\+-/g, '$\\pm$');
-  processed = processed.replace(/-\+/g, '$\\mp$');
-  
-  // Convert fractions in simple cases: a/b where a and b are simple
-  processed = processed.replace(/\b(\d+)\/(\d+)\b/g, '$\\frac{$1}{$2}$');
   
   // Restore LaTeX blocks
   latexBlocks.forEach((block, index) => {
