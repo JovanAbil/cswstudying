@@ -61,7 +61,7 @@ const Index = () => {
             Practice Hub
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Master your classes in CSW with interactive practice tests and daily exercises! React out to abilash.jovan@charterschool.org with a question bank of some sort along with the teacher to add classes!
+            Master your classes in CSW with interactive practice tests and daily exercises! Reach out to abilash.jovan@charterschool.org with a question bank (PDFs, Homeworks, Tests all work!) along with the teacher and subject to add classes!
           </p>
         </div>
 
