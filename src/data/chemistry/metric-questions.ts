@@ -2,18 +2,88 @@ import { Question } from '@/types/quiz';
 
 export const metricQuestions: Question[] = [
   {
-    id: 'metric-1',
+    id: 'metric-1a',
     type: 'free-response',
-    question: 'Write the following in scientific notation: a) 0.0009043 b) 32090 c) 0.050 d) 2.030 e) 0.4800 f) 600 g) 2900.0',
-    correctAnswer: 'a) 9.043×10⁻⁴  b) 3.209×10⁴  c) 5.0×10⁻²  d) 2.03×10⁰  e) 4.800×10⁻¹  f) 6.00×10²  g) 2.900×10³',
-    explanation: 'Move decimal to produce a number between 1 and 10 and adjust exponent correspondingly; preserve significant figures shown.'
+    question: 'Write 0.0009043 in scientific notation',
+    correctAnswer: '9.043×10⁻⁴',
+    explanation: 'Move decimal 4 places to the right → 9.043 × 10⁻⁴'
   },
   {
-    id: 'metric-2',
+    id: 'metric-1b',
     type: 'free-response',
-    question: 'Convert temperatures: a) 12.8 °C to °F  b) 148 °C to K  c) 785 K to °C  d) 86.8 °F to °C  e) 67.5 °F to K',
-    correctAnswer: 'a) 55.04 °F  b) 421.15 K  c) 511.85 °C  d) 30.44 °C  e) 292.87 K',
-    explanation: 'Use formulas: F = (C·9/5)+32; K = C+273.15; C = K−273.15; C = (F−32)/1.8. (I corrected a few rounding differences: e.g., 12.8 °C → 55.04 °F; 67.5 °F → 292.87 K.)'
+    question: 'Write 32090 in scientific notation',
+    correctAnswer: '3.209×10⁴',
+    explanation: 'Move decimal 4 places to the left → 3.209 × 10⁴'
+  },
+  {
+    id: 'metric-1c',
+    type: 'free-response',
+    question: 'Write 0.050 in scientific notation',
+    correctAnswer: '5.0×10⁻²',
+    explanation: 'Move decimal 2 places to the right → 5.0 × 10⁻² (2 significant figures)'
+  },
+  {
+    id: 'metric-1d',
+    type: 'free-response',
+    question: 'Write 2.030 in scientific notation',
+    correctAnswer: '2.03×10⁰',
+    explanation: 'Number already between 1 and 10 → 2.03 × 10⁰ (3 significant figures)'
+  },
+  {
+    id: 'metric-1e',
+    type: 'free-response',
+    question: 'Write 0.4800 in scientific notation',
+    correctAnswer: '4.800×10⁻¹',
+    explanation: 'Move decimal 1 place to the right → 4.800 × 10⁻¹ (4 significant figures)'
+  },
+  {
+    id: 'metric-1f',
+    type: 'free-response',
+    question: 'Write 600 in scientific notation',
+    correctAnswer: '6.00×10²',
+    explanation: 'Move decimal 2 places to the left → 6.00 × 10² (3 significant figures)'
+  },
+  {
+    id: 'metric-1g',
+    type: 'free-response',
+    question: 'Write 2900.0 in scientific notation',
+    correctAnswer: '2.900×10³',
+    explanation: 'Move decimal 3 places to the left → 2.900 × 10³ (4 significant figures)'
+  },
+  {
+    id: 'metric-2a',
+    type: 'free-response',
+    question: 'Convert 12.8 °C to °F',
+    correctAnswer: '55.04 °F',
+    explanation: 'Use F = (C × 9/5) + 32 → (12.8 × 1.8) + 32 = 55.04 °F'
+  },
+  {
+    id: 'metric-2b',
+    type: 'free-response',
+    question: 'Convert 148 °C to K',
+    correctAnswer: '421.15 K',
+    explanation: 'Use K = C + 273.15 → 148 + 273.15 = 421.15 K'
+  },
+  {
+    id: 'metric-2c',
+    type: 'free-response',
+    question: 'Convert 785 K to °C',
+    correctAnswer: '511.85 °C',
+    explanation: 'Use C = K − 273.15 → 785 − 273.15 = 511.85 °C'
+  },
+  {
+    id: 'metric-2d',
+    type: 'free-response',
+    question: 'Convert 86.8 °F to °C',
+    correctAnswer: '30.44 °C',
+    explanation: 'Use C = (F − 32) ÷ 1.8 → (86.8 − 32) ÷ 1.8 = 30.44 °C'
+  },
+  {
+    id: 'metric-2e',
+    type: 'free-response',
+    question: 'Convert 67.5 °F to K',
+    correctAnswer: '292.87 K',
+    explanation: 'First find °C: (67.5 − 32) ÷ 1.8 = 19.72 °C → then K = 19.72 + 273.15 = 292.87 K'
   },
   {
     id: 'metric-3',
@@ -23,25 +93,132 @@ export const metricQuestions: Question[] = [
     explanation: 'Common prefixes listed; add tera (T=10^12), centi (c=10^-2), deci (d=10^-1) as needed for the worksheet.'
   },
   {
-    id: 'metric-4',
-    type: 'free-response',
-    question: 'Count significant figures: a) 145000 m  b) 0.004006 mg  c) 120.04 kg  d) 52 elephants  e) 13.0 mL  f) 0.000780 L  g) 32.60 s  h) 12900000 ms',
-    correctAnswer: 'a) ambiguous (commonly 3 unless a decimal or bar indicates more)  b) 4  c) 5  d) exact count (counting number → unlimited/defined)  e) 3  f) 3  g) 4  h) ambiguous (commonly 3 unless specified)',
-    explanation: 'Zeros are ambiguous at the end of a whole number unless a decimal point or overbar indicates significance; leading zeros are never significant; interior zeros are significant; counting numbers are exact.'
+  id: 'metric-4a',
+  type: 'free-response',
+  question: 'Count significant figures in 145000 m',
+  correctAnswer: 'Ambiguous (commonly 3 unless a decimal point or bar indicates more)',
+  explanation: 'Trailing zeros in a whole number without a decimal are not clearly significant unless specified'
   },
   {
-    id: 'metric-5',
+    id: 'metric-4b',
     type: 'free-response',
-    question: 'Sig-fig rules for math operations (multiplication/division and addition/subtraction)',
-    correctAnswer: 'Multiplication/Division → answer has same # sig figs as factor with fewest sig figs. Addition/Subtraction → answer has same # decimal places as the addend with fewest decimal places.',
-    explanation: 'Apply rules to each calculation in the PDF; round the final answer only (not intermediate results) unless instructed otherwise.'
+    question: 'Count significant figures in 0.004006 mg',
+    correctAnswer: '4',
+    explanation: 'Leading zeros are not significant; zeros between nonzero digits are significant'
   },
   {
-    id: 'metric-6',
+    id: 'metric-4c',
     type: 'free-response',
-    question: 'Unit conversions and practice (furlong, horse-length, inch→cm, Mg→bags, jiffy, lb→mg, boat-length conversions)',
-    correctAnswer: 'Use the worksheet conversion factors to perform each conversion; answers depend on those exact factors.',
-    explanation: 'Set up dimensional analysis for each: start value × (desired unit / given unit) × ... until you reach the target unit. If you want, paste the specific conversion rows and I’ll give numeric answers.'
+    question: 'Count significant figures in 120.04 kg',
+    correctAnswer: '5',
+    explanation: 'All nonzero digits and zeros between/after nonzeros when a decimal point is present are significant'
+  },
+  {
+    id: 'metric-4d',
+    type: 'free-response',
+    question: 'Count significant figures in 52 elephants',
+    correctAnswer: 'Exact count (counting number → unlimited/defined)',
+    explanation: 'Counting numbers are defined quantities with infinite significant figures'
+  },
+  {
+    id: 'metric-4e',
+    type: 'free-response',
+    question: 'Count significant figures in 13.0 mL',
+    correctAnswer: '3',
+    explanation: 'Trailing zero after decimal is significant'
+  },
+  {
+    id: 'metric-4f',
+    type: 'free-response',
+    question: 'Count significant figures in 0.000780 L',
+    correctAnswer: '3',
+    explanation: 'Leading zeros are not significant; trailing zero after nonzero digits in decimal is significant'
+  },
+  {
+    id: 'metric-4g',
+    type: 'free-response',
+    question: 'Count significant figures in 32.60 s',
+    correctAnswer: '4',
+    explanation: 'All digits including trailing zero after decimal are significant'
+  },
+  {
+    id: 'metric-4h',
+    type: 'free-response',
+    question: 'Count significant figures in 12900000 ms',
+    correctAnswer: 'Ambiguous (commonly 3 unless a decimal point or bar indicates more)',
+    explanation: 'Trailing zeros in a whole number without a decimal are ambiguous unless notation specifies otherwise'
+  },
+  {
+  id: 'metric-5a',
+  type: 'free-response',
+  question: 'Multiply: 2.34 × 1.2',
+  correctAnswer: '2.8',
+  explanation: '2.34 (3 sig figs) × 1.2 (2 sig figs) → answer must have 2 sig figs → 2.8'
+  },
+  {
+    id: 'metric-5b',
+    type: 'free-response',
+    question: 'Multiply: 0.00456 × 3.2',
+    correctAnswer: '0.015',
+    explanation: '0.00456 (3 sig figs) × 3.2 (2 sig figs) → answer must have 2 sig figs → 0.015'
+  },
+  {
+    id: 'metric-5c',
+    type: 'free-response',
+    question: 'Divide: 5.678 ÷ 2.1',
+    correctAnswer: '2.7',
+    explanation: '5.678 (4 sig figs) ÷ 2.1 (2 sig figs) → answer must have 2 sig figs → 2.7'
+  },
+  {
+    id: 'metric-5d',
+    type: 'free-response',
+    question: 'Divide: 0.009876 ÷ 0.4321',
+    correctAnswer: '0.0229',
+    explanation: '0.009876 (4 sig figs) ÷ 0.4321 (4 sig figs) → answer must have 4 sig figs → 0.0229'
+  },
+  {
+    id: 'metric-5e',
+    type: 'free-response',
+    question: 'Multiply: 6.022 × 1.00',
+    correctAnswer: '6.02',
+    explanation: '6.022 (4 sig figs) × 1.00 (3 sig figs) → answer must have 3 sig figs → 6.02'
+  },
+  
+  // --- Addition / Subtraction Practice ---
+  {
+    id: 'metric-5f',
+    type: 'free-response',
+    question: 'Add: 12.11 + 0.034',
+    correctAnswer: '12.14',
+    explanation: 'Least precise addend (12.11 → 2 decimal places) → answer rounded to 2 decimal places → 12.14'
+  },
+  {
+    id: 'metric-5g',
+    type: 'free-response',
+    question: 'Add: 3.45 + 11.0',
+    correctAnswer: '14.5',
+    explanation: 'Least precise addend (11.0 → 1 decimal place) → answer rounded to 1 decimal place → 14.5'
+  },
+  {
+    id: 'metric-5h',
+    type: 'free-response',
+    question: 'Subtract: 123.45 − 0.9876',
+    correctAnswer: '122.46',
+    explanation: 'Least precise term (123.45 → 2 decimal places) → answer rounded to 2 decimal places → 122.46'
+  },
+  {
+    id: 'metric-5i',
+    type: 'free-response',
+    question: 'Add: 0.0567 + 0.1',
+    correctAnswer: '0.2',
+    explanation: 'Least precise addend (0.1 → 1 decimal place) → answer rounded to 1 decimal place → 0.2'
+  },
+  {
+    id: 'metric-5j',
+    type: 'free-response',
+    question: 'Subtract: 45.600 − 2.11',
+    correctAnswer: '43.49',
+    explanation: 'Least precise term (2.11 → 2 decimal places) → answer rounded to 2 decimal places → 43.49'
   },
   {
     id: 'metric-7',
@@ -58,18 +235,95 @@ export const metricQuestions: Question[] = [
     explanation: 'Classify as element, compound, homogeneous mixture (solution), heterogeneous mixture, or alloy based on composition and uniformity. Use your worksheet wording for exact labels.'
   },
   {
-    id: 'metric-9',
-    type: 'free-response',
-    question: 'Label PC/CC/PP/CP for: mixing baking soda & vinegar, freezing water, milk clumping, copper stretchability, solid carbon brittle, water reacts with sodium, evaporating alcohol, wood rotting.',
-    correctAnswer: 'Mixing baking soda & vinegar: CC (chemical change). Freezing water: PC (physical change). Milk clumping: CC (chemical change / denaturation). Copper stretchability: PP (physical property). Solid carbon brittle: PP (physical property). Water reacts with sodium: CC. Evaporating alcohol: PC. Wood rotting: CC (biochemical decomposition).',
-    explanation: 'PC = physical change, CC = chemical change. PP/CP refer to physical property / chemical property where appropriate; use worksheet labels if they require a specific format.'
+  id: 'metric-9a',
+  type: 'free-response',
+  question: 'Label PC/CC/PP/CP for: mixing baking soda & vinegar',
+  correctAnswer: 'CC (chemical change)',
+  explanation: 'Gas forms and new substances produced → chemical change'
   },
   {
-    id: 'metric-10',
+    id: 'metric-9b',
     type: 'free-response',
-    question: 'Periodic table details: state of matter for S, lightest alkaline earth metal, alkali metal in period 4, name of group 17, which elements are metalloids?',
-    correctAnswer: 'S (sulfur) = solid. Lightest alkaline earth = Be (beryllium). Alkali metal in period 4 = K (potassium). Group 17 = halogens. Metalloids commonly: B, Si, Ge, As, Sb, Te.',
-    explanation: 'Use the periodic table: group numbers and periods identify categories; metalloids are the staircase elements between metals and nonmetals (commonly those six listed).'
+    question: 'Label PC/CC/PP/CP for: freezing water',
+    correctAnswer: 'PC (physical change)',
+    explanation: 'Change of state, no new substance formed → physical change'
+  },
+  {
+    id: 'metric-9c',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: milk clumping',
+    correctAnswer: 'CC (chemical change)',
+    explanation: 'Protein denaturation → new chemical composition'
+  },
+  {
+    id: 'metric-9d',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: copper stretchability',
+    correctAnswer: 'PP (physical property)',
+    explanation: 'Malleability/ductility is a measurable physical property'
+  },
+  {
+    id: 'metric-9e',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: solid carbon brittle',
+    correctAnswer: 'PP (physical property)',
+    explanation: 'Brittleness describes a physical property of the material'
+  },
+  {
+    id: 'metric-9f',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: water reacts with sodium',
+    correctAnswer: 'CC (chemical change)',
+    explanation: 'Reaction produces hydrogen gas and new compounds → chemical change'
+  },
+  {
+    id: 'metric-9g',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: evaporating alcohol',
+    correctAnswer: 'PC (physical change)',
+    explanation: 'Phase change, no new substances formed → physical change'
+  },
+  {
+    id: 'metric-9h',
+    type: 'free-response',
+    question: 'Label PC/CC/PP/CP for: wood rotting',
+    correctAnswer: 'CC (chemical change)',
+    explanation: 'Decomposition produces new substances → chemical change'
+  },
+  {
+  id: 'metric-10a',
+  type: 'free-response',
+  question: 'State of matter for S (sulfur)',
+  correctAnswer: 'Solid',
+  explanation: 'Sulfur is a solid at room temperature'
+  },
+  {
+    id: 'metric-10b',
+    type: 'free-response',
+    question: 'Lightest alkaline earth metal',
+    correctAnswer: 'Be (beryllium)',
+    explanation: 'Beryllium is the first and lightest element in Group 2 (alkaline earth metals)'
+  },
+  {
+    id: 'metric-10c',
+    type: 'free-response',
+    question: 'Alkali metal in period 4',
+    correctAnswer: 'K (potassium)',
+    explanation: 'Potassium is in Group 1 (alkali metals) and Period 4 of the periodic table'
+  },
+  {
+    id: 'metric-10d',
+    type: 'free-response',
+    question: 'Name of group 17',
+    correctAnswer: 'Halogens',
+    explanation: 'Group 17 elements are collectively called halogens'
+  },
+  {
+    id: 'metric-10e',
+    type: 'free-response',
+    question: 'Which elements are metalloids?',
+    correctAnswer: 'B, Si, Ge, As, Sb, Te',
+    explanation: 'These six elements are commonly recognized as metalloids along the “stair-step” between metals and nonmetals'
   },
   {
     id: 'metric-11',
