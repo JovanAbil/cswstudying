@@ -7,7 +7,7 @@ export interface MultipleChoiceQuestion {
   id: string;
   type: 'multiple-choice';
   question: string;
-  options: { label: string; value: string; text: string }[];
+  options: { label: string; value: string; text: string; image?: string }[];
   correctAnswer: string;
   explanation?: string;
   table?: TableData;

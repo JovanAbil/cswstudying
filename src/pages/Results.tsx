@@ -135,7 +135,15 @@ const Results = () => {
                                 }`}
                               >
                                 <span className="font-semibold mr-2">{option.label})</span>
-                                <MathText>{option.text}</MathText>
+                                {option.image ? (
+                                  <img 
+                                    src={option.image} 
+                                    alt={`Option ${option.label}`}
+                                    className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border mt-2"
+                                  />
+                                ) : (
+                                  <MathText>{option.text}</MathText>
+                                )}
                                 {isCorrectAnswer && (
                                   <span className="ml-2 text-success font-semibold">✓ Correct</span>
                                 )}

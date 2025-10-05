@@ -258,7 +258,15 @@ const Quiz = () => {
                   <RadioGroupItem value={option.value} id={option.value} />
                   <Label htmlFor={option.value} className="flex-1 cursor-pointer">
                     <span className="font-semibold mr-2">{option.label})</span>
-                    <MathText>{option.text}</MathText>
+                    {option.image ? (
+                      <img 
+                        src={option.image} 
+                        alt={`Option ${option.label}`}
+                        className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border mt-2"
+                      />
+                    ) : (
+                      <MathText>{option.text}</MathText>
+                    )}
                   </Label>
                   {isSubmitted && option.value === currentQuestion.correctAnswer && (
                     <CheckCircle2 className="h-5 w-5 text-success" />
