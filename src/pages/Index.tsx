@@ -165,7 +165,7 @@ const Index = () => {
                 </div>
               </Card>
             ))}
-          <div>
+          </div>
         </div>
 
         {/* Biology Section */}
