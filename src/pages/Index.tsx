@@ -154,7 +154,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {apbioUnits.map((unit) => (
+            {/*{apbioUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
@@ -165,7 +165,7 @@ const Index = () => {
                 </div>
               </Card>
             ))}
-          </div>
+          <div>*/}
         </div>
 
         {/* Biology Section */}
@@ -218,7 +218,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {apchemUnits.map((unit) => (
+            {/*{apchemUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
@@ -229,7 +229,7 @@ const Index = () => {
                 </div>
               </Card>
             ))}
-          </div>
+          </div>*/}
         </div>
         
         {/* Chemistry Section */}
