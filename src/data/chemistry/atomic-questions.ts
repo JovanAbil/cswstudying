@@ -121,25 +121,39 @@ export const atomicQuestions: Question[] = [
     explanation: 'Ni (Z = 28) ground-state config [Ar] 4s2 3d8. The 3d8 arrangement has two unpaired electrons in the ground state.'
   },
   {
-    id: 'atomic-18',
+    id: 'atomic-18a',
     type: 'free-response',
     question: 'Calculate the average atomic mass for imaginary isotopes: Gr-84 (0.14%), Gr-85 (26.08%), Gr-88 (73.78%).',
     correctAnswer: '≈ 87.21 amu',
     explanation: 'Weighted average: 0.0014·84 + 0.2608·85 + 0.7378·88 = 87.212 amu → round to 87.21 amu.'
   },
   {
-    id: 'atomic-19',
+    id: 'atomic-18b',
     type: 'free-response',
-    question: 'Calculate the missing isotope mass given average mass 132.6 amu (Cg isotopes).',
-    correctAnswer: 'Use weighted-average formula (need the worksheet values)',
-    explanation: 'If average = Σ (fraction_i × mass_i), then unknown mass = (avg − Σ_known(fraction·mass)) / fraction_unknown. Apply with the worksheet\'s known abundances/masses to solve.'
+    question: 'Calculate the average atomic mass for imaginary isotopes: C-12 (98.93%), C-13 (1.07%), C-14 (negligible).',
+    correctAnswer: '≈ 12.0107 amu',
+    explanation: '12(.9893) + 13(.0107)'
   },
   {
-    id: 'atomic-20',
+    id: 'atomic-18c',
     type: 'free-response',
-    question: 'Calculate missing abundance for isotopes A-48 and A-53 when average atomic mass is 49.86 amu.',
-    correctAnswer: 'Set up algebraic equation; need exact isotope masses from worksheet',
-    explanation: 'If only two isotopes with masses 48.00 and 53.00 are assumed, solve 48x + 53(1−x) = 49.86 → x = 3.14 (impossible). That indicates the worksheet uses more precise isotope masses or additional isotopes. Use the exact masses given on the worksheet and solve the linear equation for the unknown abundance.'
+    question: 'Calculate the average atomic mass for imaginary isotopes: N-14 (99.632%), N-15 (0.0368%).',
+    correctAnswer: '≈ 13.954 amu',
+    explanation: '14(.99632)+15(.000368).'
+  },
+  {
+    id: 'atomic-19a',
+    type: 'free-response',
+    question: 'How many atoms are in Al_2(CO_3)_3?',
+    correctAnswer: '14',
+    explanation: '2 Al + 3 C + 9 O = 14 total'
+  },
+  {
+    id: 'atomic-19b',
+    type: 'free-response',
+    question: 'How many atoms are in NH_4OH?',
+    correctAnswer: '7',
+    explanation: '1 N + 5 H + 1 O = 7 total'
   },
   {
     id: 'atomic-21a',
@@ -176,11 +190,4 @@ export const atomicQuestions: Question[] = [
     correctAnswer: 'Step 1: ¹⁹⁴₇₇Ir + 3·¹₀n → ¹⁹⁷₇₇Ir; Step 2 (α decay): ¹⁹⁷₇₇Ir → ¹⁹³₇₅Re + ⁴₂He',
     explanation: 'Adding 3 neutrons raises mass 194→197 (Z unchanged). Alpha emission reduces A by 4 and Z by 2: 197→193 and 77→75 (Rhenium).'
   },
-  {
-    id: 'atomic-24',
-    type: 'free-response',
-    question: 'Also: Practice electron configuration/identification and periodic trends as listed in the PDF.',
-    correctAnswer: 'Use rules and examples above',
-    explanation: 'Apply Aufbau order, Hund\'s rule, Pauli exclusion, and periodic trends (atomic radius, IE, EN, metallic character). Use the PDF practice problems for targeted practice.'
-  }
 ];
