@@ -18,17 +18,17 @@ const Index = () => {
   ];
 
   const math3SUnits = [
-    { id: 'unit1', name: 'Unit 1' },
-    { id: 'unit2', name: 'Unit 2' },
-    { id: 'unit3', name: 'Unit 3' },
-    { id: 'unit4', name: 'Unit 4' },
-    { id: 'unit5', name: 'Unit 5' },
-    { id: 'unit6', name: 'Unit 6' },
-    { id: 'unit7', name: 'Unit 7' },
-    { id: 'unit8', name: 'Unit 8' },
-    { id: 'unit9', name: 'Unit 9' },
-    { id: 'unit10', name: 'Unit 10' },
-    { id: 'unit11', name: 'Unit 11' },
+    { id: 'linear', name: 'Linear Functions and Systems' },
+    { id: 'polynomial', name: 'Polynomial Functions' },
+    { id: 'rational', name: 'Rational Functions' },
+    { id: 'rationalexp', name: 'Rational Exponents and Radical Functions' },
+    { id: 'exponential', name: 'Exponential and Logarithmic Functions' },
+    { id: 'trigonometric', name: 'Trigonometric Functions' },
+    { id: 'trigonometriciden', name: 'Trignometric Equations and Identities' }, 
+    { id: 'data', name: 'Data Anaylsis and Statistics' },
+    { id: 'coordinategeo', name: 'Coordinate Geometry' },
+    { id: 'circles', name: 'Circles' },
+    { id: 'dimensional', name: 'Two and Three Dimensoinal Models' },
   ];
 
   const biologyUnits = [
