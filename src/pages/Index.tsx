@@ -148,7 +148,7 @@ const Index = () => {
           </div>
         </div>
 
-        {/* AP Biology Toner Section */}
+        {/* AP Biology Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
@@ -212,6 +212,37 @@ const Index = () => {
           </div>
         </div>
 
+        {/* AP Chemistry Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg">
+                <Beaker className="w-6 h-6 text-accent" />
+              </div>
+              <h2 className="text-2xl font-bold text-accent">AP Chemistry</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/apchem')}
+              variant="outline"
+              className="border-accent text-accent hover:bg-accent hover:text-foreground"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {apchemUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
+                onClick={() => navigate(`/unit/apchem/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
         
         {/* Chemistry Section */}
         <div className="max-w-6xl mx-auto mb-16">
@@ -236,38 +267,6 @@ const Index = () => {
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
                 onClick={() => navigate(`/unit/chemistry/${unit.id}`)}
-              >
-                <div className="text-center">
-                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* AP Chemistry Section */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg">
-                <Beaker className="w-6 h-6 text-accent" />
-              </div>
-              <h2 className="text-2xl font-bold text-accent">AP Chemistry</h2>
-            </div>
-            <Button
-              onClick={() => navigate('/course-challenge/apchem')}
-              variant="outline"
-              className="border-accent text-accent hover:bg-accent hover:text-foreground"
-            >
-              Course Challenge
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {apchemUnits.map((unit) => (
-              <Card
-                key={unit.id}
-                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
-                onClick={() => navigate(`/unit/apchem/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
@@ -357,19 +356,6 @@ const Index = () => {
             >
               Course Challenge
             </Button>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {apushUnits.map((unit) => (
-              <Card
-                key={unit.id}
-                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
-                onClick={() => navigate(`/unit/apush/${unit.id}`)}
-              >
-                <div className="text-center">
-                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
-                </div>
-              </Card>
-            ))}
           </div>
         </div>
 
