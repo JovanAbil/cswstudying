@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { GraduationCap, Microscope, Beaker, Landmark } from 'lucide-react';
+import { GraduationCap, Microscope, Beaker, Landmark, ChartLine } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -18,6 +18,17 @@ const Index = () => {
   ];
 
   const biologyUnits = [
+    { id: 'biochemistry', name: 'BioChem' },
+    { id: 'cellstructure', name: 'Cell Structure & Functions' },
+    { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
+    { id: 'cellgrowth', name: 'Cell Growth & Division' },
+    { id: 'genetics', name: 'Genetics' },
+    { id: 'molecular', name: 'Molecular Biology' },
+    { id: 'evolution', name: 'Darwins Theory of Evolution' },
+    { id: 'ecology', name: 'Ecology' },
+  ];
+
+  const apbiologyUnits = [
     { id: 'biochemistry', name: 'BioChem' },
     { id: 'cellstructure', name: 'Cell Structure & Functions' },
     { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
@@ -97,6 +108,38 @@ const Index = () => {
           </div>
         </div>
 
+        {/* AP Biology Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-success/10 rounded-lg">
+                <Microscope className="w-6 h-6 text-success" />
+              </div>
+              <h2 className="text-2xl font-bold text-success">AP Biology (Toner)</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/biology')}
+              variant="outline"
+              className="border-success text-success hover:bg-success hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {biologyUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
+                onClick={() => navigate(`/unit/apbioT/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* Biology Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
@@ -129,6 +172,7 @@ const Index = () => {
           </div>
         </div>
 
+        
         {/* Chemistry Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
