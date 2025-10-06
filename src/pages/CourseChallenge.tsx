@@ -25,7 +25,43 @@ const CourseChallenge = () => {
           { id: 'parametric', name: 'Unit 4A - Parametric Functions' },
           { id: 'vectorsMatrices', name: 'Unit 4B - Vectors and Matrices' },
         ];
+      case 'math3S':
+        return [
+          { id: 'linear', name: 'Linear Functions and Systems' },
+          { id: 'polynomial', name: 'Polynomial Functions' },
+          { id: 'rational', name: 'Rational Functions' },
+          { id: 'rationalexp', name: 'Rational Exponents and Radical Functions' },
+          { id: 'exponential', name: 'Exponential and Logarithmic Functions' },
+          { id: 'trigonometric', name: 'Trigonometric Functions' },
+          { id: 'trigonometriciden', name: 'Trignometric Equations and Identities' },
+          { id: 'data', name: 'Data Anaylsis and Statistics' },
+          { id: 'coordinategeo', name: 'Coordinate Geometry' },
+          { id: 'circles', name: 'Circles' },
+          { id: 'dimensional', name: 'Two and Three Dimensoinal Models' },
+        ];
       case 'biology':
+        return [
+          { id: 'biochemistry', name: 'Unit 1 - Biochemistry' },
+          { id: 'cellstructure', name: 'Unit 2 - Cell Structure & Function' },
+          { id: 'cellenergetics', name: 'Unit 3 - Cell Energetics' },
+          { id: 'cellgrowth', name: 'Unit 4 - Cell Growth & Division' },
+          { id: 'genetics', name: 'Unit 5 - Genetics' },
+          { id: 'molecular', name: 'Unit 6 - Molecular Biology' },
+          { id: 'evolution', name: 'Unit 7 - Evolution' },
+          { id: 'ecology', name: 'Unit 8 - Ecology' },
+        ];
+      case 'apbioT':
+        return [
+          { id: 'biochemistry', name: 'Unit 1 - Biochemistry' },
+          { id: 'cellstructure', name: 'Unit 2 - Cell Structure & Function' },
+          { id: 'cellenergetics', name: 'Unit 3 - Cell Energetics' },
+          { id: 'cellgrowth', name: 'Unit 4 - Cell Growth & Division' },
+          { id: 'genetics', name: 'Unit 5 - Genetics' },
+          { id: 'molecular', name: 'Unit 6 - Molecular Biology' },
+          { id: 'evolution', name: 'Unit 7 - Evolution' },
+          { id: 'ecology', name: 'Unit 8 - Ecology' },
+        ];
+      case 'apbioV':
         return [
           { id: 'biochemistry', name: 'Unit 1 - Biochemistry' },
           { id: 'cellstructure', name: 'Unit 2 - Cell Structure & Function' },
@@ -47,6 +83,17 @@ const CourseChallenge = () => {
           { id: 'stoichiometry', name: 'Unit 7 - Stoichiometry' },
           { id: 'acidbases', name: 'Unit 8 - Acids & Bases' },
         ];
+      case 'apchemD':
+        return [
+          { id: 'metric', name: 'Unit 1 - Metric Conversions' },
+          { id: 'atomic', name: 'Unit 2 - Atomic Structure' },
+          { id: 'compounds', name: 'Unit 3 - Compounds' },
+          { id: 'gases', name: 'Unit 4 - Gases' },
+          { id: 'solutions', name: 'Unit 5 - Solutions' },
+          { id: 'reactions', name: 'Unit 6 - Reactions' },
+          { id: 'stoichiometry', name: 'Unit 7 - Stoichiometry' },
+          { id: 'acidbases', name: 'Unit 8 - Acids & Bases' },
+        ];
       case 'world-history':
         return [
           { id: 'religions', name: 'Unit 1 - Religions' },
@@ -57,6 +104,23 @@ const CourseChallenge = () => {
           { id: 'unit6', name: 'Unit 6' },
           { id: 'unit7', name: 'Unit 7' },
           { id: 'unit8', name: 'Unit 8' },
+          { id: 'unit9', name: 'Unit 9' },
+          { id: 'unit10', name: 'Unit 10' },
+          { id: 'unit11', name: 'Unit 11' },
+        ];
+      case 'world-history-kohl':
+        return [
+          { id: 'religions', name: 'Unit 1 - Religions' },
+          { id: 'unit2', name: 'Unit 2' },
+          { id: 'unit3', name: 'Unit 3' },
+          { id: 'unit4', name: 'Unit 4' },
+          { id: 'unit5', name: 'Unit 5' },
+          { id: 'unit6', name: 'Unit 6' },
+          { id: 'unit7', name: 'Unit 7' },
+          { id: 'unit8', name: 'Unit 8' },
+          { id: 'unit9', name: 'Unit 9' },
+          { id: 'unit10', name: 'Unit 10' },
+          { id: 'unit11', name: 'Unit 11' },
         ];
       default:
         return [];
