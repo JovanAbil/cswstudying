@@ -74,6 +74,18 @@ const Index = () => {
     { id: 'unit10', name: 'Unit 10' },
     { id: 'unit11', name: 'Unit 11' },
   ];
+  
+  const apushUnits = [
+    { id: 'period1', name: 'Period 1 (1491 - 1607)' },
+    { id: 'period2', name: 'Period 2 (1607 - 1754)' },
+    { id: 'period3', name: 'Period 3 (1754-1800)' },
+    { id: 'period4', name: 'Period 4 (1800-1848)' },
+    { id: 'period5', name: 'Period 5 (1844-1877)' },
+    { id: 'period6', name: 'Period 6 (1865-1898)' },
+    { id: 'period7', name: 'Period 7 (1890-1945)' },
+    { id: 'period8', name: 'Period 8 (1945-1980)' },
+    { id: 'period9', name: 'Period 9 (1980-Present)' },
+  ];
 
   const worldHistoryKUnits = [
     { id: 'prehistory', name: 'Prehistory' },
@@ -320,6 +332,38 @@ const Index = () => {
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
                 onClick={() => navigate(`/unit/world-history-kohl/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* APUSH Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-destructive/10 rounded-lg">
+                <Landmark className="w-6 h-6 text-destructive" />
+              </div>
+              <h2 className="text-2xl font-bold text-destructive">AP Us History</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/apush')}
+              variant="outline"
+              className="border-destructive text-destructive hover:bg-destructive hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {apushUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
+                onClick={() => navigate(`/unit/apush/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
