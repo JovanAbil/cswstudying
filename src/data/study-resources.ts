@@ -57,8 +57,15 @@ export const unitStudyResources: Record<string, StudyResource[]> = {
   'apbio-ecology': [],
 
   // Chemistry Units - Add your own links here
-  'chemistry-metric': [],
-  'chemistry-atomic': [],
+  'chemistry-metric': [
+    { title: 'Scientific Notation', url: 'https://chemquiz.net/sci/' },
+    { title: 'Significant Figures', url: 'https://chemquiz.net/sig/' },
+  ],
+  'chemistry-atomic': [
+    { title: 'Isotopes', url: 'https://chemquiz.net/iso/' },
+    { title: 'Average Atomic Mass', url: 'https://chemquiz.net/aam/' },
+    { title: 'Electron Configuration', url: 'https://chemquiz.net/ele/' },
+  ],
   'chemistry-compounds': [],
   'chemistry-gases': [],
   'chemistry-solutions': [],
