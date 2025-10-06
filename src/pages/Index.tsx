@@ -16,21 +16,7 @@ const Index = () => {
     { id: 'parametric', name: 'Parametric' },
     { id: 'vectorsMatrices', name: 'Vectors and Matrices' },
   ];
-
-  const math3SUnits = [
-    { id: 'linear', name: 'Linear Functions and Systems' },
-    { id: 'polynomial', name: 'Polynomial Functions' },
-    { id: 'rational', name: 'Rational Functions' },
-    { id: 'rationalexp', name: 'Rational Exponents and Radical Functions' },
-    { id: 'exponential', name: 'Exponential and Logarithmic Functions' },
-    { id: 'trigonometric', name: 'Trigonometric Functions' },
-    { id: 'trigonometriciden', name: 'Trignometric Equations and Identities' }, 
-    { id: 'data', name: 'Data Anaylsis and Statistics' },
-    { id: 'coordinategeo', name: 'Coordinate Geometry' },
-    { id: 'circles', name: 'Circles' },
-    { id: 'dimensional', name: 'Two and Three Dimensoinal Models' },
-  ];
-
+  
   const biologyUnits = [
     { id: 'biochemistry', name: 'BioChem' },
     { id: 'cellstructure', name: 'Cell Structure & Functions' },
