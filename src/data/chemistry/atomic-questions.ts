@@ -123,68 +123,61 @@ export const atomicQuestions: Question[] = [
   {
     id: 'atomic-18',
     type: 'free-response',
-    question: 'Complete the chart with the missing information.',
-    correctAnswer: 'See worksheet',
-    explanation: 'This refers to a specific worksheet chart. Use the periodic table and electron-configuration rules to fill the missing entries on that worksheet.'
-  },
-  {
-    id: 'atomic-19',
-    type: 'free-response',
     question: 'Calculate the average atomic mass for imaginary isotopes: Gr-84 (0.14%), Gr-85 (26.08%), Gr-88 (73.78%).',
     correctAnswer: '≈ 87.21 amu',
     explanation: 'Weighted average: 0.0014·84 + 0.2608·85 + 0.7378·88 = 87.212 amu → round to 87.21 amu.'
   },
   {
-    id: 'atomic-20',
+    id: 'atomic-19',
     type: 'free-response',
     question: 'Calculate the missing isotope mass given average mass 132.6 amu (Cg isotopes).',
     correctAnswer: 'Use weighted-average formula (need the worksheet values)',
     explanation: 'If average = Σ (fraction_i × mass_i), then unknown mass = (avg − Σ_known(fraction·mass)) / fraction_unknown. Apply with the worksheet\'s known abundances/masses to solve.'
   },
   {
-    id: 'atomic-21',
+    id: 'atomic-20',
     type: 'free-response',
     question: 'Calculate missing abundance for isotopes A-48 and A-53 when average atomic mass is 49.86 amu.',
     correctAnswer: 'Set up algebraic equation; need exact isotope masses from worksheet',
     explanation: 'If only two isotopes with masses 48.00 and 53.00 are assumed, solve 48x + 53(1−x) = 49.86 → x = 3.14 (impossible). That indicates the worksheet uses more precise isotope masses or additional isotopes. Use the exact masses given on the worksheet and solve the linear equation for the unknown abundance.'
   },
   {
-    id: 'atomic-22a',
+    id: 'atomic-21a',
     type: 'free-response',
     question: 'Na-23 half-life 6.7 min: start 61 g, after 26.8 min how many grams left?',
     correctAnswer: '3.8125 g',
     explanation: '26.8/6.7 = 4 half-lives → remaining = 61·(1/2)^4 = 61/16 = 3.8125 g.'
   },
   {
-    id: 'atomic-22b',
+    id: 'atomic-21b',
     type: 'free-response',
     question: 'Rb-85 half-life 18.4 hr: start 300 g, how much time when 4.7 g left?',
     correctAnswer: 't ≈ 110.33 hours (≈ 4.60 days)',
     explanation: 'Solve 300*(1/2)^(t/18.4) = 4.7 → t = 18.4·log2(300/4.7) ≈ 110.33 hr ≈ 4.60 days.'
   },
   {
-    id: 'atomic-23',
+    id: 'atomic-22',
     type: 'free-response',
     question: 'Cs-131 half-life 125 years. If an object has 25% of the Cs-131 it started with, how old is the object (and what year is it from)?',
     correctAnswer: '250 years old; e.g., if current year 2025 → origin year ≈ 1775',
     explanation: '25% = (1/2)^(t/125) → (1/4) = (1/2)^(t/125) → t/125 = 2 → t = 250 years. If current year = 2025, origin ≈ 2025 − 250 = 1775.'
   },
   {
-    id: 'atomic-24a',
+    id: 'atomic-23a',
     type: 'free-response',
     question: 'Write the nuclear reaction(s): Ruthenium-100 gets hit with an alpha particle and goes through beta decay.',
     correctAnswer: 'Step 1: ¹⁰⁰₄₄Ru + ⁴₂He → ¹⁰⁴₄₆Pd; Step 2 (β⁻ decay): ¹⁰⁴₄₆Pd → ¹⁰⁴₄₇Ag + β⁻',
     explanation: 'Alpha capture increases A by 4 and Z by 2: 100→104, 44→46 (Pd). Then β⁻ decay converts a neutron→proton: Pd-104 → Ag-104 + β⁻ (plus ν̅).'
   },
   {
-    id: 'atomic-24b',
+    id: 'atomic-23b',
     type: 'free-response',
     question: 'Write the nuclear reaction(s): Iridium-194 gets hit with three neutrons and goes through alpha decay.',
     correctAnswer: 'Step 1: ¹⁹⁴₇₇Ir + 3·¹₀n → ¹⁹⁷₇₇Ir; Step 2 (α decay): ¹⁹⁷₇₇Ir → ¹⁹³₇₅Re + ⁴₂He',
     explanation: 'Adding 3 neutrons raises mass 194→197 (Z unchanged). Alpha emission reduces A by 4 and Z by 2: 197→193 and 77→75 (Rhenium).'
   },
   {
-    id: 'atomic-25',
+    id: 'atomic-24',
     type: 'free-response',
     question: 'Also: Practice electron configuration/identification and periodic trends as listed in the PDF.',
     correctAnswer: 'Use rules and examples above',
