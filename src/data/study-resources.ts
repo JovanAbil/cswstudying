@@ -27,22 +27,11 @@ export interface StudyResource {
 // Format: 'subject-unitId'
 export const unitStudyResources: Record<string, StudyResource[]> = {
   // AP Precalculus Units - Example with filler links
-  'precalc-polynomial': [
-    { title: 'Khan Academy - Polynomials', url: 'https://www.khanacademy.org/math/algebra2/polynomial-functions' },
-    { title: 'Paul\'s Online Math Notes', url: 'https://tutorial.math.lamar.edu/classes/alg/polynomials.aspx' },
-  ],
-  'precalc-rational': [
-    { title: 'Khan Academy - Rational Functions', url: 'https://www.khanacademy.org/math/precalculus/rational-functions' },
-  ],
-  'precalc-exponential': [
-    { title: 'Khan Academy - Exponential Functions', url: 'https://www.khanacademy.org/math/algebra2/exponential-and-logarithmic-functions' },
-  ],
-  'precalc-logarithmic': [
-    { title: 'Khan Academy - Logarithms', url: 'https://www.khanacademy.org/math/algebra2/exponential-and-logarithmic-functions' },
-  ],
-  'precalc-trigonometric': [
-    { title: 'Khan Academy - Trigonometry', url: 'https://www.khanacademy.org/math/trigonometry' },
-  ],
+  'precalc-polynomial': [],
+  'precalc-rational': [],
+  'precalc-exponential': [],
+  'precalc-logarithmic': [],
+  'precalc-trigonometric': [],
   'precalc-polar': [],
   'precalc-parametric': [],
   'precalc-vectorsMatrices': [],
@@ -117,15 +106,42 @@ export const unitStudyResources: Record<string, StudyResource[]> = {
   'world-history-kohl-unit14': [],
 
   // APUSH Units - Add your own links here
-  'apush-period1': [],
-  'apush-period2': [],
-  'apush-period3': [],
-  'apush-period4': [],
-  'apush-period5': [],
-  'apush-period6': [],
-  'apush-period7': [],
-  'apush-period8': [],
-  'apush-period9': [],
+  'apush-period1': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-1/causation-in-period-1/test/period-1-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-1/' },
+  ],
+  'apush-period2': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-2/comparison-in-period-2/test/period-2-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-2/' },
+  ],
+  'apush-period3': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-3/continuity-and-change-in-period-3/test/period-3-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-3/' },
+  ],
+  'apush-period4': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-4/apush-causation-in-the-period-from-1800-to-1848-lesson/test/period-4-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-4/' },
+  ],
+  'apush-period5': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-5/apush-comparison-in-the-period-from-1844-to-1877-lesson/test/period-5-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-5/' },
+  ],
+  'apush-period6': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-6/apush-continuity-and-change-over-time-in-the-period-from-1865-to-1898-lesson/test/period-6-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-6/' },
+  ],
+  'apush-period7': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-7/apush-comparison-in-the-period-from-1890-to-1945-lesson/test/period-7-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-7/' },
+  ],
+  'apush-period8': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-8/continuity-and-change-over-time-in-1945-to-1980/test/period-8-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-8/' },
+  ],
+  'apush-period9': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/period-9/apush-causation-in-the-period-from-1980-to-present-lesson/test/period-9-unit-test' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/practice-test-9/' },
+  ],
 
   // Add more units as needed...
 };
@@ -134,19 +150,19 @@ export const unitStudyResources: Record<string, StudyResource[]> = {
 // Format: 'subject'
 export const courseChallengeResources: Record<string, StudyResource[]> = {
   // Example with filler links
-  'precalc': [
-    { title: 'AP Precalculus Course Overview', url: 'https://apstudents.collegeboard.org/courses/ap-precalculus' },
-    { title: 'College Board Practice Questions', url: 'https://apcentral.collegeboard.org/courses/ap-precalculus' },
-  ],
-  'biology': [
-    { title: 'Biology Study Guide', url: 'https://www.khanacademy.org/science/biology' },
-  ],
+  'precalc': [],
+  'biology': [],
   'apbio': [],
-  'chemistry': [],
+  'chemistry': [
+    { title: 'ChemQuiz', url: 'https://chemquiz.net/quizzes/' },
+  ],
   'apchem': [],
   'world-history': [],
   'world-history-kohl': [],
-  'apush': [],
+  'apush': [
+    { title: 'Khan Academy - Period 1', url: 'https://www.khanacademy.org/humanities/ap-us-history/' },
+    { title: 'High School Test Prep - Period 1', url: 'https://highschooltestprep.com/ap/us-history/' },
+  ],
   
   // Add more subjects as needed...
 };
