@@ -156,6 +156,13 @@ export const atomicQuestions: Question[] = [
     explanation: '1 N + 5 H + 1 O = 7 total'
   },
   {
+    id: 'atomic-20',
+    type: 'free-response',
+    question: 'Three isotopes of argon occur in nature - Ar-36, Ar-38, Ar-40. Calculate the average atomic mass of argon to two decimal places, given the following relative atomic masses and abundances of each of the isotopes: Ar-36 (35.97amu; 0.337%), Ar-38 (37.96amu; 0.063%), and Ar-40 (39.96amu; 99.600%)',
+    correctAnswer: '39.9452937',
+    explanation: '35.97(.00337) + 37.96(0.00053) + 39.96(.996)'
+  },
+  {
     id: 'atomic-21a',
     type: 'free-response',
     question: 'Na-23 half-life 6.7 min: start 61 g, after 26.8 min how many grams left?',
