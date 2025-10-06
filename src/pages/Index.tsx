@@ -17,6 +17,17 @@ const Index = () => {
     { id: 'vectorsMatrices', name: 'Vectors and Matrices' },
   ];
 
+  const math3SUnits = [
+    { id: 'unit1', name: 'Unit 1' },
+    { id: 'unit2', name: 'Unit 2' },
+    { id: 'unit3', name: 'Unit 3' },
+    { id: 'unit4', name: 'Unit 4' },
+    { id: 'unit5', name: 'Unit 5' },
+    { id: 'unit6', name: 'Unit 6' },
+    { id: 'unit7', name: 'Unit 7' },
+    { id: 'unit8', name: 'Unit 8' },
+  ];
+
   const biologyUnits = [
     { id: 'biochemistry', name: 'BioChem' },
     { id: 'cellstructure', name: 'Cell Structure & Functions' },
@@ -28,7 +39,18 @@ const Index = () => {
     { id: 'ecology', name: 'Ecology' },
   ];
 
-  const apbioValentiUnits = [
+  const apbioVUnits = [
+    { id: 'biochemistry', name: 'BioChem' },
+    { id: 'cellstructure', name: 'Cell Structure & Functions' },
+    { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
+    { id: 'cellgrowth', name: 'Cell Growth & Division' },
+    { id: 'genetics', name: 'Genetics' },
+    { id: 'molecular', name: 'Molecular Biology' },
+    { id: 'evolution', name: 'Darwins Theory of Evolution' },
+    { id: 'ecology', name: 'Ecology' },
+  ];
+
+  const apbioTUnits = [
     { id: 'biochemistry', name: 'BioChem' },
     { id: 'cellstructure', name: 'Cell Structure & Functions' },
     { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
@@ -50,7 +72,7 @@ const Index = () => {
     { id: 'acidbases', name: 'Acids and Bases' },
   ];
 
-  const apchemDaroneUnits = [
+  const apchemDUnits = [
     { id: 'unit1', name: 'Unit 1' },
     { id: 'unit2', name: 'Unit 2' },
     { id: 'unit3', name: 'Unit 3' },
@@ -75,7 +97,7 @@ const Index = () => {
     { id: 'unit11', name: 'Unit 11' },
   ];
 
-  const worldHistoryKohlUnits = [
+  const worldHistoryKUnits = [
     { id: 'unit1', name: 'Unit 1' },
     { id: 'unit2', name: 'Unit 2' },
     { id: 'unit3', name: 'Unit 3' },
@@ -133,6 +155,38 @@ const Index = () => {
           </div>
         </div>
 
+        {/* Math 3 Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
+                <GraduationCap className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold text-primary">Math 3 (Satalino)</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/math3S')}
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {math3SUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-primary group"
+                onClick={() => navigate(`/unit/math3S/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* AP Biology Toner Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
@@ -151,7 +205,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {biologyUnits.map((unit) => (
+            {apbioTUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
@@ -183,7 +237,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {biologyUnits.map((unit) => (
+            {apbioVUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
@@ -280,7 +334,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {chemistryUnits.map((unit) => (
+            {apchemDUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
@@ -316,7 +370,7 @@ const Index = () => {
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
-                onClick={() => navigate(`/unit/world-history-kohl/${unit.id}`)}
+                onClick={() => navigate(`/unit/world-history/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
@@ -344,7 +398,7 @@ const Index = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {worldHistoryUnits.map((unit) => (
+            {worldHistoryKUnits.map((unit) => (
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
