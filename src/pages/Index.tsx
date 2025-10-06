@@ -28,7 +28,7 @@ const Index = () => {
     { id: 'ecology', name: 'Ecology' },
   ];
 
-  const apbiologyUnits = [
+  const apbioValentiUnits = [
     { id: 'biochemistry', name: 'BioChem' },
     { id: 'cellstructure', name: 'Cell Structure & Functions' },
     { id: 'cellenergetics', name: 'Cell Energetics-Photosynthesis & Cell Respirations' },
@@ -50,8 +50,33 @@ const Index = () => {
     { id: 'acidbases', name: 'Acids and Bases' },
   ];
 
+  const apchemDaroneUnits = [
+    { id: 'unit1', name: 'Unit 1' },
+    { id: 'unit2', name: 'Unit 2' },
+    { id: 'unit3', name: 'Unit 3' },
+    { id: 'unit4', name: 'Unit 4' },
+    { id: 'unit5', name: 'Unit 5' },
+    { id: 'unit6', name: 'Unit 6' },
+    { id: 'unit7', name: 'Unit 7' },
+    { id: 'unit8', name: 'Unit 8' },
+  ];
+
   const worldHistoryUnits = [
     { id: 'religions', name: 'Religions' },
+    { id: 'unit2', name: 'Unit 2' },
+    { id: 'unit3', name: 'Unit 3' },
+    { id: 'unit4', name: 'Unit 4' },
+    { id: 'unit5', name: 'Unit 5' },
+    { id: 'unit6', name: 'Unit 6' },
+    { id: 'unit7', name: 'Unit 7' },
+    { id: 'unit8', name: 'Unit 8' },
+    { id: 'unit9', name: 'Unit 9' },
+    { id: 'unit10', name: 'Unit 10' },
+    { id: 'unit11', name: 'Unit 11' },
+  ];
+
+  const worldHistoryKohlUnits = [
+    { id: 'unit1', name: 'Unit 1' },
     { id: 'unit2', name: 'Unit 2' },
     { id: 'unit3', name: 'Unit 3' },
     { id: 'unit4', name: 'Unit 4' },
@@ -108,7 +133,7 @@ const Index = () => {
           </div>
         </div>
 
-        {/* AP Biology Section */}
+        {/* AP Biology Toner Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
@@ -118,7 +143,7 @@ const Index = () => {
               <h2 className="text-2xl font-bold text-success">AP Biology (Toner)</h2>
             </div>
             <Button
-              onClick={() => navigate('/course-challenge/biology')}
+              onClick={() => navigate('/course-challenge/apbioT')}
               variant="outline"
               className="border-success text-success hover:bg-success hover:text-white"
             >
@@ -131,6 +156,38 @@ const Index = () => {
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
                 onClick={() => navigate(`/unit/apbioT/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* AP Biology Valenti Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-success/10 rounded-lg">
+                <Microscope className="w-6 h-6 text-success" />
+              </div>
+              <h2 className="text-2xl font-bold text-success">AP Biology (Valenti)</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/apbioV')}
+              variant="outline"
+              className="border-success text-success hover:bg-success hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {biologyUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-success group"
+                onClick={() => navigate(`/unit/apbioV/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
@@ -205,6 +262,38 @@ const Index = () => {
           </div>
         </div>
 
+        {/* AP Chemistry Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg">
+                <Beaker className="w-6 h-6 text-accent" />
+              </div>
+              <h2 className="text-2xl font-bold text-accent">AP Chemistry (Darone)</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/apchemD')}
+              variant="outline"
+              className="border-accent text-accent hover:bg-accent hover:text-foreground"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {chemistryUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-accent group"
+                onClick={() => navigate(`/unit/apchemD/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* World History Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="flex items-center justify-between mb-8">
@@ -227,7 +316,39 @@ const Index = () => {
               <Card
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
-                onClick={() => navigate(`/unit/world-history/${unit.id}`)}
+                onClick={() => navigate(`/unit/world-history-kohl/${unit.id}`)}
+              >
+                <div className="text-center">
+                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* World History Kohl Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-destructive/10 rounded-lg">
+                <Landmark className="w-6 h-6 text-destructive" />
+              </div>
+              <h2 className="text-2xl font-bold text-destructive">World History (Kohl)</h2>
+            </div>
+            <Button
+              onClick={() => navigate('/course-challenge/world-history-kohl')}
+              variant="outline"
+              className="border-destructive text-destructive hover:bg-destructive hover:text-white"
+            >
+              Course Challenge
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {worldHistoryUnits.map((unit) => (
+              <Card
+                key={unit.id}
+                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
+                onClick={() => navigate(`/unit/world-history-kohl/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
