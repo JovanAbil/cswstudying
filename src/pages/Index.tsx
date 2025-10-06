@@ -74,18 +74,6 @@ const Index = () => {
     { id: 'unit10', name: 'Unit 10' },
     { id: 'unit11', name: 'Unit 11' },
   ];
-  
-  const apushUnits = [
-    { id: 'period1', name: 'Period 1 (1491 - 1607)' },
-    { id: 'period2', name: 'Period 2 (1607 - 1754)' },
-    { id: 'period3', name: 'Period 3 (1754-1800)' },
-    { id: 'period4', name: 'Period 4 (1800-1848)' },
-    { id: 'period5', name: 'Period 5 (1844-1877)' },
-    { id: 'period6', name: 'Period 6 (1865-1898)' },
-    { id: 'period7', name: 'Period 7 (1890-1945)' },
-    { id: 'period8', name: 'Period 8 (1945-1980)' },
-    { id: 'period9', name: 'Period 9 (1980-Present)' },
-  ];
 
   const worldHistoryKUnits = [
     { id: 'prehistory', name: 'Prehistory' },
