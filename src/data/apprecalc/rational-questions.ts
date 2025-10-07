@@ -155,7 +155,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-21",
     "type": "free-response",
     "question": "g(x) = (x^2-9x+18)/(x^2-8x+12) Hole: ",
-    "correctAnswer": "x = 6",
+    "correctAnswer": "(6, 3/4)",
     "explanation": "Factor (x-6) was removed from both numerator and denominator"
   },
   
@@ -177,7 +177,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-24",
     "type": "free-response",
     "question": "h(x) = (x^3-4x^2-32x)/(2x^2+7x-4) Hole: ",
-    "correctAnswer": "x = -4",
+    "correctAnswer": "(-4, -16/3)",
     "explanation": "Factor (x+4) was removed from both numerator and denominator"
   },
   
@@ -195,14 +195,6 @@ export const rationalQuestions: Question[] = [
     "correctAnswer": "x = 0, 8",
     "explanation": "Factor out the top"
   },
-  {
-    "id": "rational-27",
-    "type": "free-response",
-    "question": "h(x) = (x^3-4x^2-32x)/(2x^2+7x-4) Hole: ",
-    "correctAnswer": "x = -4",
-    "explanation": "Factor (x+4) was removed from both numerator and denominator"
-  },
-
   {
     "id": "rational-28",
     "type": "free-response",
@@ -243,7 +235,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-33",
     "type": "free-response",
     "question": "k(x) = (x-3)/(x^2+7x-30) Hole: ",
-    "correctAnswer": "x = 3",
+    "correctAnswer": "(3, 1/13)",
     "explanation": "Factored out (x-3) from both numerator and denominator"
   },
 
@@ -252,14 +244,14 @@ export const rationalQuestions: Question[] = [
     "id": "rational-34",
     "type": "free-response",
     "question": "Create a rational function with a hole at x = 3 and vertical asymptotes at x = 1 and x = -4",
-    "correctAnswer": "Answers may vary; f(x) = (x-3)/(x-3)(x-1)(x+4)",
+    "correctAnswer": "f(x) = (x-3)/(x-3)(x-1)(x+4)",
     "explanation": "N/A"
   },
   {
     "id": "rational-35",
     "type": "free-response",
     "question": "Create a rational function with zeros at x = -1 and x = 2, vertical asymptote at x = 5, and a horizontal asymptote of y=3/4",
-    "correctAnswer": "Answers may vary; f(x) = 3(x+1)(x-2)/4(x-5)^2",
+    "correctAnswer": "f(x) = 3(x+1)(x-2)/4(x-5)^2",
     "explanation": "N/A"
   },
 ];
