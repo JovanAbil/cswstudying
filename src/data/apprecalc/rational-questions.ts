@@ -254,4 +254,48 @@ export const rationalQuestions: Question[] = [
     "correctAnswer": "f(x) = 3(x+1)(x-2)/4(x-5)^2",
     "explanation": "N/A"
   },
+  //Limits
+  {
+    "id": "rational-36a",
+    "type": "free-response",
+    "question": "The function f(x) = (x^2-4x-12)/x-3 . Answer:  a. lim_x-->3^- f(x) =  b. lim_x-->3^+ f(x) = ",
+    "correctAnswer": "a. ∞ b. -∞",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-36b",
+    "type": "free-response",
+    "question": "The function f(x) = 2/(x+1)^2 . Answer:  a. lim_x-->-1^- f(x) =  b. lim_x-->-1^+ f(x) = ",
+    "correctAnswer": "a. ∞ b. ∞",
+    "explanation": "N/A"
+  },
+  
+  {
+    "id": "rational-36c",
+    "type": "free-response",
+    "question": "The function f(x) = -(x^2-9)/(x^2-3x) . Answer:  a. lim_x-->0^- f(x) =  b. lim_x-->0^+ f(x) = ",
+    "correctAnswer": "a. -∞ b. ∞",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-36d",
+    "type": "free-response",
+    "question": "The function f(x) = -(x^2-9)/(x^2-3x) . Answer:  a. lim_x-->3^- f(x) =  b. lim_x-->3^+ f(x) = ",
+    "correctAnswer": "a. -2 b. -2",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-36e",
+    "type": "free-response",
+    "question": "The function f(x) = (x^3+2x^2-25x-50)/(x+2)(x^2-10x+25) . Answer:  a. lim_x-->-2^- f(x) =  b. lim_x-->-2^+ f(x) = ",
+    "correctAnswer": "a. -3/7 b. -3/7",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-36e",
+    "type": "free-response",
+    "question": "The function f(x) = (x^3+2x^2-25x-50)/(x+2)(x^2-10x+25) . Answer:  a. lim_x-->5^- f(x) =  b. lim_x-->5^+ f(x) = ",
+    "correctAnswer": "a. -∞ b. ∞",
+    "explanation": "N/A"
+  },
 ];
