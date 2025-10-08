@@ -298,4 +298,56 @@ export const rationalQuestions: Question[] = [
     "correctAnswer": "a. -∞ b. ∞",
     "explanation": "N/A"
   },
+  //inequalities
+  {
+    "id": "rational-37a",
+    "type": "free-response",
+    "question": "The function (x-3)/(x+5) > 0. ",
+    "correctAnswer": "(-∞, -5) U [3, ∞)",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-37b",
+    "type": "free-response",
+    "question": "The function (x^2+5x-6)/(x+2) <= 0. ",
+    "correctAnswer": "(-∞, -6) U (-2, 1]",
+    "explanation": "N/A"
+  },
+  
+  {
+    "id": "rational-37c",
+    "type": "free-response",
+    "question": "The function (x^2)/(x+4) < 2. ",
+    "correctAnswer": "(-∞, -4) U [-2, 4]",
+    "explanation": "N/A"
+  },
+  //Find the slant asymptote
+  {
+    "id": "rational-38a",
+    "type": "free-response",
+    "question": "Find the slant and state the slant asymptote for f(x) = (x^2-6x+7)/(x+1).",
+    "correctAnswer": "slant: x-5",
+    "explanation": "N/A"
+  },
+  {
+    "id": "rational-38b",
+    "type": "free-response",
+    "question": "Find the slant and state the slant asymptote for h(x) = (x^3-4x^2+3x-1)/(x^2-2x+5).",
+    "correctAnswer": "slant: x-2",
+    "explanation": "N/A"
+  },
+    {
+    "id": "rational-38c",
+    "type": "free-response",
+    "question": "Find the slant and state the slant asymptote for g(x) = (2x^2-x+4)/(x+3).",
+    "correctAnswer": "slant: 2x-7",
+    "explanation": "N/A"
+  },
+    {
+    "id": "rational-38d",
+    "type": "free-response",
+    "question": "Find the slant and state the slant asymptote for f(x) = (2x^3-x^2+1)/(x^2+x+1).",
+    "correctAnswer": "slant: 2x-2",
+    "explanation": "N/A"
+  },
 ];
