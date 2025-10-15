@@ -93,7 +93,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-36c",
     "type": "free-response",
     "question": "The function f(x) = -(x^2-9)/(x^2-3x). Answer: a. lim_x-->0^- f(x) =  b. lim_x-->0^+ f(x) =",
-    "correctAnswer": "a. -∞ b. ∞",
+    "correctAnswer": "a. ∞ b. -∞",
     "explanation": "N/A"
   },
 
@@ -109,7 +109,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-37b",
     "type": "free-response",
     "question": "The function (x^2+5x-6)/(x+2) <= 0.",
-    "correctAnswer": "(-∞, -6) U (-2, 1]",
+    "correctAnswer": "(-∞, -6] U (-2, 1]",
     "explanation": "N/A"
   },
 
@@ -118,7 +118,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-38a",
     "type": "free-response",
     "question": "Find the slant and state the slant asymptote for f(x) = (x^2-6x+7)/(x+1).",
-    "correctAnswer": "slant: x-5",
+    "correctAnswer": "slant: x-7",
     "explanation": "N/A"
   },
   {
