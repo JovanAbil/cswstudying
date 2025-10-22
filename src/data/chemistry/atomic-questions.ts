@@ -11,7 +11,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Thomson" },
       { "label": "D", "value": "D", "text": "Rutherford" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Democritus first proposed the idea of atoms as tiny, indivisible particles of matter."
   },
   {
@@ -24,7 +24,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "He had no experimental evidence" },
       { "label": "D", "value": "D", "text": "It was mathematically incorrect" }
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "Democritus’s atomic theory was rejected because it lacked experimental proof."
   },
   {
@@ -37,7 +37,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Bohr" },
       { "label": "D", "value": "D", "text": "Rutherford" }
     ],
-    "answer": "A",
+    "correctAnswer": "A",
     "explanation": "John Dalton created the first evidence-based atomic theory."
   },
   {
@@ -50,7 +50,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Atoms have electrons orbiting the nucleus" },
       { "label": "D", "value": "D", "text": "Atoms are mostly empty space" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Dalton stated atoms of the same element are identical and combine in whole-number ratios."
   },
   {
@@ -63,7 +63,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Cathode ray tube experiment" },
       { "label": "D", "value": "D", "text": "Flame test experiment" }
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "Thomson’s cathode ray tube experiment led to the discovery of the electron."
   },
   {
@@ -76,7 +76,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Plum pudding model" },
       { "label": "D", "value": "D", "text": "Nuclear model" }
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "Thomson proposed the 'plum pudding' model — electrons embedded in a positive sphere."
   },
   {
@@ -89,7 +89,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Rays did not bend at all" },
       { "label": "D", "value": "D", "text": "Rays disappeared in a magnetic field" }
     ],
-    "answer": "A",
+    "correctAnswer": "A",
     "explanation": "Cathode rays bent toward a positive plate, showing electrons are negatively charged."
   },
   {
@@ -102,7 +102,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Rutherford" },
       { "label": "D", "value": "D", "text": "Thomson" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Robert Millikan used the oil drop experiment to measure electron charge."
   },
   {
@@ -115,7 +115,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "The location of the proton" },
       { "label": "D", "value": "D", "text": "The shape of orbitals" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Millikan calculated both charge and mass of the electron."
   },
   {
@@ -128,7 +128,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Thomson" },
       { "label": "D", "value": "D", "text": "Millikan" }
     ],
-    "answer": "A",
+    "correctAnswer": "A",
     "explanation": "Ernest Rutherford conducted the gold foil experiment discovering the nucleus."
   },
   {
@@ -141,7 +141,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Electrons are stationary within atoms" },
       { "label": "D", "value": "D", "text": "Atoms are composed mostly of neutrons" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Rutherford showed atoms have a dense, positively charged nucleus and are mostly empty space."
   },
   {
@@ -154,7 +154,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Rutherford" },
       { "label": "D", "value": "D", "text": "Schrödinger" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Bohr proposed electrons orbit in specific, quantized energy levels."
   },
   {
@@ -167,7 +167,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Isotopes" },
       { "label": "D", "value": "D", "text": "Mass defects" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Bohr’s model explained why elements emit light at specific wavelengths."
   },
   {
@@ -180,7 +180,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "He created the plum pudding model" },
       { "label": "D", "value": "D", "text": "He proved atoms were indivisible" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Schrödinger developed the quantum model — electrons exist in probability clouds."
   },
   {
@@ -193,7 +193,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Rutherford’s gold foil model" },
       { "label": "D", "value": "D", "text": "Dalton’s atomic theory" }
     ],
-    "answer": "A",
+    "correctAnswer": "A",
     "explanation": "The modern atomic model is based on Schrödinger’s quantum mechanics."
   },
   {
@@ -206,7 +206,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Rutherford" },
       { "label": "D", "value": "D", "text": "Chadwick" }
     ],
-    "answer": "D",
+    "correctAnswer": "D",
     "explanation": "James Chadwick discovered the neutron in 1932."
   },
   {
@@ -219,7 +219,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "It led to the discovery of protons" },
       { "label": "D", "value": "D", "text": "It disproved the existence of isotopes" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Neutrons explained the extra mass in atoms beyond protons and electrons."
   },
   {
@@ -232,7 +232,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Bohr" },
       { "label": "D", "value": "D", "text": "Millikan" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Rutherford’s gold foil experiment showed most alpha particles passed through empty space."
   },
   {
@@ -245,7 +245,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Schrödinger" },
       { "label": "D", "value": "D", "text": "Millikan" }
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "Bohr proposed electrons occupy discrete, quantized energy levels."
   },
   {
@@ -258,7 +258,7 @@ export const atomicQuestions: Question[] = [
       { "label": "C", "value": "C", "text": "Bohr — Flame Test Observations" },
       { "label": "D", "value": "D", "text": "Chadwick — Cathode Ray Experiment" }
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "Bohr used flame test and emission spectra observations to support quantized energy levels."
   },
 ];
