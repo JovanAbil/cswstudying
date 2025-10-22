@@ -1,7 +1,7 @@
 import { Question } from '@/types/quiz';
 
 export const atomicQuestions: Question[] = [
-  [{
+  {
     "id": "atomic-1",
     "type": "multiple-choice",
     "question": "Which scientist first proposed that all matter is composed of tiny, indivisible particles called atoms?",
