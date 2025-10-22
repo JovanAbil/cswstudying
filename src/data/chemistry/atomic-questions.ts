@@ -1,8 +1,7 @@
 import { Question } from '@/types/quiz';
 
 export const atomicQuestions: Question[] = [
-  [
-  {
+  [{
     "id": "atomic-1",
     "type": "multiple-choice",
     "question": "Which scientist first proposed that all matter is composed of tiny, indivisible particles called atoms?",
@@ -261,5 +260,5 @@ export const atomicQuestions: Question[] = [
     ],
     "answer": "C",
     "explanation": "Bohr used flame test and emission spectra observations to support quantized energy levels."
-  }
+  },
 ];
