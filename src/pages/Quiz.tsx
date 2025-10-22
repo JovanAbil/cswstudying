@@ -61,6 +61,7 @@ const Quiz = () => {
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showGrading, setShowGrading] = useState(false);
+  const [shuffledOptions, setShuffledOptions] = useState<any[]>([]);
 
   useEffect(() => {
     const questionCount = quizType === 'daily' ? 10 : quizType === 'cram' ? Infinity : 30;
@@ -114,6 +115,14 @@ const Quiz = () => {
   const currentAttempt = attempts[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
+  // Shuffle options when question changes
+  useEffect(() => {
+    if (currentQuestion && currentQuestion.type === 'multiple-choice') {
+      const shuffled = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+      setShuffledOptions(shuffled);
+    }
+  }, [currentQuestion]);
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
@@ -166,6 +175,7 @@ const Quiz = () => {
       setCurrentAnswer('');
       setIsSubmitted(false);
       setShowGrading(false);
+      setShuffledOptions([]);
     } else {
       // Quiz complete
       const score = attempts.filter(a => a.isCorrect).length;
@@ -244,7 +254,7 @@ const Quiz = () => {
               disabled={isSubmitted}
               className="space-y-3"
             >
-              {currentQuestion.options.map((option) => (
+              {shuffledOptions.map((option) => (
                 <div
                   key={option.value}
                   className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all ${
