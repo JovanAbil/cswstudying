@@ -116,6 +116,7 @@ const MathText = ({ children, className = '', tag = 'span' }: MathTextProps) => 
               displayMode: true,
               throwOnError: false,
               strict: false,
+              macros: { "\\ce": "\\require{mhchem}\\ce" },
             });
           } catch {
             span.textContent = part;
@@ -129,6 +130,7 @@ const MathText = ({ children, className = '', tag = 'span' }: MathTextProps) => 
               displayMode: false,
               throwOnError: false,
               strict: false,
+              macros: { "\\ce": "\\require{mhchem}\\ce" },
             });
           } catch {
             span.textContent = part;
