@@ -548,7 +548,7 @@ export const atomicQuestions: Question[] = [
     "id": "atomic-45", 
     "type": "free-response",
     "question": "The diagram on the right represents C and F sharing electrons through a chemical bond. The area around them represents the electron density, or the relative areas where electrons are most likely to be found. Which nucleus (1 or 2) represents flourine and explain your choice. Define the concept of electronegativity in your response.",
-    "image": "/images/chemistry/atomic8.png"
+    "image": "/images/chemistry/atomic8.png",
     "correctAnswer": "Nucleus 1 represents flourine because flourine is more electronegative and that is when an element wants electrons and since flourine needs 1 more because it is a halogen and it only has 2 levels before the nucleus, there is more coloumbic atraction making it more electronegative.",
     "explanation": "."
     "displayAs": "paragraph"
