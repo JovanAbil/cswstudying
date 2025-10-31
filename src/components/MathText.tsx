@@ -19,26 +19,42 @@ const preprocessMath = (text: string): string => {
   });
   
   // Convert chemical formulas with subscripts and superscripts
-  // Handles formats like: SO4²⁻, NH4⁺, CO3²⁻, H2O, etc.
-  processed = processed.replace(/([A-Z][a-z]?)(\d*)([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+)?/g, (match, element, subscript, superscript) => {
-    // Only format if it looks like a chemical formula (has subscript or superscript)
-    if (!subscript && !superscript) return match;
+  // Matches entire formulas like: SO4²⁻, NH4⁺, CO3²⁻, H2O, Ca(OH)2, etc.
+  processed = processed.replace(/([A-Z][a-z]?\d*(?:\([A-Z][a-z]?\d*\)\d*)*)+[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]*/g, (match) => {
+    // Check if this looks like a chemical formula (has numbers or charges)
+    if (!/\d|[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/.test(match)) return match;
     
-    let formula = `$\\text{${element}}`;
-    if (subscript) {
-      formula += `_{${subscript}}`;
+    // Convert Unicode superscripts to regular characters for LaTeX
+    const superscriptMap: { [key: string]: string } = {
+      '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4',
+      '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9',
+      '⁺': '+', '⁻': '-'
+    };
+    
+    let formula = '$\\text{';
+    let inParens = false;
+    
+    for (let i = 0; i < match.length; i++) {
+      const char = match[i];
+      
+      if (char === '(') {
+        formula += '}(\\text{';
+        inParens = true;
+      } else if (char === ')') {
+        formula += '}';
+        inParens = false;
+      } else if (/\d/.test(char)) {
+        formula += `}_{${char}}\\text{`;
+      } else if (superscriptMap[char]) {
+        formula += `}^{${superscriptMap[char]}}`;
+      } else {
+        formula += char;
+      }
     }
-    if (superscript) {
-      // Convert Unicode superscripts to regular characters for LaTeX
-      const superscriptMap: { [key: string]: string } = {
-        '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4',
-        '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9',
-        '⁺': '+', '⁻': '-'
-      };
-      const convertedSuperscript = superscript.split('').map(char => superscriptMap[char] || char).join('');
-      formula += `^{${convertedSuperscript}}`;
-    }
-    formula += '$';
+    
+    formula += '}$';
+    // Clean up empty \text{} blocks
+    formula = formula.replace(/\\text\{\}/g, '');
     
     latexBlocks.push(formula);
     return `__LATEX_${latexBlocks.length - 1}__`;
