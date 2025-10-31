@@ -18,7 +18,22 @@ const preprocessMath = (text: string): string => {
     return `__LATEX_${latexBlocks.length - 1}__`;
   });
   
-  // Convert rational functions to fractions FIRST: (ax+b)/(dx+e) -> \frac{ax+b}{dx+e}
+  // Convert limits: lim_x-->a or lim_x-->∞ to proper LaTeX
+  processed = processed.replace(/lim_([a-zA-Z])-->(-?∞|infinity|[^\s]+)/gi, (match, variable, approach) => {
+    let approachValue = approach;
+    if (approach.toLowerCase() === 'infinity') {
+      approachValue = '\\infty';
+    } else if (approach === '∞') {
+      approachValue = '\\infty';
+    } else if (approach === '-∞') {
+      approachValue = '-\\infty';
+    }
+    const limit = `$\\lim_{${variable} \\to ${approachValue}}$`;
+    latexBlocks.push(limit);
+    return `__LATEX_${latexBlocks.length - 1}__`;
+  });
+  
+  // Convert rational functions to fractions: (ax+b)/(dx+e) -> \frac{ax+b}{dx+e}
   processed = processed.replace(/\(([^()]+(?:\([^()]*\))*[^()]*)\)\/\(([^()]+(?:\([^()]*\))*[^()]*)\)/g, (match, numerator, denominator) => {
     const frac = `$\\frac{${numerator}}{${denominator}}$`;
     latexBlocks.push(frac);
@@ -30,8 +45,8 @@ const preprocessMath = (text: string): string => {
     return `$${base}^{${exp}}$`;
   });
   
-  // Convert only logarithmic functions and limits to LaTeX
-  const functions = ['log', 'ln', 'lim'];
+  // Convert only logarithmic functions to LaTeX
+  const functions = ['log', 'ln'];
   functions.forEach(func => {
     const regex = new RegExp(`\\b${func}\\s*\\(`, 'gi');
     processed = processed.replace(regex, `$\\${func}($`);
