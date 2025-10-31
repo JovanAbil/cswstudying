@@ -239,7 +239,7 @@ export const atomicQuestions: Question[] = [
     "id": "atomic-20",
     "type": "multiple-choice",
     "image": "/images/chemistry/atomic1.png"
-    "question": "Calculate the average atomic mass of barium, using the following data.",
+    "question": "Calculate the average atomic mass of barium, using the following data."
     "options": [
       { "label": "A", "value": "A", "text": "137.3" },
       { "label": "B", "value": "B", "text": "137.7" },
