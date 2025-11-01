@@ -99,9 +99,9 @@ const Results = () => {
                         Question {index + 1}
                       </h3>
                       
-                      {question.table && (
+                       {question.table && (
                         <div className="mb-3">
-                          <QuestionTable data={question.table} />
+                          <QuestionTable data={question.table} enableChemistry={subject === 'chemistry'} />
                         </div>
                       )}
                       
@@ -115,7 +115,7 @@ const Results = () => {
                         </div>
                       )}
                       
-                      <MathText tag="p" className="text-sm mb-3">{question.question}</MathText>
+                      <MathText tag="p" className="text-sm mb-3" enableChemistry={subject === 'chemistry'}>{question.question}</MathText>
 
                       {question.type === 'multiple-choice' ? (
                         <div className="space-y-2 mb-3">
@@ -142,7 +142,7 @@ const Results = () => {
                                     className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border mt-2"
                                   />
                                 ) : (
-                                  <MathText>{option.text}</MathText>
+                                  <MathText enableChemistry={subject === 'chemistry'}>{option.text}</MathText>
                                 )}
                                 {isCorrectAnswer && (
                                   <span className="ml-2 text-success font-semibold">✓ Correct</span>
@@ -159,17 +159,17 @@ const Results = () => {
                           <div className="p-3 bg-muted rounded-lg text-sm">
                             <p className="font-semibold mb-1">Your Answer:</p>
                             {question.displayAs === 'paragraph' ? (
-                              <MathText tag="div" className="whitespace-pre-wrap">{attempt.userAnswer || '(No answer)'}</MathText>
+                              <MathText tag="div" className="whitespace-pre-wrap" enableChemistry={subject === 'chemistry'}>{attempt.userAnswer || '(No answer)'}</MathText>
                             ) : (
-                              <MathText tag="p">{attempt.userAnswer || '(No answer)'}</MathText>
+                              <MathText tag="p" enableChemistry={subject === 'chemistry'}>{attempt.userAnswer || '(No answer)'}</MathText>
                             )}
                           </div>
                           <div className={`p-3 rounded-lg border-2 border-success bg-success/10 text-sm`}>
                             <p className="font-semibold mb-1">Correct Answer:</p>
                             {question.displayAs === 'paragraph' ? (
-                              <MathText tag="div" className="whitespace-pre-wrap">{question.correctAnswer}</MathText>
+                              <MathText tag="div" className="whitespace-pre-wrap" enableChemistry={subject === 'chemistry'}>{question.correctAnswer}</MathText>
                             ) : (
-                              <MathText tag="p">{question.correctAnswer}</MathText>
+                              <MathText tag="p" enableChemistry={subject === 'chemistry'}>{question.correctAnswer}</MathText>
                             )}
                           </div>
                         </div>
@@ -178,7 +178,7 @@ const Results = () => {
                       {question.explanation && (
                         <div className="p-3 bg-primary/5 rounded-lg text-sm">
                           <p className="font-semibold mb-1">Explanation:</p>
-                          <MathText tag="p" className="whitespace-pre-line">{question.explanation}</MathText>
+                          <MathText tag="p" className="whitespace-pre-line" enableChemistry={subject === 'chemistry'}>{question.explanation}</MathText>
                         </div>
                       )}
                     </div>

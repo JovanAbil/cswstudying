@@ -3,9 +3,10 @@ import MathText from '@/components/MathText';
 
 interface QuestionTableProps {
   data: TableData;
+  enableChemistry?: boolean;
 }
 
-const QuestionTable = ({ data }: QuestionTableProps) => {
+const QuestionTable = ({ data, enableChemistry = false }: QuestionTableProps) => {
   return (
     <div className="overflow-x-auto mb-6">
       <table className="min-w-full border-2 border-border rounded-lg">
@@ -16,6 +17,7 @@ const QuestionTable = ({ data }: QuestionTableProps) => {
                 key={index}
                 tag="th"
                 className="px-4 py-3 text-left text-sm font-semibold border-b-2 border-border"
+                enableChemistry={enableChemistry}
               >
                 {header}
               </MathText>
@@ -30,6 +32,7 @@ const QuestionTable = ({ data }: QuestionTableProps) => {
                   key={cellIndex}
                   tag="td"
                   className="px-4 py-3 text-sm"
+                  enableChemistry={enableChemistry}
                 >
                   {cell}
                 </MathText>

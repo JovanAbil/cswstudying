@@ -230,7 +230,7 @@ const Quiz = () => {
 
         <Card className="p-8">
           {currentQuestion.table && (
-            <QuestionTable data={currentQuestion.table} />
+            <QuestionTable data={currentQuestion.table} enableChemistry={subject === 'chemistry'} />
           )}
           
           {currentQuestion.image && (
@@ -243,7 +243,7 @@ const Quiz = () => {
             </div>
           )}
           
-          <MathText tag="h3" className="text-xl font-semibold mb-6 leading-relaxed">
+          <MathText tag="h3" className="text-xl font-semibold mb-6 leading-relaxed" enableChemistry={subject === 'chemistry'}>
             {currentQuestion.question}
           </MathText>
 
@@ -275,7 +275,7 @@ const Quiz = () => {
                         className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border mt-2"
                       />
                     ) : (
-                      <MathText>{option.text}</MathText>
+                      <MathText enableChemistry={subject === 'chemistry'}>{option.text}</MathText>
                     )}
                   </Label>
                   {isSubmitted && option.value === currentQuestion.correctAnswer && (
@@ -303,14 +303,14 @@ const Quiz = () => {
           {isSubmitted && currentQuestion.explanation && (
             <div className="mt-6 p-4 bg-muted rounded-lg">
               <h4 className="font-semibold mb-2">Explanation:</h4>
-              <MathText tag="p" className="whitespace-pre-line text-sm">{currentQuestion.explanation}</MathText>
+              <MathText tag="p" className="whitespace-pre-line text-sm" enableChemistry={subject === 'chemistry'}>{currentQuestion.explanation}</MathText>
             </div>
           )}
 
           {isSubmitted && currentQuestion.type === 'free-response' && (
             <div className="mt-6 p-4 bg-primary/5 border-2 border-primary rounded-lg">
               <h4 className="font-semibold mb-2">Correct Answer:</h4>
-              <MathText tag="p" className="text-lg mb-4">{currentQuestion.correctAnswer}</MathText>
+              <MathText tag="p" className="text-lg mb-4" enableChemistry={subject === 'chemistry'}>{currentQuestion.correctAnswer}</MathText>
               
               {showGrading && (
                 <div className="space-y-3">
