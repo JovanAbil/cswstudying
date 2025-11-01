@@ -104,7 +104,7 @@ const CourseChallenge = () => {
       toast.error('Please select at least one unit');
       return;
     }
-    navigate(`/quiz/${subject}/challenge/custom`, { state: { selectedUnits } });
+    navigate(`/quiz/${subject}/challenge/test`, { state: { selectedUnits } });
   };
 
   const handleStartCramMode = () => {

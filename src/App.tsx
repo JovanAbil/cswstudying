@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/unit/:subject/:unitId" element={<Unit />} />
             <Route path="/unit/:subject/:unitId/quiz/:quizType" element={<Quiz />} />
             <Route path="/course-challenge/:subject" element={<CourseChallenge />} />
-            <Route path="/course-challenge/:subject/quiz" element={<Quiz />} />
+            <Route path="/quiz/:subject/:unitId/:quizType" element={<Quiz />} />
             <Route path="/results" element={<Results />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
