@@ -11,15 +11,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-1b',
     type: 'free-response',
-    question: 'What is the formula for ammonium?',
-    correctAnswer: 'NH4⁺',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-1c',
-    type: 'free-response',
-    question: 'What is the charge of ammonium?',
-    correctAnswer: '+1',
+    question: 'What is the formula and charge of ammonium?',
+    correctAnswer: 'NH4⁺, +1',
     explanation: 'Memorize'
   },
 
@@ -33,15 +26,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-2b',
     type: 'free-response',
-    question: 'What is the formula for acetate?',
-    correctAnswer: 'C2H3O2⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-2c',
-    type: 'free-response',
-    question: 'What is the charge of acetate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of acetate?',
+    correctAnswer: 'C2H3O2⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -55,15 +41,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-3b',
     type: 'free-response',
-    question: 'What is the formula for chlorate?',
-    correctAnswer: 'ClO3⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-3c',
-    type: 'free-response',
-    question: 'What is the charge of chlorate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of chlorate?',
+    correctAnswer: 'ClO3⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -77,15 +56,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-4b',
     type: 'free-response',
-    question: 'What is the formula for chlorite?',
-    correctAnswer: 'ClO2⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-4c',
-    type: 'free-response',
-    question: 'What is the charge of chlorite?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of chlorite?',
+    correctAnswer: 'ClO2⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -99,15 +71,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-5b',
     type: 'free-response',
-    question: 'What is the formula for cyanide?',
-    correctAnswer: 'CN⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-5c',
-    type: 'free-response',
-    question: 'What is the charge of cyanide?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of cyanide?',
+    correctAnswer: 'CN⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -121,15 +86,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-6b',
     type: 'free-response',
-    question: 'What is the formula for hypochlorite?',
-    correctAnswer: 'ClO⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-6c',
-    type: 'free-response',
-    question: 'What is the charge of hypochlorite?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of hypochlorite?',
+    correctAnswer: 'ClO⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -140,18 +98,11 @@ export const compoundsQuestions: Question[] = [
     correctAnswer: 'bicarbonate (hydrogen carbonate)',
     explanation: 'Memorize'
   },
-    {
+  {
     id: 'compounds-7b',
     type: 'free-response',
-    question: 'What is the formula for bicarbonate?',
-    correctAnswer: 'HCO3⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-7c',
-    type: 'free-response',
-    question: 'What is the charge of bicarbonate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of bicarbonate?',
+    correctAnswer: 'HCO3⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -165,15 +116,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-8b',
     type: 'free-response',
-    question: 'What is the formula for hydroxide?',
-    correctAnswer: 'OH⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-8c',
-    type: 'free-response',
-    question: 'What is the charge of hydroxide?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of hydroxide?',
+    correctAnswer: 'OH⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -187,15 +131,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-9b',
     type: 'free-response',
-    question: 'What is the formula for nitrate?',
-    correctAnswer: 'NO3⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-9c',
-    type: 'free-response',
-    question: 'What is the charge of nitrate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of nitrate?',
+    correctAnswer: 'NO3⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -209,15 +146,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-10b',
     type: 'free-response',
-    question: 'What is the formula for nitrite?',
-    correctAnswer: 'NO2⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-10c',
-    type: 'free-response',
-    question: 'What is the charge of nitrite?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of nitrite?',
+    correctAnswer: 'NO2⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -231,15 +161,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-11b',
     type: 'free-response',
-    question: 'What is the formula for perchlorate?',
-    correctAnswer: 'ClO4⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-11c',
-    type: 'free-response',
-    question: 'What is the charge of perchlorate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of perchlorate?',
+    correctAnswer: 'ClO4⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -253,15 +176,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-12b',
     type: 'free-response',
-    question: 'What is the formula for permanganate?',
-    correctAnswer: 'MnO4⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-12c',
-    type: 'free-response',
-    question: 'What is the charge of permanganate?',
-    correctAnswer: '-1',
+    question: 'What is the formula and charge of permanganate?',
+    correctAnswer: 'MnO4⁻, -1',
     explanation: 'Memorize'
   },
 
@@ -275,15 +191,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-13b',
     type: 'free-response',
-    question: 'What is the formula for carbonate?',
-    correctAnswer: 'CO3²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-13c',
-    type: 'free-response',
-    question: 'What is the charge of carbonate?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of carbonate?',
+    correctAnswer: 'CO3²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -297,15 +206,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-14b',
     type: 'free-response',
-    question: 'What is the formula for chromate?',
-    correctAnswer: 'CrO4²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-14c',
-    type: 'free-response',
-    question: 'What is the charge of chromate?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of chromate?',
+    correctAnswer: 'CrO4²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -319,15 +221,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-15b',
     type: 'free-response',
-    question: 'What is the formula for dichromate?',
-    correctAnswer: 'Cr2O7²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-15c',
-    type: 'free-response',
-    question: 'What is the charge of dichromate?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of dichromate?',
+    correctAnswer: 'Cr2O7²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -341,15 +236,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-16b',
     type: 'free-response',
-    question: 'What is the formula for peroxide?',
-    correctAnswer: 'O2²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-16c',
-    type: 'free-response',
-    question: 'What is the charge of peroxide?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of peroxide?',
+    correctAnswer: 'O2²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -363,15 +251,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-17b',
     type: 'free-response',
-    question: 'What is the formula for sulfate?',
-    correctAnswer: 'SO4²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-17c',
-    type: 'free-response',
-    question: 'What is the charge of sulfate?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of sulfate?',
+    correctAnswer: 'SO4²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -385,15 +266,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-18b',
     type: 'free-response',
-    question: 'What is the formula for sulfite?',
-    correctAnswer: 'SO3²⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-18c',
-    type: 'free-response',
-    question: 'What is the charge of sulfite?',
-    correctAnswer: '-2',
+    question: 'What is the formula and charge of sulfite?',
+    correctAnswer: 'SO3²⁻, -2',
     explanation: 'Memorize'
   },
 
@@ -407,15 +281,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-19b',
     type: 'free-response',
-    question: 'What is the formula for phosphate?',
-    correctAnswer: 'PO4³⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-19c',
-    type: 'free-response',
-    question: 'What is the charge of phosphate?',
-    correctAnswer: '-3',
+    question: 'What is the formula and charge of phosphate?',
+    correctAnswer: 'PO4³⁻, -3',
     explanation: 'Memorize'
   },
 
@@ -429,15 +296,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-20b',
     type: 'free-response',
-    question: 'What is the formula for phosphite?',
-    correctAnswer: 'PO3³⁻',
-    explanation: 'Memorize'
-  },
-  {
-    id: 'compounds-20c',
-    type: 'free-response',
-    question: 'What is the charge of phosphite?',
-    correctAnswer: '-3',
+    question: 'What is the formula and charge of phosphite?',
+    correctAnswer: 'PO3³⁻, -3',
     explanation: 'Memorize'
   },
 
@@ -451,16 +311,8 @@ export const compoundsQuestions: Question[] = [
   {
     id: 'compounds-21b',
     type: 'free-response',
-    question: 'What is the formula for oxalate?',
-    correctAnswer: 'C2O4²⁻',
+    question: 'What is the formula and charge of oxalate?',
+    correctAnswer: 'C2O4²⁻, -2',
     explanation: 'Memorize'
   },
-  {
-    id: 'compounds-21c',
-    type: 'free-response',
-    question: 'What is the charge of oxalate?',
-    correctAnswer: '-2',
-    explanation: 'Memorize'
-  },
-
 ];
