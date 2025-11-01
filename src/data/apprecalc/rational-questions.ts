@@ -269,7 +269,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-21",
     "type": "multiple-choice",
     "question": "[Calculator] Selected values of x are displayed above for the polynomial function f(x). Which of the following statements is true?",
-    "image": "/images/apprecalc/rational5.png"
+    "image": "/images/apprecalc/rational5.png",
     "options": [
       { "label": "A", "value": "A", "text": "The function is quadratic because second differences are a nonzero constant" },
       { "label": "B", "value": "B", "text": "The function is quadratice because third differences are a nonzero constant" },
@@ -298,7 +298,7 @@ export const rationalQuestions: Question[] = [
     "type": "free-response",
     "question": "If f(x) = (x+6)(x+4), identify any vertical asymptotes for the graph of g, or state that the graph of g has no vertical asymptotes.",
     "correctAnswer": "If f(x) = (x+6)(x+4), there is a vertical asymptote at x=2.",
-    "explanation": ""
+    "explanation": "Logic"
   },
   {
     "id": "rational-26",
@@ -311,7 +311,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-27",
     "type": "free-response",
     "question": "[Calculator] The number of active accounts on the social media app Instagram has grown drastically since 2013. The table gives the number of active Instagram accounts, in billions, for selected years since 2013. The quadratic function A models the number of active Instagram accounts, in billions, as a function of time t in years since 2013. A quadratic model A(t) = at^2 + bt + c can be used to model the relationship of the quantities. Write the equation for A(t)",
-    "image": "/images/apprecalc/rational6.png"
+    "image": "/images/apprecalc/rational6.png",
     "correctAnswer": "A(t) = 0.0172261t^2 + 0.0753753t + 0.118392",
     "explanation": "Calculator"
   },
@@ -319,7 +319,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-28",
     "type": "free-response",
     "question": "[Calculator] The number of active accounts on the social media app Instagram has grown drastically since 2013. The table gives the number of active Instagram accounts, in billions, for selected years since 2013. The quadratic function A models the number of active Instagram accounts, in billions, as a function of time t in years since 2013. A quadratic model A(t) = at^2 + bt + c can be used to model the relationship of the quantities. Using the function A(t), predict the number of active Instagram accounts for the year 2025.",
-    "image": "/images/apprecalc/rational6.png"
+    "image": "/images/apprecalc/rational6.png",
     "correctAnswer": "The number of active Instagram accounts for the year 2025 is predicted to be around 3.50345 billion accounts.",
     "explanation": "Calculator"
   },
@@ -327,7 +327,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-29",
     "type": "free-response",
     "question": "[Calculator] The number of active accounts on the social media app Instagram has grown drastically since 2013. The table gives the number of active Instagram accounts, in billions, for selected years since 2013. The quadratic function A models the number of active Instagram accounts, in billions, as a function of time t in years since 2013. A quadratic model A(t) = at^2 + bt + c can be used to model the relationship of the quantities. Using the function A(t), predict the year the number of active Instagram accounts reach 10 billion.",
-    "image": "/images/apprecalc/rational6.png"
+    "image": "/images/apprecalc/rational6.png",
     "correctAnswer": "The year the number of active Instagram accounts reach 10 billion is predicted to be 2034.86271 or during 2034",
     "explanation": "Calculator"
   },
@@ -335,7 +335,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-30",
     "type": "free-response",
     "question": "[Calculator] The number of active accounts on the social media app Instagram has grown drastically since 2013. The table gives the number of active Instagram accounts, in billions, for selected years since 2013. The quadratic function A models the number of active Instagram accounts, in billions, as a function of time t in years since 2013. Using the given data to find the average rate of change in the number of accounts, in accounts per year, from t = 2 to t = 7. Express your answer a decimal approximation.",
-    "image": "/images/apprecalc/rational6.png"
+    "image": "/images/apprecalc/rational6.png",
     "correctAnswer": "0.186",
     "explanation": "Calculator"
   },
@@ -343,7 +343,7 @@ export const rationalQuestions: Question[] = [
     "id": "rational-31",
     "type": "free-response",
     "question": "[Calculator] The number of active accounts on the social media app Instagram has grown drastically since 2013. The table gives the number of active Instagram accounts, in billions, for selected years since 2013. The quadratic function A models the number of active Instagram accounts, in billions, as a function of time t in years since 2013. Using the given data to find the average rate of change in the number of accounts, in accounts per year, from t = 2 to t = 7. Then use the average rate of change to estimate the number of accounts for the year 2018.",
-    "image": "/images/apprecalc/rational6.png"
+    "image": "/images/apprecalc/rational6.png",
     "correctAnswer": "y = 0.186x + 0.118392, It will be around 1.048392 billion accounts for the year 2018 according to the 0.186 rate of change",
     "explanation": "Calculator"
   },
