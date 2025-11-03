@@ -75,23 +75,6 @@ const Index = () => {
     { id: 'unit11', name: 'Unit 11' },
   ];
 
-  const worldHistoryKUnits = [
-    { id: 'prehistory', name: 'Prehistory' },
-    { id: 'renaissance', name: 'Renaissance & Reformation' },
-    { id: 'islamexpansion', name: 'Rise and Expansion of Islam' },
-    { id: 'asianworld', name: 'The East Asian World' },
-    { id: 'globalage', name: 'The Beginnings of Our Global Age' },
-    { id: 'englightenment', name: 'Absolutism, Enlightenment and Revolution' },
-    { id: 'french', name: 'The French Revolution and the Age of Napoleon' },
-    { id: 'indust', name: 'Industrialization' },
-    { id: 'imperialism', name: 'The Height of Imperialism' },
-    { id: 'russianrevol', name: 'Revolution and Communism in Russia' },
-    { id: 'chinarevol', name: 'Revolution and Communism in China' },
-    { id: 'africaasiaindep', name: 'Independence in Africa and Asia' },
-    { id: 'middleeastconflict', name: 'Conflict in the Middle East' },
-    { id: 'currentage', name: 'Global Issues in the 20th & 21st Centuries' },
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12">
@@ -100,7 +83,7 @@ const Index = () => {
             Practice Hub
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Master your classes in CSW with interactive practice tests and daily exercises! Reach out to abilash.jovan@charterschool.org with a question bank (PDFs, Homeworks, Tests all work!) along with the teacher and subject to add classes!
+            Master your classes in CSW with interactive practice tests and daily exercises! Reach out to abilash.jovan@charterschool.org with a question bank (Tests are the most useful) along with the teacher and subject to add classes!
           </p>
         </div>
 
@@ -263,38 +246,6 @@ const Index = () => {
                 key={unit.id}
                 className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
                 onClick={() => navigate(`/unit/world-history/${unit.id}`)}
-              >
-                <div className="text-center">
-                  <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* World History Kohl Section */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-destructive/10 rounded-lg">
-                <Landmark className="w-6 h-6 text-destructive" />
-              </div>
-              <h2 className="text-2xl font-bold text-destructive">World History (Kohl)</h2>
-            </div>
-            <Button
-              onClick={() => navigate('/course-challenge/world-history-kohl')}
-              variant="outline"
-              className="border-destructive text-destructive hover:bg-destructive hover:text-white"
-            >
-              Course Challenge
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {worldHistoryKUnits.map((unit) => (
-              <Card
-                key={unit.id}
-                className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-destructive group"
-                onClick={() => navigate(`/unit/world-history-kohl/${unit.id}`)}
               >
                 <div className="text-center">
                   <p className="text-sm font-medium text-muted-foreground">{unit.name}</p>
