@@ -4,7 +4,7 @@ export const cellenergeticsQuestions: Question[] = [
   {
     id: 'cellenergetics-1',
     type: 'multiple-choice',
-    question: 'One of the principal chemical compounds that living thins use to store energy is',
+    question: 'One of the principal chemical compounds that living things use to store energy is',
     options: [
       { label: 'A', value: 'A', text: 'DNA' },
       { label: 'B', value: 'B', text: 'ATP' },
@@ -12,12 +12,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'Carbon Dioxide' }
     ],
     correctAnswer: 'B',
-    explanation: 'N/A'
+    explanation: 'ATP (adenosine triphosphate) temporarily stores and releases energy for cellular work.'
   },
-  {//IMAGE
+  {
     id: 'cellenergetics-2',
     type: 'multiple-choice',
-    question: 'A student studied the effects of light intensity on oxygen production in green algae. The algae were suspended in water inside a sealed glass jar, and the jar was placed into a constant-temperature, lightproof box containing a light source. A probe was inserted into the jar to record the concentration of oxygen. The probe was connected to a recording device. The setup is shown. The student dereased the intensity of the light hourly and recorded the corresponding changes in oxygen concentration. The graph shows the results from the recording device. An increase in the rate of oxygen production by algae would be accompanied by a comparable increase in the rate of production of which of the following substances?',
+    question: 'A student studied the effects of light intensity on oxygen production in green algae. The graph shows the results. An increase in the rate of oxygen production by algae would be accompanied by a comparable increase in the rate of production of which of the following substances?',
     image: "/images/biology/energetics1.png",
     options: [
       { label: 'A', value: 'A', text: 'C6H12O6' },
@@ -26,7 +26,7 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'NH3' }
     ],
     correctAnswer: 'A',
-    explanation: 'Glucose is made along with oxygen'
+    explanation: 'Oxygen and glucose are both products of photosynthesis.'
   },
   {
     id: 'cellenergetics-3',
@@ -39,12 +39,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'water and carbon dioxide' }
     ],
     correctAnswer: 'D',
-    explanation: 'Photosynth'
+    explanation: 'Photosynthesis uses water and carbon dioxide to form glucose and oxygen.'
   },
   {
     id: 'cellenergetics-4',
     type: 'multiple-choice',
-    question: 'The energy requiered to run the Calvin cycle reactions of photosynthesis comes from which two substances producted during the light-dependent reactions',
+    question: 'The energy required to run the Calvin cycle reactions of photosynthesis comes from which two substances produced during the light-dependent reactions?',
     options: [
       { label: 'A', value: 'A', text: 'ATP and NADPH' },
       { label: 'B', value: 'B', text: 'ADP and PO4' },
@@ -52,20 +52,20 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'O2 and CO2' }
     ],
     correctAnswer: 'A',
-    explanation: 'They are made to support the energy making process because it needs energy to make energy'
+    explanation: 'ATP provides energy and NADPH provides high-energy electrons for carbon fixation.'
   },
   {
     id: 'cellenergetics-5',
     type: 'multiple-choice',
     question: 'Which equation best summarizes the process of photosynthesis?',
     options: [
-      { label: 'A', value: 'A', text: 'Water + carbon dioxide --> sugar + oxygen' },
-      { label: 'B', value: 'B', text: 'Sugars + oxygen --> water + carbon' },
-      { label: 'C', value: 'C', text: 'Water + oxygen --> sugars + carbon dioxide' },
-      { label: 'D', value: 'D', text: 'Oxygen + carbon dioxide --> sugars + oxygen' }
+      { label: 'A', value: 'A', text: 'Water + carbon dioxide → sugar + oxygen' },
+      { label: 'B', value: 'B', text: 'Sugars + oxygen → water + carbon' },
+      { label: 'C', value: 'C', text: 'Water + oxygen → sugars + carbon dioxide' },
+      { label: 'D', value: 'D', text: 'Oxygen + carbon dioxide → sugars + oxygen' }
     ],
     correctAnswer: 'A',
-    explanation: 'N/A'
+    explanation: 'Photosynthesis converts water and carbon dioxide into glucose and oxygen using sunlight.'
   },
   {
     id: 'cellenergetics-6',
@@ -75,15 +75,15 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'A', value: 'A', text: 'it is the source for electrons' },
       { label: 'B', value: 'B', text: 'it splits the water molecule' },
       { label: 'C', value: 'C', text: 'it energizes electrons in the photosystems' },
-      { label: 'D', value: 'D', text: 'it splits ATP molecules, which generates the energy necessary to power the Calvin Cycle' }
+      { label: 'D', value: 'D', text: 'it splits ATP molecules to power the Calvin Cycle' }
     ],
     correctAnswer: 'C',
-    explanation: 'N/A'
+    explanation: 'Light energy excites electrons in chlorophyll, initiating electron transport.'
   },
   {
     id: 'cellenergetics-7',
     type: 'multiple-choice',
-    question: 'The light-dependent reactions of photosynthesis takes place in the ',
+    question: 'The light-dependent reactions of photosynthesis take place in the',
     options: [
       { label: 'A', value: 'A', text: 'thylakoid membrane' },
       { label: 'B', value: 'B', text: 'stroma' },
@@ -91,12 +91,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'nucleus' }
     ],
     correctAnswer: 'A',
-    explanation: 'N/A'
+    explanation: 'Light-dependent reactions occur in the thylakoid membranes where chlorophyll is located.'
   },
   {
     id: 'cellenergetics-8',
     type: 'multiple-choice',
-    question: 'The light-independent reactions of photosynthesis takes place in the ',
+    question: 'The light-independent reactions of photosynthesis take place in the',
     options: [
       { label: 'A', value: 'A', text: 'thylakoid membranes' },
       { label: 'B', value: 'B', text: 'stroma' },
@@ -104,7 +104,7 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'nucleus' }
     ],
     correctAnswer: 'B',
-    explanation: 'N/A'
+    explanation: 'The Calvin cycle occurs in the stroma, the fluid space around the thylakoids.'
   },
   {
     id: 'cellenergetics-9',
@@ -117,12 +117,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'electron transport' }
     ],
     correctAnswer: 'B',
-    explanation: 'N/A'
+    explanation: 'Glycolysis splits glucose into pyruvate, producing small amounts of ATP and NADH.'
   },
   {
     id: 'cellenergetics-10',
     type: 'multiple-choice',
-    question: 'The process that releases energy from food in the presence of oxygen is ',
+    question: 'The process that releases energy from food in the presence of oxygen is',
     options: [
       { label: 'A', value: 'A', text: 'synthesis' },
       { label: 'B', value: 'B', text: 'cellular respiration' },
@@ -130,12 +130,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'photosynthesis' }
     ],
     correctAnswer: 'B',
-    explanation: 'N/A'
+    explanation: 'Cellular respiration uses oxygen to break down food molecules and make ATP.'
   },
   {
     id: 'cellenergetics-11',
     type: 'multiple-choice',
-    question: 'Which organism(s) preform(s) cellular respiration?',
+    question: 'Which organism(s) perform(s) cellular respiration?',
     options: [
       { label: 'A', value: 'A', text: 'Bears' },
       { label: 'B', value: 'B', text: 'Mushrooms, algae, tulips, and bears' },
@@ -143,20 +143,20 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'Mushrooms and algae' }
     ],
     correctAnswer: 'B',
-    explanation: 'All use cell resp'
+    explanation: 'All eukaryotic organisms, including plants and animals, perform cellular respiration.'
   },
   {
     id: 'cellenergetics-12',
     type: 'multiple-choice',
-    question: 'Is it estimated that oxygen production first evolved in photosynthetic prokaryotes approximately 2.7 billion years ago. The first photosynthetic prokaryotes are presumed to be similar to todays cynobacteria. Which of the following best supports the claim that photosynthetic prokaryotes were responsible for the oxygen in Earths atmosphere',
+    question: 'It is estimated that oxygen production first evolved in photosynthetic prokaryotes about 2.7 billion years ago. Which evidence best supports this claim?',
     options: [
-      { label: 'A', value: 'A', text: 'The light reactions of photosynthesis split carbon dioxide into carbon and oxygen' },
-      { label: 'B', value: 'B', text: 'The light reactions of photosynthesis split water into hydrogen ions and oxygen' },
+      { label: 'A', value: 'A', text: 'The light reactions split carbon dioxide into carbon and oxygen' },
+      { label: 'B', value: 'B', text: 'The light reactions split water into hydrogen ions and oxygen' },
       { label: 'C', value: 'C', text: 'The Calvin cycle splits glucose into carbon, hydrogen, and oxygen' },
       { label: 'D', value: 'D', text: 'The Calvin cycle splits water into hydrogen ions and oxygen' }
     ],
     correctAnswer: 'B',
-    explanation: 'N/A'
+    explanation: 'Oxygen gas originates from water molecules split during the light reactions.'
   },
   {
     id: 'cellenergetics-13',
@@ -169,12 +169,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'essential to oxygen production' }
     ],
     correctAnswer: 'B',
-    explanation: 'No oxygen, no cell resp, it depends on oxygen'
+    explanation: 'Fermentation occurs without oxygen and regenerates NAD+ for glycolysis.'
   },
   {
     id: 'cellenergetics-14',
     type: 'multiple-choice',
-    question: 'The Krebs cycle takes place within the ',
+    question: 'The Krebs cycle takes place within the',
     options: [
       { label: 'A', value: 'A', text: 'chloroplast' },
       { label: 'B', value: 'B', text: 'mitochondria' },
@@ -182,7 +182,7 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'cytoplasm' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'The Krebs cycle occurs in the mitochondrial matrix.'
   },
   {
     id: 'cellenergetics-15',
@@ -191,11 +191,11 @@ export const cellenergeticsQuestions: Question[] = [
     options: [
       { label: 'A', value: 'A', text: 'produce glucose' },
       { label: 'B', value: 'B', text: 'convert ADP to ATP' },
-      { label: 'C', value: 'C', text: 'produces acetyl-CoA' },
+      { label: 'C', value: 'C', text: 'produce acetyl-CoA' },
       { label: 'D', value: 'D', text: 'produce GTP' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'The electron transport chain drives ATP synthesis using energy from electrons.'
   },
   {
     id: 'cellenergetics-16',
@@ -208,12 +208,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'the Krebs cycle' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'When oxygen is limited, lactic acid fermentation causes muscle fatigue.'
   },
   {
     id: 'cellenergetics-17',
     type: 'multiple-choice',
-    question: 'The second stage of cellular respiration',
+    question: 'The second stage of cellular respiration is',
     options: [
       { label: 'A', value: 'A', text: 'the Krebs cycle' },
       { label: 'B', value: 'B', text: 'glycolysis' },
@@ -221,7 +221,7 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'fermentation' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'After glycolysis, pyruvate enters the Krebs cycle to produce NADH, FADH2, and CO2.'
   },
   {
     id: 'cellenergetics-18',
@@ -229,17 +229,17 @@ export const cellenergeticsQuestions: Question[] = [
     question: 'Carbon skeletons to be broken down during cellular respiration can be obtained from',
     options: [
       { label: 'A', value: 'A', text: 'polysaccharides' },
-      { label: 'B', value: 'B', text: 'protiens' },
+      { label: 'B', value: 'B', text: 'proteins' },
       { label: 'C', value: 'C', text: 'lipids' },
       { label: 'D', value: 'D', text: 'All of them' }
     ],
     correctAnswer: 'D',
-    explanation: '.'
+    explanation: 'Carbohydrates, fats, and proteins can all be used as fuel for respiration.'
   },
   {
     id: 'cellenergetics-19',
     type: 'multiple-choice',
-    question: 'A series of carrier protiens in the inner membrane of mitochondria is',
+    question: 'A series of carrier proteins in the inner membrane of mitochondria is',
     options: [
       { label: 'A', value: 'A', text: 'the Krebs cycle' },
       { label: 'B', value: 'B', text: 'fermentation' },
@@ -247,7 +247,7 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'glycolysis' }
     ],
     correctAnswer: 'C',
-    explanation: '.'
+    explanation: 'The electron transport chain consists of protein complexes that transfer electrons and pump protons.'
   },
   {
     id: 'cellenergetics-20',
@@ -260,131 +260,131 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'it is extremely stable and can be stored in the cell for long periods' }
     ],
     correctAnswer: 'C',
-    explanation: '.'
+    explanation: 'The phosphate bonds in ATP release usable energy when broken.'
   },
   {
     id: 'cellenergetics-21',
     type: 'multiple-choice',
-    question: 'Which substance is needed to being glycolysis?',
+    question: 'Which substance is needed to begin glycolysis?',
     options: [
       { label: 'A', value: 'A', text: 'ATP' },
-      { label: 'B', value: 'B', text: 'pyruvic acid' },
+      { label: 'B', value: 'B', text: 'Pyruvic acid' },
       { label: 'C', value: 'C', text: 'NADP' },
       { label: 'D', value: 'D', text: 'NADH' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'ATP is required to provide the initial energy that starts glycolysis.'
   },
   {
     id: 'cellenergetics-22',
     type: 'multiple-choice',
-    question: 'In eukaryotic cells, most cellular respiration takes place in the ',
+    question: 'In eukaryotic cells, most cellular respiration takes place in the:',
     options: [
-      { label: 'A', value: 'A', text: 'nucleus' },
-      { label: 'B', value: 'B', text: 'cell walls' },
-      { label: 'C', value: 'C', text: 'mitochondria' },
-      { label: 'D', value: 'D', text: 'centrioles' }
+      { label: 'A', value: 'A', text: 'Nucleus' },
+      { label: 'B', value: 'B', text: 'Cell walls' },
+      { label: 'C', value: 'C', text: 'Mitochondria' },
+      { label: 'D', value: 'D', text: 'Centrioles' }
     ],
     correctAnswer: 'C',
-    explanation: '.'
+    explanation: 'Mitochondria are the site of aerobic respiration, producing ATP efficiently.'
   },
   {
     id: 'cellenergetics-23',
     type: 'multiple-choice',
     question: 'What substance produced by alcoholic fermentation makes bread dough rise?',
     options: [
-      { label: 'A', value: 'A', text: 'oxygen' },
-      { label: 'B', value: 'B', text: 'carbon dioxide' },
-      { label: 'C', value: 'C', text: 'alcohol' },
-      { label: 'D', value: 'D', text: 'water' }
+      { label: 'A', value: 'A', text: 'Oxygen' },
+      { label: 'B', value: 'B', text: 'Carbon dioxide' },
+      { label: 'C', value: 'C', text: 'Alcohol' },
+      { label: 'D', value: 'D', text: 'Water' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'Carbon dioxide produced during fermentation forms bubbles that make bread rise.'
   },
   {
     id: 'cellenergetics-24',
     type: 'multiple-choice',
-    question: 'What best describes the role of molecular oxygen (O2) in cellular respiration',
+    question: 'What best describes the role of molecular oxygen (O2) in cellular respiration?',
     options: [
-      { label: 'A', value: 'A', text: 'It accepts electrons when reacting to form water' },
-      { label: 'B', value: 'B', text: 'It combines with carbon and hydrogen to form glucose' },
-      { label: 'C', value: 'C', text: 'It is released when water breaks apart' },
-      { label: 'D', value: 'D', text: 'It is released when glucose breaks apart' }
+      { label: 'A', value: 'A', text: 'It accepts electrons when reacting to form water.' },
+      { label: 'B', value: 'B', text: 'It combines with carbon and hydrogen to form glucose.' },
+      { label: 'C', value: 'C', text: 'It is released when water breaks apart.' },
+      { label: 'D', value: 'D', text: 'It is released when glucose breaks apart.' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'Oxygen acts as the final electron acceptor, forming water in the process.'
   },
   {
     id: 'cellenergetics-25',
     type: 'multiple-choice',
-    question: 'Imagine that you start with a seed. You plant it in the ground and watch it grow into a mature adult tree with much more mass. Which of the following statements accurately describes the energy component of this scenario?',
+    question: 'Imagine that you start with a seed. You plant it in the ground and watch it grow into a mature tree with much more mass. Which of the following statements accurately describes the energy component of this scenario?',
     options: [
-      { label: 'A', value: 'A', text: 'The majority of the energy was created in the form of glucose, after which the plant used to make ATP' },
-      { label: 'B', value: 'B', text: 'The majority of the energy comes from the breakdown of matter within the soil' },
-      { label: 'C', value: 'C', text: 'The majority of the energy originates from the carbon dioxide that is used in the Calvin Cycle' },
-      { label: 'D', value: 'D', text: 'The majority of the energy came from the exergonic nuclear reactions within the sun' }
+      { label: 'A', value: 'A', text: 'The majority of the energy was created in the form of glucose, which the plant used to make ATP.' },
+      { label: 'B', value: 'B', text: 'The majority of the energy comes from the breakdown of matter within the soil.' },
+      { label: 'C', value: 'C', text: 'The majority of the energy originates from the carbon dioxide used in the Calvin cycle.' },
+      { label: 'D', value: 'D', text: 'The majority of the energy came from the exergonic nuclear reactions within the sun.' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'Plants capture sunlight to produce glucose, which is then used to make ATP.'
   },
-  {//IMAGE
+  {
     id: 'cellenergetics-26',
     type: 'multiple-choice',
-    question: 'In glycolysis, _____ is oxidation',
+    question: 'In glycolysis, _____ is oxidation.',
     image: '/images/biology/energetics2.png',
     options: [
-      { label: 'A', value: 'A', text: 'NAD+ --> NADH' },
-      { label: 'B', value: 'B', text: 'O2 --> H2O' },
-      { label: 'C', value: 'C', text: 'Glucose --> CO2' },
+      { label: 'A', value: 'A', text: 'NAD+ → NADH' },
+      { label: 'B', value: 'B', text: 'O2 → H2O' },
+      { label: 'C', value: 'C', text: 'Glucose → CO2' },
       { label: 'D', value: 'D', text: 'None of the options' }
     ],
     correctAnswer: 'D',
-    explanation: '.'
+    explanation: 'Oxidation in glycolysis involves glucose losing electrons, not the examples listed.'
   },
   {
     id: 'cellenergetics-27',
     type: 'multiple-choice',
-    question: 'In glycolysis, _____ is reduction',
+    question: 'In glycolysis, _____ is reduction.',
     image: '/images/biology/energetics2.png',
     options: [
-      { label: 'A', value: 'A', text: 'NADP+ --> NADH' },
-      { label: 'B', value: 'B', text: 'NADH --> NAD+' },
-      { label: 'C', value: 'C', text: 'O2 --> H2O' },
+      { label: 'A', value: 'A', text: 'NAD+ → NADH' },
+      { label: 'B', value: 'B', text: 'NADH → NAD+' },
+      { label: 'C', value: 'C', text: 'O2 → H2O' },
       { label: 'D', value: 'D', text: 'None of the options' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'NAD+ gains electrons to form NADH, which is a reduction reaction.'
   },
   {
     id: 'cellenergetics-28',
     type: 'multiple-choice',
-    question: 'In the electron transport chain ____ is oxidation.',
+    question: 'In the electron transport chain, ____ is oxidation.',
     options: [
-      { label: 'A', value: 'A', text: 'NAD+ --> NADH' },
-      { label: 'B', value: 'B', text: 'NADH --> NAD+' },
-      { label: 'C', value: 'C', text: 'O2 --> H2O' },
-      { label: 'D', value: 'D', text: 'Glucose --> CO2' }
+      { label: 'A', value: 'A', text: 'NAD+ → NADH' },
+      { label: 'B', value: 'B', text: 'NADH → NAD+' },
+      { label: 'C', value: 'C', text: 'O2 → H2O' },
+      { label: 'D', value: 'D', text: 'Glucose → CO2' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'NADH loses electrons and hydrogen to form NAD+, showing oxidation.'
   },
   {
     id: 'cellenergetics-29',
     type: 'multiple-choice',
-    question: 'In the electron transport chain _____ is reduction',
+    question: 'In the electron transport chain, _____ is reduction.',
     options: [
-      { label: 'A', value: 'A', text: 'NAD+ --> NADH' },
-      { label: 'B', value: 'B', text: 'NADH --> NAD+' },
-      { label: 'C', value: 'C', text: 'O2 --> H2O' },
-      { label: 'D', value: 'D', text: 'Glucose --> CO2' }
+      { label: 'A', value: 'A', text: 'NAD+ → NADH' },
+      { label: 'B', value: 'B', text: 'NADH → NAD+' },
+      { label: 'C', value: 'C', text: 'O2 → H2O' },
+      { label: 'D', value: 'D', text: 'Glucose → CO2' }
     ],
     correctAnswer: 'C',
-    explanation: '.'
+    explanation: 'Oxygen gains electrons and forms water, demonstrating reduction.'
   },
   {
     id: 'cellenergetics-30',
     type: 'multiple-choice',
-    question: 'A scientist radioactively labeled the oxygen in the reactants of cellular respiration. What product(s) would you expect to contain oxygen originally found in glucose',
+    question: 'A scientist radioactively labeled the oxygen in the reactants of cellular respiration. Which product(s) would contain oxygen originally found in glucose?',
     options: [
       { label: 'A', value: 'A', text: 'Water' },
       { label: 'B', value: 'B', text: 'Carbon dioxide' },
@@ -392,12 +392,12 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'Oxygen' }
     ],
     correctAnswer: 'B',
-    explanation: '.'
+    explanation: 'The oxygen in glucose becomes part of carbon dioxide during respiration.'
   },
   {
     id: 'cellenergetics-31',
     type: 'multiple-choice',
-    question: 'A scientist radioactively labeled the oxygen in the reactants of cellular respiration. What product(s) would you expect to contain oxygen originally found in O2',
+    question: 'A scientist radioactively labeled the oxygen in the reactants of cellular respiration. Which product(s) would contain oxygen originally found in O2?',
     options: [
       { label: 'A', value: 'A', text: 'Water' },
       { label: 'B', value: 'B', text: 'Carbon dioxide' },
@@ -405,41 +405,46 @@ export const cellenergeticsQuestions: Question[] = [
       { label: 'D', value: 'D', text: 'Oxygen' }
     ],
     correctAnswer: 'A',
-    explanation: '.'
+    explanation: 'Oxygen gas becomes part of water molecules at the end of the electron transport chain.'
   },
   {
     id: 'cellenergetics-32',
     type: 'free-response',
     question: 'All living organisms require a constant supply of ATP to maintain life. If no light is available, how can a plant make ATP?',
-    correctAnswer: 'If no light is available, a plant can resort to cellular respiration, which means using its own supply of glucose to turn into ATP.',
-    explanation: 'N/A'
+    correctAnswer: 'If no light is available, a plant performs cellular respiration using stored glucose to produce ATP.',
+    explanation: 'Plants can use respiration to generate ATP without sunlight.',
+    displayAs: 'paragraph'
   },
   {
     id: 'cellenergetics-33',
     type: 'free-response',
-    question: 'Explain why chlorophyll appears green to us in terms of what happens to different wavelengths light that strike a chlorophyll molecule.',
-    correctAnswer: 'Chlorophyll has pigments that absorb sunlight. The fall light colors wavelengths aer absorbed while the green wavelength is reflected, so the leaf appears green to us.',
-    explanation: 'N/A'
+    question: 'Explain why chlorophyll appears green to us in terms of what happens to different wavelengths of light that strike a chlorophyll molecule.',
+    correctAnswer: 'Chlorophyll absorbs red and blue wavelengths of light but reflects green wavelengths, making plants appear green.',
+    explanation: 'It reflects green light instead of absorbing it.',
+    displayAs: 'paragraph'
   },
   {
     id: 'cellenergetics-34',
     type: 'free-response',
     question: 'Certain types of bacteria thrive in conditions that lack oxygen. What does that fact indicate about the way they obtain energy?',
-    correctAnswer: 'This shows that the bacteria most likely used anaerobic respiration to produce energy because without oxygen, it cant do cellular respiration so it needs to resort to other methods.',
-    explanation: 'N/A'
+    correctAnswer: 'These bacteria use anaerobic respiration or fermentation to generate energy without oxygen.',
+    explanation: 'They rely on anaerobic processes instead of aerobic respiration.',
+    displayAs: 'paragraph'
   },
   {
     id: 'cellenergetics-35',
     type: 'free-response',
-    question: 'Explain how the laws of thermodynamics apply to biological systems (e.g., photosynthesis and cellular respiration)',
-    correctAnswer: 'The first law of thermodynamics is the law of the conservation of energy and that relates to photosynthesis and cellular respiration because the energy from the sun is used to make electrons have more energy and that energy is transferred into the glucose and when broken apart, it releases energy that animals or plants use through cellular respiration and then most likely gets converted back into heat energy back into the atmosphere. The second law is disorder increases over time and this is shown through photosynthesis and cellular respiration because their products gets less organized over time and is all over the place.',
-    explanation: 'N/A'
+    question: 'Explain how the laws of thermodynamics apply to biological systems (e.g., photosynthesis and cellular respiration).',
+    correctAnswer: 'The first law states energy is conserved: sunlight energy becomes chemical energy in glucose, then ATP. The second law states energy conversions increase entropy, shown as heat loss in these processes.',
+    explanation: 'Energy is conserved and converted, with some lost as heat, increasing entropy.',
+    displayAs: 'paragraph'
   },
   {
     id: 'cellenergetics-36',
     type: 'free-response',
-    question: 'Describe two environmental factors that may limit the rate of aquatic primary production in a lake ecosystem',
-    correctAnswer: '1. Extreme temperatures; if it is too warm, water can evaporate and there wont be water for part of the photosynthesis leading to loss of energy. If it is too cold, photosynthesis wouldnt be able to work because chemical reactions wont have enough activation energy because of the cold weather. 2. Not enough nutrients are present which can lead to slower growth and that may limit the rate of reproduction in a lake because if there isnt nitrogen or phosphorous, it cant replicate through mitosis because there isnt nitrogen for the bases for replicating DNA along with phosphorous depending on if it is marine or freshwater lakes.',
-    explanation: 'N/A'
+    question: 'Describe two environmental factors that may limit the rate of aquatic primary production in a lake ecosystem.',
+    correctAnswer: 'Temperature extremes and nutrient limitation can slow photosynthesis and growth in aquatic producers.',
+    explanation: 'Temperature and nutrients are key limiting factors for primary productivity.',
+    displayAs: 'paragraph'
   },
 ];
