@@ -132,11 +132,20 @@ const Quiz = () => {
           handleNext();
         }
       }
+      
+      // Self-grading keyboard shortcuts for free-response questions
+      if (showGrading && currentQuestion.type === 'free-response') {
+        if (e.key === 'ArrowRight') {
+          handleSelfGrade(true);
+        } else if (e.key === 'ArrowLeft') {
+          handleSelfGrade(false);
+        }
+      }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isSubmitted, currentAnswer, currentQuestion, currentAttempt, currentIndex]);
+  }, [isSubmitted, currentAnswer, currentQuestion, currentAttempt, currentIndex, showGrading]);
 
   const handleSubmit = () => {
     if (!currentAnswer.trim()) {
