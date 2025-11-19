@@ -78,6 +78,7 @@ const Index = () => {
   const memoryUnits = [
     { id: 'general', name: 'Polyatomic Ions - Chemistry' },
     { id: 'general2', name: 'Molecular Geometry - Chemistry' },
+    { id: 'general3', name: 'Rates of Change - AP Precalc' },
   ];
 
   return (
