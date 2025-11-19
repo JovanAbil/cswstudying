@@ -44,6 +44,7 @@ import { worldHistoryUnit10Questions } from '@/data/worldhistory/world-history-u
 import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-unit11';
 import { generalQuestions } from '@/data/memory/general-questions';
 import { general2Questions } from '@/data/memory/general2-questions';
+import { general3Questions } from '@/data/memory/general3-questions';
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
