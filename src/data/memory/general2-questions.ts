@@ -82,9 +82,18 @@ export const general2Questions: Question[] = [
     },
 
     {
-      "id": "memory2-10a",
+      "id": "memory2-10b",
       "type": "free-response",
       "image": "/images/memory/general2-10.png/",
+      "question": "Name the molecular geometry.",
+      "correctAnswer": "Linear",
+      "explanation": "Memorize"
+    },
+    
+    {
+      "id": "memory2-10a",
+      "type": "free-response",
+      "image": "/images/memory/general2-11.png/",
       "question": "Name the molecular geometry.",
       "correctAnswer": "Octahedral",
       "explanation": "Memorize"
@@ -93,7 +102,7 @@ export const general2Questions: Question[] = [
     {
       "id": "memory2-11a",
       "type": "free-response",
-      "image": "/images/memory/general2-11.png/",
+      "image": "/images/memory/general2-12.png/",
       "question": "Name the molecular geometry.",
       "correctAnswer": "Square pyramidal",
       "explanation": "Memorize"
@@ -102,7 +111,7 @@ export const general2Questions: Question[] = [
     {
       "id": "memory2-12a",
       "type": "free-response",
-      "image": "/images/memory/general2-12.png/",
+      "image": "/images/memory/general2-13.png/",
       "question": "Name the molecular geometry.",
       "correctAnswer": "Square planar",
       "explanation": "Memorize"
