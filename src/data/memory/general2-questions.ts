@@ -40,7 +40,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-5a",
       "type": "free-response",
       "image": "/images/memory/general2-5.png/",
-      "question": "Electron Groups: 4, Lone Pairs: 1 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Trigonal pyramidal",
       "explanation": "Memorize"
     },
@@ -49,7 +49,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-6a",
       "type": "free-response",
       "image": "/images/memory/general2-6.png/",
-      "question": "Electron Groups: 4, Lone Pairs: 2 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Bent",
       "explanation": "Memorize"
     },
@@ -58,7 +58,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-7a",
       "type": "free-response",
       "image": "/images/memory/general2-7.png/",
-      "question": "Electron Groups: 5, Lone Pairs: 0 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Trigonal bipyramidal",
       "explanation": "Memorize"
     },
@@ -67,7 +67,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-8a",
       "type": "free-response",
       "image": "/images/memory/general2-8.png/",
-      "question": "Electron Groups: 5, Lone Pairs: 1 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Seesaw",
       "explanation": "Memorize"
     },
@@ -76,7 +76,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-9a",
       "type": "free-response",
       "image": "/images/memory/general2-9.png/",
-      "question": "Electron Groups: 5, Lone Pairs: 2 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "T-shaped",
       "explanation": "Memorize"
     },
@@ -85,7 +85,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-10a",
       "type": "free-response",
       "image": "/images/memory/general2-10.png/",
-      "question": "Electron Groups: 6, Lone Pairs: 0 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Octahedral",
       "explanation": "Memorize"
     },
@@ -94,7 +94,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-11a",
       "type": "free-response",
       "image": "/images/memory/general2-11.png/",
-      "question": "Electron Groups: 6, Lone Pairs: 1 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Square pyramidal",
       "explanation": "Memorize"
     },
@@ -103,7 +103,7 @@ export const general2Questions: Question[] = [
       "id": "memory2-12a",
       "type": "free-response",
       "image": "/images/memory/general2-12.png/",
-      "question": "Electron Groups: 6, Lone Pairs: 2 — Name the molecular geometry.",
+      "question": "Name the molecular geometry.",
       "correctAnswer": "Square planar",
       "explanation": "Memorize"
     },
