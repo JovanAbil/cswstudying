@@ -54,7 +54,7 @@ const CourseChallenge = () => {
         return [
           { id: 'religions', name: 'Unit 1 - Religions' },
           { id: 'islam', name: 'Unit 2 - Islam' },
-          { id: 'unit3', name: 'Unit 3' },
+          { id: 'renaissance', name: 'Unit 3 - Renaissance' },
           { id: 'unit4', name: 'Unit 4' },
           { id: 'unit5', name: 'Unit 5' },
           { id: 'unit6', name: 'Unit 6' },
