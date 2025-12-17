@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
+//AP Precalc
 import { polynomialQuestions } from '@/data/apprecalc/polynomial-questions';
 import { rationalQuestions } from '@/data/apprecalc/rational-questions';
 import { exponentialQuestions } from '@/data/apprecalc/exponential-questions';
@@ -15,6 +16,7 @@ import { trigonometricQuestions } from '@/data/apprecalc/trigonometric-questions
 import { polarQuestions } from '@/data/apprecalc/polar-questions';
 import { parametricQuestions } from '@/data/apprecalc/parametric-questions';
 import { vectorsMatricesQuestions } from '@/data/apprecalc/vectorsMatrices-questions';
+//Valenti
 import { biochemistryQuestions } from '@/data/biology/biochemistry-questions';
 import { cellstructureQuestions } from '@/data/biology/cellstructure-questions';
 import { cellenergeticsQuestions } from '@/data/biology/cellenergetics-questions';
@@ -23,6 +25,7 @@ import { geneticsQuestions } from '@/data/biology/genetics-questions';
 import { molecularQuestions } from '@/data/biology/molecular-questions';
 import { evolutionQuestions } from '@/data/biology/evolution-questions';
 import { ecologyQuestions } from '@/data/biology/ecology-questions';
+//Griffiths
 import { metricQuestions } from '@/data/chemistry/metric-questions';
 import { atomicQuestions } from '@/data/chemistry/atomic-questions';
 import { compoundsQuestions } from '@/data/chemistry/compounds-questions';
@@ -31,6 +34,16 @@ import { solutionsQuestions } from '@/data/chemistry/solutions-questions';
 import { reactionsQuestions } from '@/data/chemistry/reactions-questions';
 import { stoichiometryQuestions } from '@/data/chemistry/stoichiometry-questions';
 import { acidbasesQuestions } from '@/data/chemistry/acidbases-questions';
+//Darones
+import { metricQuestions } from '@/data/chemistryDarone/metric-questions';
+import { atomicQuestions } from '@/data/chemistryDarone/atomic-questions';
+import { compoundsQuestions } from '@/data/chemistryDarone/compounds-questions';
+import { gasesQuestions } from '@/data/chemistryDarone/gases-questions';
+import { solutionsQuestions } from '@/data/chemistryDarone/solutions-questions';
+import { reactionsQuestions } from '@/data/chemistryDarone/reactions-questions';
+import { stoichiometryQuestions } from '@/data/chemistryDarone/stoichiometry-questions';
+import { acidbasesQuestions } from '@/data/chemistryDarone/acidbases-questions';
+//Stella
 import { religionsQuestions } from '@/data/worldhistory/religions-questions';
 import { islamQuestions } from '@/data/worldhistory/islam-questions';
 import { renaissanceQuestions } from '@/data/worldhistory/renaissance-questions';
@@ -42,9 +55,14 @@ import { worldHistoryUnit8Questions } from '@/data/worldhistory/world-history-un
 import { worldHistoryUnit9Questions } from '@/data/worldhistory/world-history-unit9';
 import { worldHistoryUnit10Questions } from '@/data/worldhistory/world-history-unit10';
 import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-unit11';
+//Kohl
+import { prehistoryQuestions } from '@/data/worldhistoryKohl/prehistory-questions';
+//Memory
 import { generalQuestions } from '@/data/memory/general-questions';
 import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
+//Practice
+import { practice1Questions } from '@/data/practice/unit1-questions';
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
@@ -87,8 +105,8 @@ const Quiz = () => {
       'world-history-unit5': worldHistoryUnit5Questions, 'world-history-unit6': worldHistoryUnit6Questions,
       'world-history-unit7': worldHistoryUnit7Questions, 'world-history-unit8': worldHistoryUnit8Questions,
       'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
-      'world-history-unit11': worldHistoryUnit11Questions,
-      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions,
+      'world-history-unit11': worldHistoryUnit11Questions, 'world-history-kohl-prehistory': prehistoryQuestions,
+      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions, 'practice-unit1': unit1-questions,
     };
     
     let allQuestions: Question[] = [];
