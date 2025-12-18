@@ -107,7 +107,7 @@ const Index = () => {
   ];
 
   const practiceUnits = [
-    { id: 'unit1', name: 'Unit 1' },
+    { id: 'unit1', name: 'English Midterm Practice' },
     { id: 'unit2', name: 'Unit 2' },
   ];
 
