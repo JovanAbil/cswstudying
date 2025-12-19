@@ -54,8 +54,9 @@ import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-u
 import { generalQuestions } from '@/data/memory/general-questions';
 import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
-//Practice - question file not yet populated
+//Practice
 import { unit1Questions } from '@/data/practice/unit1-questions';
+//Others
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
@@ -99,8 +100,8 @@ const Quiz = () => {
       'world-history-unit7': worldHistoryUnit7Questions, 'world-history-unit8': worldHistoryUnit8Questions,
       'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
       'world-history-unit11': worldHistoryUnit11Questions,
-      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions,
-      // Note: chemistryDarone, world-history-kohl, and practice question files need to be populated
+      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions, 'practice-unit1': unit1Questions,
+      // Note: chemistryDarone, world-history-kohl,
     };
     
     let allQuestions: Question[] = [];
