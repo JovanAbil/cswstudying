@@ -36,7 +36,6 @@ import { stoichiometryQuestions } from '@/data/chemistry/stoichiometry-questions
 import { acidbasesQuestions } from '@/data/chemistry/acidbases-questions';
 //Darone - files not yet populated
 //Kohl - files not yet populated
-//Practice - files not yet populated
 //Stella
 import { religionsQuestions } from '@/data/worldhistory/religions-questions';
 import { islamQuestions } from '@/data/worldhistory/islam-questions';
