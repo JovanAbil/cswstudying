@@ -2,7 +2,7 @@ import { Question } from '@/types/quiz';
 
 export const unit1Questions: Question[] = [
   {
-    id: 'unit1-1',
+    id: '',
     type: 'multiple-choice',
     question: 'What does Assuage mean?',
     options: [
