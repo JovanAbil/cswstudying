@@ -76,7 +76,7 @@ const Index = () => {
     { id: 'religions', name: 'Religions' },
     { id: 'islam', name: 'Islam' },
     { id: 'renaissance', name: 'Renaissance' },
-    { id: 'unit4', name: 'Protestant' },
+    { id: 'protestant', name: 'Protestant' },
     { id: 'unit5', name: 'Unit 5' },
     { id: 'unit6', name: 'Unit 6' },
     { id: 'unit7', name: 'Unit 7' },
