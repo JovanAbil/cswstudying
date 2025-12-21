@@ -64,6 +64,8 @@ import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
 //Practice
 import { unit1Questions } from '@/data/practice/unit1-questions';
+import { gases } from '@/data/practice/gases-questions';
+import { log } from '@/data/practice/log-questions';
 //Others
 import { Question, QuizAttempt } from '@/types/quiz';
 import { toast } from 'sonner';
