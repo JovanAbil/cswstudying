@@ -178,7 +178,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-25",
     type: "free-response",
-    //image: "",
+    image: "/images/practice/log1.png",
     question: "Values of the function h are shown in the table above at selected values of x. Use ELOVI to explain the inputs and outputs relation.",
     correctAnswer: "h is logarithmic because over equal-length output value intervals, inputs change proportionally",
     explanation: "."
@@ -206,7 +206,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-28",
     type: "multiple-choice",
-    //image: "",
+    image: "/images/practice/log2.png",
     question: "The table gives values for the function f at selected values of x. If y = f(x) is graphed on a semi-log plot with the y-axis logarithmically scaled, the resulting graph would appear.",
     options: [
       { "label": "A", "value": "A", "text": "Increasing and linear" },
@@ -255,7 +255,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-34",
     type: "free-response",
-    //image: "",
+    image: "/images/practice/log3.png",
     question: "What function is this, Logarithmic, Exponential, or Neither?",
     correctAnswer: "Neither",
     explanation: "."
@@ -263,7 +263,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-35",
     type: "free-response",
-    //image: "",
+    image: "/images/practice/log4.png",
     question: "What function is this, Logarithmic, Exponential, or Neither?",
     correctAnswer: "Logarithmic",
     explanation: "."
@@ -292,7 +292,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-39",
     type: "free-response",
-    //image: "",
+    image: "/images/practice/log5.png",
     question: "Find the value k",
     correctAnswer: "k = 4",
     explanation: "."
@@ -300,7 +300,7 @@ export const logQuestions: Question[] = [
   {
     id: "log-40",
     type: "free-response",
-    //image: "",
+    image: "/images/practice/log6.png",
     question: "Find the value k",
     correctAnswer: "k = 1/3",
     explanation: "."
