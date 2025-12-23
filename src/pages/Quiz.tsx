@@ -61,7 +61,7 @@ import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
 //Practice
 import { unit1Questions } from '@/data/practice/unit1-questions';
-import { gasesQuestions as practiceGasQuestions } from '@/data/practice/gas-questions';
+import { gasQuestions } from '@/data/practice/gas-questions';
 import { logQuestions } from '@/data/practice/log-questions';
 //Others
 import { Question, QuizAttempt } from '@/types/quiz';
@@ -111,7 +111,7 @@ const Quiz = () => {
       'world-history-unit7': worldHistoryUnit7Questions, 'world-history-unit8': worldHistoryUnit8Questions,
       'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
       'world-history-unit11': worldHistoryUnit11Questions, 
-      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions, 'practice-unit1': unit1Questions, 'practice-gas': practiceGasQuestions,
+      'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions, 'practice-unit1': unit1Questions, 'practice-gas': gasQuestions,
       'practice-log': logQuestions,
       // Note: chemistryDarone, world-history-kohl,
     };
