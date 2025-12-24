@@ -256,7 +256,7 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-22",
     "type": "multiple-choice",
-    "question": "[Calculator] The function f is 1.962x^3 - 5.672x^2 + 2.451x + 1.864, where -1 <= x <= 3. On whihc of the following intervals is f decreasing?",
+    "question": "[Calculator] The function f is 1.962x^3 - 5.672x^2 + 2.451x + 1.864, where -1 <= x <= 3. On which of the following intervals is f decreasing?",
     "options": [
       { "label": "A", "value": "A", "text": "(-0.381, 1.210)", },
       { "label": "B", "value": "B", "text": "(0.248, 1.679)", },
