@@ -184,15 +184,6 @@ const Quiz = () => {
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      // Number keys 1-9 for option selection (only when not submitted)
-      if (!isSubmitted && currentQuestion?.type === 'multiple-choice') {
-        const keyNum = parseInt(e.key);
-        if (keyNum >= 1 && keyNum <= shuffledOptions.length) {
-          setCurrentAnswer(shuffledOptions[keyNum - 1].value);
-          return;
-        }
-      }
-
       if (e.key === 'Enter') {
         if (!isSubmitted) {
           handleSubmit();
@@ -212,7 +203,7 @@ const Quiz = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isSubmitted, currentAnswer, currentQuestion, currentAttempt, currentIndex, showGrading, shuffledOptions]);
+  }, [isSubmitted, currentAnswer, currentQuestion, currentAttempt, currentIndex, showGrading]);
 
   const handleSubmit = () => {
     if (!currentAnswer.trim()) {
@@ -235,42 +226,6 @@ const Quiz = () => {
       setAttempts(newAttempts);
       setIsSubmitted(true);
       setShowGrading(true);
-    }
-  };
-
-  const handleSkip = () => {
-    const newAttempts = [...attempts];
-    newAttempts[currentIndex] = {
-      ...newAttempts[currentIndex],
-      userAnswer: '(Skipped)',
-      isCorrect: false
-    };
-    setAttempts(newAttempts);
-    
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setCurrentAnswer('');
-      setIsSubmitted(false);
-      setShowGrading(false);
-      setShuffledOptions([]);
-    } else {
-      const finalTime = timer.stop();
-      const score = newAttempts.filter(a => a.isCorrect).length;
-      const total = newAttempts.length;
-      navigate('/results', { 
-        state: { 
-          score, 
-          total,
-          subject,
-          unitId, 
-          quizType,
-          timeElapsed: finalTime,
-          attempts: newAttempts.map((a, i) => ({
-            ...a,
-            question: questions[i]
-          }))
-        } 
-      });
     }
   };
 
@@ -372,7 +327,7 @@ const Quiz = () => {
               disabled={isSubmitted}
               className="space-y-3"
             >
-              {shuffledOptions.map((option, index) => (
+              {shuffledOptions.map((option) => (
                 <div
                   key={option.value}
                   className={`flex items-center space-x-3 p-4 rounded-lg border-2 transition-all ${
@@ -380,21 +335,17 @@ const Quiz = () => {
                       ? 'border-success bg-success/10'
                       : isSubmitted && option.value === currentAnswer && currentAnswer !== currentQuestion.correctAnswer
                       ? 'border-destructive bg-destructive/10'
-                      : currentAnswer === option.value
-                      ? 'border-primary bg-primary/5'
                       : 'border-border hover:border-primary'
                   }`}
                 >
                   <RadioGroupItem value={option.value} id={option.value} />
-                  <Label htmlFor={option.value} className="flex-1 cursor-pointer flex items-start gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-muted text-xs font-bold shrink-0">
-                      {index + 1}
-                    </span>
+                  <Label htmlFor={option.value} className="flex-1 cursor-pointer">
+                    <span className="font-semibold mr-2">{option.label})</span>
                     {option.image ? (
                       <img 
                         src={option.image} 
-                        alt={`Option ${index + 1}`}
-                        className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border"
+                        alt={`Option ${option.label}`}
+                        className="max-w-md max-h-64 w-auto h-auto object-contain rounded border border-border mt-2"
                       />
                     ) : (
                       <MathText enableChemistry={subject === 'chemistry'}>{option.text}</MathText>
@@ -462,14 +413,9 @@ const Quiz = () => {
 
           <div className="mt-8 flex gap-4">
             {!isSubmitted ? (
-              <>
-                <Button onClick={handleSkip} variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted">
-                  Skip
-                </Button>
-                <Button onClick={handleSubmit} className="flex-1" size="lg">
-                  Submit Answer
-                </Button>
-              </>
+              <Button onClick={handleSubmit} className="flex-1" size="lg">
+                Submit Answer
+              </Button>
             ) : (
               <Button 
                 onClick={handleNext} 
