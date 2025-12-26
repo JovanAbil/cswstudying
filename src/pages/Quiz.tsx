@@ -460,7 +460,7 @@ const Quiz = () => {
             {!isSubmitted ? (
               <>
                 <Button onClick={handleSkip} variant="outline" size="lg" className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground">
-                  Skip (S)
+                  Skip
                 </Button>
                 <Button onClick={handleSubmit} className="flex-1" size="lg">
                   Submit Answer
