@@ -201,13 +201,6 @@ const Quiz = () => {
         }
       }
       
-      // 's' key for skip
-      if (e.key === 's' || e.key === 'S') {
-        if (!isSubmitted) {
-          handleSkip();
-        }
-      }
-      
       if (showGrading && currentQuestion.type === 'free-response') {
         if (e.key === 'ArrowRight') {
           handleSelfGrade(true);
