@@ -296,7 +296,7 @@ export const rationalQuestions: Question[] = [
   {
     "id": "rational-25",
     "type": "free-response",
-    "question": "If f(x) = (x+6)(x+4), identify any vertical asymptotes for the graph of g, or state that the graph of g has no vertical asymptotes.",
+    "question": "If f(x) = (x+6)(x+4), identify any vertical asymptotes for the graph of g as g(x) = (x^2+4x-12), or state that the graph of g has no vertical asymptotes.",
     "correctAnswer": "If f(x) = (x+6)(x+4), there is a vertical asymptote at x=2.",
     "explanation": "Logic"
   },
