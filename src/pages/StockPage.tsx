@@ -7,11 +7,11 @@ import { ArrowLeft, Eye, Brain, Lock } from 'lucide-react';
 // Personal units - add your units here
 const stockUnits = [
   {
-    id: 'stock-unit1',
-    name: 'Personal Unit 1 (Coming Soon)',
-    subject: 'stock',
-    questionCount: 0,
-    enabled: false,
+    id: 'basics',
+    name: 'Basics',
+    subject: 'basics',
+    questionCount: 13,
+    enabled: true,
   },
   // Add more units as needed:
   // {
