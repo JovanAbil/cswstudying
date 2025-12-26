@@ -508,7 +508,7 @@ export const religionsQuestions: Question[] = [
       { label: 'C', value: 'C', text: 'Allah is the one true God and Muhammad is his prophet' },
       { label: 'D', value: 'D', text: 'Moksha which is the state of perfect understanding' }
     ],
-    correctAnswer: 'B',
+    correctAnswer: 'C',
     explanation: 'The Upanishads emphasize Brahman, Atman, and moksha; option C is about Islam and not an Upanishadic idea. (Note: the provided correctAnswer field originally listed B; double-check if you want C instead.)'
   },
   {
