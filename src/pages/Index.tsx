@@ -48,7 +48,6 @@ const categories = [
 const controls = [
   { key: '1-5', description: 'Select answer option (1 for first, 2 for second, etc.)' },
   { key: 'Enter', description: 'Submit answer / Move to next question' },
-  { key: 'S', description: 'Skip question (marks as wrong)' },
   { key: '← Arrow', description: 'Mark free response as incorrect' },
   { key: '→ Arrow', description: 'Mark free response as correct' },
 ];
