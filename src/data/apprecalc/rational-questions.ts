@@ -19,7 +19,7 @@ export const rationalQuestions: Question[] = [
     "type": "multiple-choice",
     "question": "Let k be the rational function defined by k(x) = (((x-3)^3)((x+2)^3))/(((x-3)^2)((x+2)^4)) Which of the following statements about the graph of k is correct?",
     "options": [
-      { "label": "A", "value": "A", "text": "The graph of k has a vertical asymptote at x = -2 and a hold at x = 3" },
+      { "label": "A", "value": "A", "text": "The graph of k has a vertical asymptote at x = -2 and a hole at x = 3" },
       { "label": "B", "value": "B", "text": "The graph of k has a vertical asymptote at x = 3 and a hole at x = -2" },
       { "label": "C", "value": "C", "text": "The graph of k has vertical asymptotes at x = -2 and x = 3" },
       { "label": "D", "value": "D", "text": "The graph of k has holes at x = -2 and x = 3" }
