@@ -64,7 +64,7 @@ export const exponentialQuestions: Question[] = [
     options: [
       { "label": "A", "value": "A", "text": "h demonstrates exponential decay because 0 < a < 1 and b > 1" },
       { "label": "B", "value": "B", "text": "h demonstrates exponential decay because a > 0 and 0 < b < 1" },
-      { "label": "C", "value": "C", "text": "h demonstrates exponential growth because a > 0 and ) < b < 1" },
+      { "label": "C", "value": "C", "text": "h demonstrates exponential growth because a > 0 and 0 < b < 1" },
       { "label": "D", "value": "D", "text": "h demonstrates exponential growth because a > 0 and b > 1" }
     ],
     correctAnswer: "D",
