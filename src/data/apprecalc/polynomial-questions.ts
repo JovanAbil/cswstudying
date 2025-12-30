@@ -31,12 +31,12 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-3",
     "type": "multiple-choice",
-    "question": "The function g is a polynomial with the following end behavior: lim_x-->-∞ g(x) = -∞ and lim_x-->∞ g(x) = -∞",
+    "question": "The function g is a polynomial with the following end behavior: $\\lim_{x \\to -\\infty} g(x) = -\\infty$ and $\\lim_{x \\to \\infty} g(x) = -\\infty$",
     "options": [
-      { "label": "A", "value": "A", "text": "-4x^7-3x^3+x-6", },
-      { "label": "B", "value": "B", "text": "-3x^6+5x^2+6x-1", },
-      { "label": "C", "value": "C", "text": "3x^3+x^2-5x+1", },
-      { "label": "D", "value": "D", "text": "2x^4-7x^3+3x^2+1", }
+      { "label": "A", "value": "A", "text": "$-4x^7-3x^3+x-6$" },
+      { "label": "B", "value": "B", "text": "$-3x^6+5x^2+6x-1$" },
+      { "label": "C", "value": "C", "text": "$3x^3+x^2-5x+1$" },
+      { "label": "D", "value": "D", "text": "$2x^4-7x^3+3x^2+1$" }
     ],
     "correctAnswer": "B",
     "explanation": " "
@@ -208,36 +208,36 @@ export const polynomialQuestions: Question[] = [
   {
     "id": "polynomial-16",
     "type": "free-response",
-    "question": "Let f be the polynomial function give by f(x) = x^3 + x^2 - 6x. Determine the end behavior of f as x decreases without bound. Express your answer using the mathematical notation of a limit.",
-    "correctAnswer": "lim_x-->-∞ f(x) = -∞",
+    "question": "Let f be the polynomial function given by $f(x) = x^3 + x^2 - 6x$. Determine the end behavior of f as x decreases without bound. Express your answer using the mathematical notation of a limit.",
+    "correctAnswer": "$\\lim_{x \\to -\\infty} f(x) = -\\infty$",
     "explanation": "Math"
   },
   {
     "id": "polynomial-17",
     "type": "free-response",
-    "question": "Let f be the polynomial function give by f(x) = x^3 + x^2 - 6x. Find all zeros of f(x) and indicate the multiplicity of each zero. Show the work that leads to your answer.",
-    "correctAnswer": "When x = 0, -3, 2, it all have a multiplicity of 1.",
+    "question": "Let f be the polynomial function given by $f(x) = x^3 + x^2 - 6x$. Find all zeros of f(x) and indicate the multiplicity of each zero. Show the work that leads to your answer.",
+    "correctAnswer": "When x = 0, -3, 2, they all have a multiplicity of 1.",
     "explanation": ""
   },
   {
     "id": "polynomial-18",
     "type": "free-response",
-    "question": "Let f be the polynomial function give by f(x) = x^3 + x^2 - 6x. Determine the intervals where f(x) > 0. Show the work that leads to your answer.",
-    "correctAnswer": "(-3, 0) U (2, ∞)",
+    "question": "Let f be the polynomial function given by $f(x) = x^3 + x^2 - 6x$. Determine the intervals where f(x) > 0. Show the work that leads to your answer.",
+    "correctAnswer": "(-3, 0) ∪ (2, ∞)",
     "explanation": ""
   },
   {
     "id": "polynomial-19",
     "type": "free-response",
-    "question": "Let f be the polynomial function give by f(x) = x^3 + x^2 - 6x. Determine the number of relative minima and the number of relative maxima that occur for the function f.",
+    "question": "Let f be the polynomial function given by $f(x) = x^3 + x^2 - 6x$. Determine the number of relative minima and the number of relative maxima that occur for the function f.",
     "correctAnswer": "There is one local minimum and one local maximum but no global because it has an odd leading degree.",
     "explanation": ""
   },
   {
     "id": "polynomial-20",
     "type": "free-response",
-    "question": "The function p is a polynomial function of degree 3. Zeros of p include -2 and 1+sqrt(3). Write a possible expression for p(x) in standard form.",
-    "correctAnswer": "p(x) = x^3 - 6x - 4",
+    "question": "The function p is a polynomial function of degree 3. Zeros of p include -2 and $1+\\sqrt{3}$. Write a possible expression for p(x) in standard form.",
+    "correctAnswer": "$p(x) = x^3 - 6x - 4$",
     "explanation": ""
   },
   {

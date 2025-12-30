@@ -7,6 +7,7 @@ import { ArrowLeft, Save, Play, Pencil, Trash2, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import { Question } from '@/types/quiz';
 import { usePresets, Preset } from '@/hooks/usePresets';
+import MathText from '@/components/MathText';
 
 // Import all question sets
 import { polynomialQuestions } from '@/data/apprecalc/polynomial-questions';
@@ -47,6 +48,12 @@ import { worldHistoryUnit11Questions } from '@/data/worldhistory/world-history-u
 import { generalQuestions } from '@/data/memory/general-questions';
 import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
+
+// Truncate question text for display
+const truncateQuestion = (text: string, maxLength: number = 100): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
 
 const CourseChallengePresetBuilder = () => {
   const { subject } = useParams();
@@ -360,19 +367,33 @@ const CourseChallengePresetBuilder = () => {
         {/* Question Selection by Unit */}
         {allQuestionsByUnit.map(({ unit, questions }) => (
           <Card key={unit.id} className="p-6 mb-4">
-            <h3 className="text-lg font-semibold mb-4">{unit.name}</h3>
-            <div className="grid grid-cols-5 gap-2">
-              {questions.map(q => (
+            <h3 className="text-lg font-semibold mb-4">{unit.name} ({questions.length} questions)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {questions.map((q, index) => (
                 <button
                   key={q.id}
                   onClick={() => toggleQuestion(q.id)}
-                  className={`p-2 text-xs rounded border transition-all ${
+                  className={`p-4 rounded-lg border-2 text-left transition-all relative ${
                     selectedQuestionIds.has(q.id)
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'bg-muted border-border hover:border-primary'
+                      ? 'border-primary bg-primary/10'
+                      : 'border-border hover:border-primary/50'
                   }`}
                 >
-                  {q.id}
+                  {selectedQuestionIds.has(q.id) && (
+                    <div className="absolute top-2 right-2">
+                      <Check className="h-5 w-5 text-primary" />
+                    </div>
+                  )}
+                  <div className="text-xs text-muted-foreground mb-1 font-medium">
+                    Q{index + 1}
+                  </div>
+                  <MathText 
+                    tag="div" 
+                    className="text-sm leading-snug line-clamp-3"
+                    enableChemistry={subject === 'chemistry'}
+                  >
+                    {truncateQuestion(q.question, 120)}
+                  </MathText>
                 </button>
               ))}
             </div>
