@@ -2,10 +2,11 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, Save, Play, Edit2, Trash2, Plus } from 'lucide-react';
+import { ArrowLeft, Save, Play, Edit2, Trash2, Check } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { toast } from 'sonner';
 import usePresets, { Preset } from '@/hooks/usePresets';
+import MathText from '@/components/MathText';
 import {
   Dialog,
   DialogContent,
@@ -66,6 +67,12 @@ import { gasQuestions } from '@/data/practice/gas-questions';
 import { logQuestions } from '@/data/practice/log-questions';
 import { basicsQuestions } from '@/data/stock/basics-questions';
 import { Question } from '@/types/quiz';
+
+// Truncate question text for display
+const truncateQuestion = (text: string, maxLength: number = 80): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
 
 const PresetBuilder = () => {
   const { subject, unitId } = useParams();
@@ -289,22 +296,35 @@ const PresetBuilder = () => {
           </Card>
         )}
 
-        {/* Question Grid - 5 columns */}
+        {/* Question Grid - 3 columns with question text */}
         <Card className="p-4">
           <h2 className="text-lg font-semibold mb-4">Select Questions</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {questions.map((question, index) => (
               <button
                 key={question.id}
                 onClick={() => toggleQuestion(question.id)}
-                className={`p-3 rounded-lg border-2 text-center transition-all ${
+                className={`p-4 rounded-lg border-2 text-left transition-all relative ${
                   selectedIds.has(question.id)
-                    ? 'border-primary bg-primary/10 text-primary font-semibold'
+                    ? 'border-primary bg-primary/10'
                     : 'border-border hover:border-primary/50'
                 }`}
               >
-                <div className="text-xs text-muted-foreground mb-1">#{index + 1}</div>
-                <div className="text-sm font-mono truncate">{question.id}</div>
+                {selectedIds.has(question.id) && (
+                  <div className="absolute top-2 right-2">
+                    <Check className="h-5 w-5 text-primary" />
+                  </div>
+                )}
+                <div className="text-xs text-muted-foreground mb-1 font-medium">
+                  Q{index + 1}
+                </div>
+                <MathText 
+                  tag="div" 
+                  className="text-sm leading-snug line-clamp-3"
+                  enableChemistry={subject === 'chemistry' || subject === 'chemistryDarone'}
+                >
+                  {truncateQuestion(question.question, 120)}
+                </MathText>
               </button>
             ))}
           </div>
