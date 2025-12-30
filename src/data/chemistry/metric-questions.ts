@@ -139,7 +139,7 @@ export const metricQuestions: Question[] = [
     options: [
       { "label": "A", "value": "A", "text": "Radium, Hydrogen, Iron, Europium", },
       { "label": "B", "value": "B", "text": "Phosphorous, Lithium, Gold, Carbon", },
-      { "label": "C", "value": "C", "text": "Zirconium, Cerim, Aluminum, Potassium", },
+      { "label": "C", "value": "C", "text": "Zirconium, Cerium, Aluminum, Potassium", },
       { "label": "D", "value": "D", "text": "Yttrium, Neon, Osmium, Arsenic", }
     ],
     correctAnswer: 'C',
@@ -187,7 +187,7 @@ export const metricQuestions: Question[] = [
   {
     id: 'metric-16',
     type: 'multiple-choice',
-    question: 'Which list of elements contains 3 metallods and 1 non-metal',
+    question: 'Which list of elements contains 3 metalliods and 1 non-metal',
     options: [
       { "label": "A", "value": "A", "text": "Germanium, Phosphorous, Boron, Antimony", },
       { "label": "B", "value": "B", "text": "Cobalt, Silicon, Tellurium, Xenon", },
