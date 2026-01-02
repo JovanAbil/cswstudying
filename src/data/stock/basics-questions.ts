@@ -91,5 +91,62 @@ export const basicsQuestions: Question[] = [
     question: 'What is the difference between a bid and an ask called, and what is it?',
     correctAnswer: 'The spread, which is the difference between the bid and the ask',
     explanation: 'The spread reflects liquidity and trading costs in the market.'
+  },
+  {
+    id: 'basics-14',
+    type: 'free-response',
+    question: 'What is a limit order?',
+    correctAnswer: 'An order to buy or sell at a specific price or better, with no guarantee it will be executed',
+    explanation: 'A limit order only fills at the chosen price or a better one, so it may not execute if the market never reaches that price.'
+  },
+  {
+    id: 'basics-15',
+    type: 'free-response',
+    question: 'What is a stop order?',
+    correctAnswer: 'An order that becomes a market order once a specific price is hit',
+    explanation: 'When the stop price is reached, the order converts into a market order and executes at the best available price.'
+  },
+  {
+    id: 'basics-16',
+    type: 'free-response',
+    question: 'What does a stop order do?',
+    correctAnswer: 'Limits losses or triggers entries',
+    explanation: 'Stop orders are commonly used to protect against large losses or to enter trades when price moves past a certain level.'
+  },
+  {
+    id: 'basics-17',
+    type: 'free-response',
+    question: 'What is a market order?',
+    correctAnswer: 'An order to buy or sell immediately at the best available price',
+    explanation: 'Market orders prioritize speed over price control.'
+  },
+  {
+    id: 'basics-18',
+    type: 'free-response',
+    question: 'What is trading volume in terms of stock?',
+    correctAnswer: 'The total number of shares traded in a day',
+    explanation: 'Volume shows how active a stock is and reflects market interest.'
+  },
+  {
+    id: 'basics-19',
+    type: 'free-response',
+    question: 'What is volatility?',
+    correctAnswer: 'How fast and how far the price moves',
+    explanation: 'Volatility measures the size and speed of price changes.'
+  },
+  {
+    id: 'basics-20',
+    type: 'free-response',
+    question: 'What is the difference between high volatility and low volatility?',
+    correctAnswer: 'High volatility offers more opportunity but more risk, while low volatility is slower and tighter',
+    explanation: 'High volatility means larger price swings, while low volatility means smaller, steadier movements.'
+  },
+  {
+    id: 'basics-21',
+    type: 'free-response',
+    question: 'What is the difference between long-term and short-term trading?',
+    correctAnswer: 'Long-term focuses on investing, while short-term is driven by news, supply and demand, emotions, and liquidity',
+    explanation: 'Long-term strategies aim for growth over time, while short-term trading focuses on quick price movements.'
   }
 ];
+
