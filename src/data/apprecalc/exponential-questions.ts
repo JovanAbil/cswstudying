@@ -342,7 +342,7 @@ export const exponentialQuestions: Question[] = [
   {
     id: "exponential-28",
     type: "multiple-choice",
-    question: "[Calculator] A geometric sequence g_n has known terms g_4 = 9 and g_7 30.375. What is the value of g_12?",
+    question: "[Calculator] A geometric sequence g_n has known terms g_4 = 9 and g_7 = 30.375. What is the value of g_12?",
     options: [
       { "label": "A", "value": "A", "text": "66.000" },
       { "label": "B", "value": "B", "text": "85.500" },
