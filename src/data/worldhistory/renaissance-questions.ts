@@ -314,7 +314,7 @@ export const renaissanceQuestions: Question[] = [
       { label: 'A', value: 'A', text: 'True' },
       { label: 'B', value: 'B', text: 'False' },
     ],
-    correctAnswer: 'A',
+    correctAnswer: 'B',
     explanation: 'Historically, Flanders included regions that now belong to several modern countries.'
   },
   {
