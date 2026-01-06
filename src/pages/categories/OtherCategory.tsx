@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,15 +20,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { ArrowLeft, Sparkles, Trophy, Brain, Target, Plus, Trash2, Pencil } from 'lucide-react';
+import { ArrowLeft, Sparkles, Trophy, Brain, Target, Plus, Trash2, Pencil, Download, Upload } from 'lucide-react';
 import useWrongAnswers from '@/hooks/useWrongAnswers';
-import useCustomUnits from '@/hooks/useCustomUnits';
+import useCustomUnits, { CustomTopic } from '@/hooks/useCustomUnits';
 import { useToast } from '@/hooks/use-toast';
+import { downloadUnit, downloadTopic, parseTopicFile, parseUnitMetadata } from '@/utils/customUnitsExport';
+import JSZip from 'jszip';
 
 const OtherCategory = () => {
   const navigate = useNavigate();
   const { getWrongAnswerCount, getAllWrongQuestionsForSubject } = useWrongAnswers();
-  const { data, addUnit, updateUnit, deleteUnit, deleteTopic, isLoaded } = useCustomUnits();
+  const { data, addUnit, updateUnit, deleteUnit, deleteTopic, addTopic, isLoaded } = useCustomUnits();
   const { toast } = useToast();
 
   const [showAddUnit, setShowAddUnit] = useState(false);
@@ -36,6 +38,10 @@ const OtherCategory = () => {
   const [showDeleteUnit, setShowDeleteUnit] = useState<string | null>(null);
   const [showDeleteTopic, setShowDeleteTopic] = useState<{ unitId: string; topicId: string } | null>(null);
   const [unitName, setUnitName] = useState('');
+  
+  const unitUploadRef = useRef<HTMLInputElement>(null);
+  const topicUploadRef = useRef<HTMLInputElement>(null);
+  const [uploadTargetUnitId, setUploadTargetUnitId] = useState<string | null>(null);
 
   const builtInSubjects = [
     {
@@ -88,6 +94,129 @@ const OtherCategory = () => {
   const openEditUnit = (unitId: string, currentName: string) => {
     setUnitName(currentName);
     setShowEditUnit(unitId);
+  };
+
+  // Handle unit download
+  const handleDownloadUnit = async (unit: typeof data.units[0]) => {
+    try {
+      await downloadUnit(unit);
+      toast({ title: `Downloaded ${unit.name}.zip` });
+    } catch (error) {
+      toast({ title: 'Failed to download unit', variant: 'destructive' });
+    }
+  };
+
+  // Handle topic download
+  const handleDownloadTopic = (topic: CustomTopic, unitName: string) => {
+    try {
+      downloadTopic(topic, unitName);
+      toast({ title: `Downloaded ${topic.name}` });
+    } catch (error) {
+      toast({ title: 'Failed to download topic', variant: 'destructive' });
+    }
+  };
+
+  // Handle unit upload (zip file)
+  const handleUnitUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    try {
+      const zip = await JSZip.loadAsync(file);
+      
+      // Find the folder (first directory in zip)
+      const folders = Object.keys(zip.files).filter(f => zip.files[f].dir);
+      const folderPrefix = folders[0] || '';
+      
+      // Look for index.ts (metadata)
+      const indexFile = zip.file(folderPrefix + 'index.ts') || zip.file('index.ts');
+      if (!indexFile) {
+        toast({ title: 'Invalid unit file: missing index.ts', variant: 'destructive' });
+        return;
+      }
+      
+      const indexContent = await indexFile.async('string');
+      const metadata = parseUnitMetadata(indexContent);
+      
+      if (!metadata) {
+        toast({ title: 'Failed to parse unit metadata', variant: 'destructive' });
+        return;
+      }
+      
+      // Create the unit
+      const newUnit = addUnit(metadata.name);
+      
+      // Import each topic
+      for (const topicMeta of metadata.topics) {
+        const topicFileName = topicMeta.file.replace('./', '');
+        const topicFile = zip.file(folderPrefix + topicFileName) || zip.file(topicFileName);
+        
+        if (topicFile) {
+          const topicContent = await topicFile.async('string');
+          const parsed = parseTopicFile(topicContent);
+          
+          if (parsed) {
+            addTopic(newUnit.id, {
+              name: topicMeta.name,
+              mathEnabled: topicMeta.mathEnabled,
+              questions: parsed.questions,
+            });
+          }
+        }
+      }
+      
+      toast({ title: `Imported unit: ${metadata.name}` });
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({ title: 'Failed to import unit', variant: 'destructive' });
+    }
+    
+    // Reset input
+    if (unitUploadRef.current) {
+      unitUploadRef.current.value = '';
+    }
+  };
+
+  // Handle topic upload (.ts file)
+  const handleTopicUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !uploadTargetUnitId) return;
+    
+    try {
+      const content = await file.text();
+      const parsed = parseTopicFile(content);
+      
+      if (!parsed) {
+        toast({ title: 'Failed to parse topic file', variant: 'destructive' });
+        return;
+      }
+      
+      // Extract topic name from filename or comment
+      const nameMatch = content.match(/Topic:\s*(.+)/);
+      const topicName = nameMatch ? nameMatch[1].trim() : file.name.replace(/-questions\.ts$/, '').replace(/-/g, ' ');
+      
+      addTopic(uploadTargetUnitId, {
+        name: topicName,
+        mathEnabled: parsed.mathEnabled,
+        questions: parsed.questions,
+      });
+      
+      toast({ title: `Imported topic: ${topicName}` });
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({ title: 'Failed to import topic', variant: 'destructive' });
+    }
+    
+    // Reset
+    setUploadTargetUnitId(null);
+    if (topicUploadRef.current) {
+      topicUploadRef.current.value = '';
+    }
+  };
+
+  const triggerTopicUpload = (unitId: string) => {
+    setUploadTargetUnitId(unitId);
+    topicUploadRef.current?.click();
   };
 
   return (
@@ -163,6 +292,22 @@ const OtherCategory = () => {
           );
         })}
 
+        {/* Hidden file inputs */}
+        <input
+          type="file"
+          ref={unitUploadRef}
+          accept=".zip"
+          className="hidden"
+          onChange={handleUnitUpload}
+        />
+        <input
+          type="file"
+          ref={topicUploadRef}
+          accept=".ts"
+          className="hidden"
+          onChange={handleTopicUpload}
+        />
+
         {/* Custom Units Section */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
@@ -170,14 +315,24 @@ const OtherCategory = () => {
               <Plus className="h-6 w-6 text-other" />
               <h2 className="text-2xl font-display font-bold">Custom Units</h2>
             </div>
-            <Button
-              onClick={() => { setUnitName(''); setShowAddUnit(true); }}
-              variant="outline"
-              className="border-other text-other hover:bg-other hover:text-other-foreground"
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Add Unit
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => unitUploadRef.current?.click()}
+                variant="outline"
+                className="border-other text-other hover:bg-other hover:text-other-foreground"
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                Import Unit
+              </Button>
+              <Button
+                onClick={() => { setUnitName(''); setShowAddUnit(true); }}
+                variant="outline"
+                className="border-other text-other hover:bg-other hover:text-other-foreground"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add Unit
+              </Button>
+            </div>
           </div>
 
           {!isLoaded ? (
@@ -194,14 +349,22 @@ const OtherCategory = () => {
             <div className="space-y-8">
               {data.units.map((unit) => (
                 <div key={unit.id}>
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-4 flex-wrap">
                     <h3 className="text-lg font-semibold">{unit.name}</h3>
-                    <Button variant="ghost" size="icon" onClick={() => openEditUnit(unit.id, unit.name)}>
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon" onClick={() => setShowDeleteUnit(unit.id)}>
-                      <Trash2 className="h-4 w-4 text-destructive" />
-                    </Button>
+                    <div className="flex items-center gap-1">
+                      <Button variant="ghost" size="icon" onClick={() => openEditUnit(unit.id, unit.name)} title="Edit unit">
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={() => handleDownloadUnit(unit)} title="Download unit">
+                        <Download className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={() => triggerTopicUpload(unit.id)} title="Import topic">
+                        <Upload className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={() => setShowDeleteUnit(unit.id)} title="Delete unit">
+                        <Trash2 className="h-4 w-4 text-destructive" />
+                      </Button>
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {unit.topics.map((topic) => (
@@ -219,6 +382,7 @@ const OtherCategory = () => {
                               e.stopPropagation();
                               navigate(`/custom-topic/${unit.id}/${topic.id}`);
                             }}
+                            title="Edit topic"
                           >
                             <Pencil className="h-3 w-3" />
                           </Button>
@@ -228,8 +392,21 @@ const OtherCategory = () => {
                             className="h-6 w-6"
                             onClick={(e) => {
                               e.stopPropagation();
+                              handleDownloadTopic(topic, unit.name);
+                            }}
+                            title="Download topic"
+                          >
+                            <Download className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setShowDeleteTopic({ unitId: unit.id, topicId: topic.id });
                             }}
+                            title="Delete topic"
                           >
                             <Trash2 className="h-3 w-3 text-destructive" />
                           </Button>
