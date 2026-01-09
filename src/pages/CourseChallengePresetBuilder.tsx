@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { Question } from '@/types/quiz';
 import { usePresets, Preset } from '@/hooks/usePresets';
 import MathText from '@/components/MathText';
+import { getImportedQuestions, ImportedQuestionSet } from '@/utils/customUnitsExport';
 
 // Import all question sets
 import { polynomialQuestions } from '@/data/apprecalc/polynomial-questions';
@@ -89,6 +90,12 @@ const CourseChallengePresetBuilder = () => {
   const [presetName, setPresetName] = useState('');
   const [editingPresetId, setEditingPresetId] = useState<string | null>(null);
   const [showSaveForm, setShowSaveForm] = useState(false);
+  const [importedSets, setImportedSets] = useState<ImportedQuestionSet[]>([]);
+
+  // Load imported question sets
+  useEffect(() => {
+    setImportedSets(getImportedQuestions(subject || ''));
+  }, [subject]);
 
   const questionMap: Record<string, Question[]> = useMemo(() => ({
     'precalc-polynomial': polynomialQuestions, 'precalc-rational': rationalQuestions,
@@ -177,15 +184,25 @@ const CourseChallengePresetBuilder = () => {
 
   // Get all questions for this subject grouped by unit
   const allQuestionsByUnit = useMemo(() => {
-    const result: { unit: { id: string; name: string }; questions: Question[] }[] = [];
+    const result: { unit: { id: string; name: string }; questions: Question[]; isImported?: boolean }[] = [];
     units.forEach(unit => {
       const questions = questionMap[`${subject}-${unit.id}`] || [];
       if (questions.length > 0) {
         result.push({ unit, questions });
       }
     });
+    
+    // Add imported question sets at the bottom
+    importedSets.forEach(set => {
+      result.push({
+        unit: { id: set.id, name: `📥 ${set.name} (Imported)` },
+        questions: set.questions,
+        isImported: true,
+      });
+    });
+    
     return result;
-  }, [subject, units, questionMap]);
+  }, [subject, units, questionMap, importedSets]);
 
   const toggleQuestion = (questionId: string) => {
     const newSelected = new Set(selectedQuestionIds);
@@ -201,6 +218,10 @@ const CourseChallengePresetBuilder = () => {
     const allIds = new Set<string>();
     allQuestionsByUnit.forEach(({ questions }) => {
       questions.forEach(q => allIds.add(q.id));
+    });
+    // Add imported questions
+    importedSets.forEach(set => {
+      set.questions.forEach(q => allIds.add(q.id));
     });
     setSelectedQuestionIds(allIds);
   };
@@ -251,6 +272,10 @@ const CourseChallengePresetBuilder = () => {
     allQuestionsByUnit.forEach(({ questions }) => {
       allQuestions.push(...questions);
     });
+    // Add imported questions
+    importedSets.forEach(set => {
+      allQuestions.push(...set.questions);
+    });
     
     const presetQuestions = allQuestions.filter(q => preset.questionIds.includes(q.id));
     
@@ -268,6 +293,10 @@ const CourseChallengePresetBuilder = () => {
     const allQuestions: Question[] = [];
     allQuestionsByUnit.forEach(({ questions }) => {
       allQuestions.push(...questions);
+    });
+    // Add imported questions
+    importedSets.forEach(set => {
+      allQuestions.push(...set.questions);
     });
     
     const selectedQs = allQuestions.filter(q => selectedQuestionIds.has(q.id));

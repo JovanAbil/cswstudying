@@ -2,6 +2,95 @@ import { CustomUnit, CustomTopic } from '@/hooks/useCustomUnits';
 import { Question } from '@/types/quiz';
 import JSZip from 'jszip';
 
+// Storage key for imported course challenge questions
+const IMPORTED_QUESTIONS_KEY = 'imported-course-questions';
+
+export interface ImportedQuestionSet {
+  id: string;
+  name: string;
+  questions: Question[];
+  importedAt: number;
+}
+
+// Get all imported question sets for a subject
+export const getImportedQuestions = (subject: string): ImportedQuestionSet[] => {
+  try {
+    const stored = localStorage.getItem(`${IMPORTED_QUESTIONS_KEY}-${subject}`);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch {
+    console.error('Failed to load imported questions');
+  }
+  return [];
+};
+
+// Save imported question set
+export const saveImportedQuestions = (subject: string, questionSet: ImportedQuestionSet) => {
+  const existing = getImportedQuestions(subject);
+  const updated = [...existing, questionSet];
+  localStorage.setItem(`${IMPORTED_QUESTIONS_KEY}-${subject}`, JSON.stringify(updated));
+};
+
+// Remove imported question set
+export const removeImportedQuestions = (subject: string, setId: string) => {
+  const existing = getImportedQuestions(subject);
+  const updated = existing.filter(qs => qs.id !== setId);
+  localStorage.setItem(`${IMPORTED_QUESTIONS_KEY}-${subject}`, JSON.stringify(updated));
+};
+
+// Generate TypeScript content for any topic (built-in or custom)
+export const generateBuiltInTopicFile = (questions: Question[], topicName: string, mathEnabled: boolean = false): string => {
+  const variableName = toVariableName(topicName) + 'Questions';
+  
+  const formatQuestion = (q: Question, indent: string): string => {
+    const lines: string[] = [];
+    lines.push(`${indent}{`);
+    lines.push(`${indent}  id: "${q.id}",`);
+    lines.push(`${indent}  type: "${q.type}",`);
+    lines.push(`${indent}  question: ${JSON.stringify(q.question)},`);
+    
+    if (q.type === 'multiple-choice' && q.options) {
+      lines.push(`${indent}  options: ${JSON.stringify(q.options)},`);
+    }
+    
+    lines.push(`${indent}  correctAnswer: ${JSON.stringify(q.correctAnswer)},`);
+    lines.push(`${indent}  explanation: ${JSON.stringify(q.explanation || '')},`);
+    
+    if (q.image) {
+      lines.push(`${indent}  image: ${JSON.stringify(q.image)},`);
+    }
+    
+    lines.push(`${indent}},`);
+    return lines.join('\n');
+  };
+
+  return `import { Question } from '@/types/quiz';
+
+// Topic: ${topicName}
+// Math Enabled: ${mathEnabled}
+// Questions: ${questions.length}
+
+export const ${variableName}: Question[] = [
+${questions.map(q => formatQuestion(q, '  ')).join('\n')}
+];
+`;
+};
+
+// Download built-in topic as .ts file
+export const downloadBuiltInTopic = (questions: Question[], topicName: string, mathEnabled: boolean = false) => {
+  const content = generateBuiltInTopicFile(questions, topicName, mathEnabled);
+  const filename = `${toSafeName(topicName)}-questions.ts`;
+  
+  const blob = new Blob([content], { type: 'text/typescript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 // Convert name to a safe filename/variable name
 const toSafeName = (name: string): string => {
   return name
