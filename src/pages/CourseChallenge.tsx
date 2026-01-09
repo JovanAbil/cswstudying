@@ -1,14 +1,25 @@
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, Trophy, ExternalLink, Wrench, Target } from 'lucide-react';
+import { ArrowLeft, Trophy, ExternalLink, Wrench, Target, Upload, X, FileText } from 'lucide-react';
 import { courseChallengeResources } from '@/data/study-resources';
 import { useWrongAnswers } from '@/hooks/useWrongAnswers';
+import { parseTopicFile, getImportedQuestions, saveImportedQuestions, removeImportedQuestions, ImportedQuestionSet } from '@/utils/customUnitsExport';
+import { toast } from 'sonner';
 
 const CourseChallenge = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
   const { getAllWrongQuestionsForSubject, getWrongAnswerCount } = useWrongAnswers();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [importedSets, setImportedSets] = useState<ImportedQuestionSet[]>([]);
+  
+  // Load imported question sets
+  useEffect(() => {
+    setImportedSets(getImportedQuestions(subject || ''));
+  }, [subject]);
   
   const wrongAnswers = getAllWrongQuestionsForSubject(subject || '');
   const wrongCount = getWrongAnswerCount(subject || '');
@@ -101,9 +112,57 @@ const CourseChallenge = () => {
 
   const handleStartCramMode = () => {
     const allUnitIds = units.map(u => u.id);
-    navigate(`/quiz/${subject}/challenge/cram`, { state: { selectedUnits: allUnitIds } });
+    // Include imported questions in cram mode
+    const allImportedQuestions = importedSets.flatMap(s => s.questions);
+    navigate(`/quiz/${subject}/challenge/cram`, { 
+      state: { 
+        selectedUnits: allUnitIds,
+        importedQuestions: allImportedQuestions
+      } 
+    });
   };
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    for (const file of Array.from(files)) {
+      try {
+        const content = await file.text();
+        const parsed = parseTopicFile(content);
+        
+        if (parsed && parsed.questions.length > 0) {
+          const newSet: ImportedQuestionSet = {
+            id: `imported-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            name: file.name.replace('-questions.ts', '').replace(/-/g, ' '),
+            questions: parsed.questions,
+            importedAt: Date.now(),
+          };
+          
+          saveImportedQuestions(subject || '', newSet);
+          setImportedSets(prev => [...prev, newSet]);
+          toast.success(`Imported ${parsed.questions.length} questions from ${file.name}`);
+        } else {
+          toast.error(`Could not parse questions from ${file.name}`);
+        }
+      } catch (error) {
+        toast.error(`Failed to read ${file.name}`);
+      }
+    }
+    
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleRemoveImported = (setId: string) => {
+    removeImportedQuestions(subject || '', setId);
+    setImportedSets(prev => prev.filter(s => s.id !== setId));
+    toast.success('Removed imported questions');
+  };
+
+  const totalImportedQuestions = importedSets.reduce((sum, s) => sum + s.questions.length, 0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,13 +217,71 @@ const CourseChallenge = () => {
           </Card>
         )}
 
+        {/* Import Custom Questions Box */}
+        <Card className="mb-6 p-6 border-2 border-dashed border-primary/50 bg-primary/5">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-primary/20 rounded-lg">
+              <Upload className="h-6 w-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold mb-1">Import Custom Questions</h3>
+              <p className="text-sm text-muted-foreground mb-3">
+                Upload .ts question files to add custom practice to this course challenge
+              </p>
+              
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".ts"
+                multiple
+                onChange={handleFileUpload}
+                className="hidden"
+              />
+              
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => fileInputRef.current?.click()}
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                Upload Question Files
+              </Button>
+
+              {/* Show imported sets */}
+              {importedSets.length > 0 && (
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium">Imported ({totalImportedQuestions} questions total):</p>
+                  {importedSets.map(set => (
+                    <div key={set.id} className="flex items-center justify-between bg-background rounded-lg p-2 border">
+                      <div className="flex items-center gap-2">
+                        <FileText className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium capitalize">{set.name}</span>
+                        <span className="text-xs text-muted-foreground">({set.questions.length} questions)</span>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleRemoveImported(set.id)}
+                        className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </Card>
+
         <Button
           onClick={handleStartCramMode}
           className="w-full"
           size="lg"
         >
           <Trophy className="mr-2 h-4 w-4" />
-          Cram Mode (All Units)
+          Cram Mode (All Units{totalImportedQuestions > 0 ? ` + ${totalImportedQuestions} imported` : ''})
         </Button>
 
         {/* Custom Practice & Targeted Practice */}
@@ -179,6 +296,7 @@ const CourseChallenge = () => {
                 <h3 className="font-semibold">Build Custom Practice</h3>
                 <p className="text-sm text-muted-foreground">
                   Select specific questions from any unit
+                  {totalImportedQuestions > 0 && ` (includes ${totalImportedQuestions} imported)`}
                 </p>
               </div>
             </div>
@@ -210,6 +328,7 @@ const CourseChallenge = () => {
             <li>• <strong>Cram Mode:</strong> All questions from every unit for comprehensive review</li>
             <li>• Questions are randomized each time</li>
             <li>• Review shows wrong answers first, then correct answers</li>
+            <li>• <strong>Import:</strong> Upload .ts files from downloaded topics to add custom questions</li>
           </ul>
         </Card>
       </div>
