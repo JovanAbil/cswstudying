@@ -162,7 +162,7 @@ export const compoundsQuestions: Question[] = [
   {
     id: "compounds-6",
     type: "free-response",
-    question: "What is the Geometry and Polarity of ClF3 and does it have resonance? Draw the structure",
+    question: "What is the Geometry and Polarity of CF3H and does it have resonance? Draw the structure",
     correctAnswer: "T-shaped, Polar, No Resonance",
     explanation: "CF3H has 4 electron domains around C → tetrahedral. The C–F bonds dominate, making the molecule polar. No resonance is possible."
   },
