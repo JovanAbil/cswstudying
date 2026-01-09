@@ -223,6 +223,37 @@ export const downloadUnit = async (unit: CustomUnit) => {
   URL.revokeObjectURL(url);
 };
 
+// Helper function to extract string value from a field, handling nested braces in LaTeX
+const extractStringField = (content: string, fieldName: string): string | null => {
+  const fieldStart = content.indexOf(`${fieldName}:`);
+  if (fieldStart === -1) return null;
+  
+  // Find the quote after the colon
+  let i = fieldStart + fieldName.length + 1;
+  while (i < content.length && /\s/.test(content[i])) i++;
+  
+  const quoteChar = content[i];
+  if (quoteChar !== '"' && quoteChar !== "'") return null;
+  
+  // Now find the closing quote, accounting for escaped quotes
+  i++;
+  let value = '';
+  while (i < content.length) {
+    if (content[i] === '\\' && i + 1 < content.length) {
+      // Escaped character - include both
+      value += content[i] + content[i + 1];
+      i += 2;
+    } else if (content[i] === quoteChar) {
+      // Found closing quote
+      return value;
+    } else {
+      value += content[i];
+      i++;
+    }
+  }
+  return null;
+};
+
 // Parse uploaded .ts file content to extract questions
 export const parseTopicFile = (content: string): { questions: Question[], mathEnabled: boolean } | null => {
   try {
@@ -236,90 +267,129 @@ export const parseTopicFile = (content: string): { questions: Question[], mathEn
     
     const arrayContent = arrayMatch[1];
     
-    // Parse questions using a more robust approach
+    // Parse questions using brace-counting approach
     const questions: Question[] = [];
     
-    // Match individual question objects
-    const questionRegex = /\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}/g;
-    const matches = arrayContent.match(questionRegex);
+    // Find each question object by counting braces
+    let depth = 0;
+    let start = -1;
     
-    if (!matches) return { questions: [], mathEnabled };
-    
-    for (const match of matches) {
-      try {
-        // Convert to valid JSON-like format
-        let jsonStr = match
-          .replace(/(\w+):/g, '"$1":') // Quote keys
-          .replace(/,\s*}/g, '}') // Remove trailing commas
-          .replace(/,\s*]/g, ']'); // Remove trailing commas in arrays
-        
-        // Handle string values that might have quotes
-        // This is a simplified parser - for real use, you'd want a proper TS parser
-        const question = JSON.parse(jsonStr) as Question;
-        questions.push(question);
-      } catch {
-        // Try alternative parsing
-        const idMatch = match.match(/id:\s*["']([^"']+)["']/);
-        const typeMatch = match.match(/type:\s*["']([^"']+)["']/);
-        const questionMatch = match.match(/question:\s*["'](.+?)["'],\s*(?:options|correctAnswer)/s);
-        const correctMatch = match.match(/correctAnswer:\s*["'](.+?)["'],\s*(?:explanation|image|\})/s);
-        const explanationMatch = match.match(/explanation:\s*["'](.+?)["']/s);
-        const imageMatch = match.match(/image:\s*["']([^"']+)["']/);
-        
-        if (idMatch && typeMatch && questionMatch && correctMatch) {
-          const type = typeMatch[1] as 'multiple-choice' | 'free-response';
-          
-          if (type === 'free-response') {
-            const q: Question = {
-              id: idMatch[1],
-              type: 'free-response',
-              question: questionMatch[1],
-              correctAnswer: correctMatch[1],
-              explanation: explanationMatch ? explanationMatch[1] : '',
-            };
-            if (imageMatch) {
-              q.image = imageMatch[1];
-            }
-            questions.push(q);
+    for (let i = 0; i < arrayContent.length; i++) {
+      const char = arrayContent[i];
+      
+      // Skip string contents
+      if (char === '"' || char === "'") {
+        const quoteChar = char;
+        i++;
+        while (i < arrayContent.length) {
+          if (arrayContent[i] === '\\' && i + 1 < arrayContent.length) {
+            i += 2; // Skip escaped char
+          } else if (arrayContent[i] === quoteChar) {
+            break;
           } else {
-            // Extract options for MCQ
-            const optionsMatch = match.match(/options:\s*\[([\s\S]*?)\]/);
-            const options: { label: string; value: string; text: string; image?: string }[] = [];
-            
-            if (optionsMatch) {
-              const optionObjRegex = /\{[^{}]+\}/g;
-              const optionMatches = optionsMatch[1].match(optionObjRegex);
-              if (optionMatches) {
-                for (const optMatch of optionMatches) {
-                  const labelM = optMatch.match(/label:\s*["']([^"']*)["']/);
-                  const valueM = optMatch.match(/value:\s*["']([^"']*)["']/);
-                  const textM = optMatch.match(/text:\s*["']([^"']*)["']/);
-                  const imgM = optMatch.match(/image:\s*["']([^"']*)["']/);
-                  if (labelM && valueM && textM) {
-                    options.push({
-                      label: labelM[1],
-                      value: valueM[1],
-                      text: textM[1],
-                      ...(imgM ? { image: imgM[1] } : {}),
-                    });
+            i++;
+          }
+        }
+        continue;
+      }
+      
+      if (char === '{') {
+        if (depth === 0) start = i;
+        depth++;
+      } else if (char === '}') {
+        depth--;
+        if (depth === 0 && start !== -1) {
+          const questionStr = arrayContent.substring(start, i + 1);
+          
+          // Extract fields using our robust string extractor
+          const id = extractStringField(questionStr, 'id');
+          const type = extractStringField(questionStr, 'type');
+          const questionText = extractStringField(questionStr, 'question');
+          const correctAnswer = extractStringField(questionStr, 'correctAnswer');
+          const explanation = extractStringField(questionStr, 'explanation');
+          const image = extractStringField(questionStr, 'image');
+          
+          if (id && type && questionText && correctAnswer) {
+            if (type === 'free-response') {
+              const q: Question = {
+                id,
+                type: 'free-response',
+                question: questionText,
+                correctAnswer,
+                explanation: explanation || '',
+              };
+              if (image) q.image = image;
+              questions.push(q);
+            } else if (type === 'multiple-choice') {
+              // Extract options array
+              const optionsMatch = questionStr.match(/options:\s*\[/);
+              const options: { label: string; value: string; text: string; image?: string }[] = [];
+              
+              if (optionsMatch) {
+                const optStart = questionStr.indexOf('[', optionsMatch.index);
+                let optDepth = 0;
+                let optObjStart = -1;
+                
+                for (let j = optStart; j < questionStr.length; j++) {
+                  const c = questionStr[j];
+                  
+                  // Skip strings
+                  if (c === '"' || c === "'") {
+                    const qc = c;
+                    j++;
+                    while (j < questionStr.length) {
+                      if (questionStr[j] === '\\' && j + 1 < questionStr.length) {
+                        j += 2;
+                      } else if (questionStr[j] === qc) {
+                        break;
+                      } else {
+                        j++;
+                      }
+                    }
+                    continue;
+                  }
+                  
+                  if (c === '[') {
+                    optDepth++;
+                  } else if (c === ']') {
+                    optDepth--;
+                    if (optDepth === 0) break;
+                  } else if (c === '{' && optDepth === 1) {
+                    optObjStart = j;
+                  } else if (c === '}' && optDepth === 1 && optObjStart !== -1) {
+                    const optStr = questionStr.substring(optObjStart, j + 1);
+                    const label = extractStringField(optStr, 'label');
+                    const value = extractStringField(optStr, 'value');
+                    const text = extractStringField(optStr, 'text');
+                    const optImage = extractStringField(optStr, 'image');
+                    
+                    if (label && value && text) {
+                      options.push({
+                        label,
+                        value,
+                        text,
+                        ...(optImage ? { image: optImage } : {}),
+                      });
+                    }
+                    optObjStart = -1;
                   }
                 }
               }
+              
+              const q: Question = {
+                id,
+                type: 'multiple-choice',
+                question: questionText,
+                options,
+                correctAnswer,
+                explanation: explanation || '',
+              };
+              if (image) q.image = image;
+              questions.push(q);
             }
-            
-            const q: Question = {
-              id: idMatch[1],
-              type: 'multiple-choice',
-              question: questionMatch[1],
-              options,
-              correctAnswer: correctMatch[1],
-              explanation: explanationMatch ? explanationMatch[1] : '',
-            };
-            if (imageMatch) {
-              q.image = imageMatch[1];
-            }
-            questions.push(q);
           }
+          
+          start = -1;
         }
       }
     }

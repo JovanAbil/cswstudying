@@ -219,10 +219,6 @@ const CourseChallengePresetBuilder = () => {
     allQuestionsByUnit.forEach(({ questions }) => {
       questions.forEach(q => allIds.add(q.id));
     });
-    // Add imported questions
-    importedSets.forEach(set => {
-      set.questions.forEach(q => allIds.add(q.id));
-    });
     setSelectedQuestionIds(allIds);
   };
 
@@ -267,14 +263,10 @@ const CourseChallengePresetBuilder = () => {
   };
 
   const handleUsePreset = (preset: Preset) => {
-    // Get the actual question objects from the IDs
+    // Get the actual question objects from the IDs (imported sets are already in allQuestionsByUnit)
     const allQuestions: Question[] = [];
     allQuestionsByUnit.forEach(({ questions }) => {
       allQuestions.push(...questions);
-    });
-    // Add imported questions
-    importedSets.forEach(set => {
-      allQuestions.push(...set.questions);
     });
     
     const presetQuestions = allQuestions.filter(q => preset.questionIds.includes(q.id));
@@ -290,13 +282,10 @@ const CourseChallengePresetBuilder = () => {
       return;
     }
 
+    // Imported sets are already in allQuestionsByUnit
     const allQuestions: Question[] = [];
     allQuestionsByUnit.forEach(({ questions }) => {
       allQuestions.push(...questions);
-    });
-    // Add imported questions
-    importedSets.forEach(set => {
-      allQuestions.push(...set.questions);
     });
     
     const selectedQs = allQuestions.filter(q => selectedQuestionIds.has(q.id));
