@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { X, Calculator, Info } from 'lucide-react';
+import MathText from '@/components/MathText';
 
 interface MathBuilderSidebarProps {
   isOpen: boolean;
@@ -256,11 +257,19 @@ const MathBuilderSidebar = ({ isOpen, onClose, onInsert }: MathBuilderSidebarPro
             className="font-mono text-sm"
           />
           <div className="p-2 bg-muted rounded-md min-h-[40px]">
-            <p className="text-xs text-muted-foreground mb-1">Preview:</p>
+            <p className="text-xs text-muted-foreground mb-1">Text format:</p>
             <code className="text-sm font-mono break-all">
               {builderText ? `$${builderText}$` : 'Empty'}
             </code>
           </div>
+          {builderText && (
+            <div className="p-3 bg-card border rounded-md min-h-[50px]">
+              <p className="text-xs text-muted-foreground mb-2">Rendered preview:</p>
+              <div className="text-lg">
+                <MathText>{`$${builderText}$`}</MathText>
+              </div>
+            </div>
+          )}
         </div>
         <div className="flex gap-2">
           <Button 
