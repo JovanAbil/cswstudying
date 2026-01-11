@@ -45,10 +45,10 @@ export const rationalQuestions: Question[] = [
     "type": "multiple-choice",
     "question": "The graph of the rational function h has a horizontal asymptote of y = -3. Which of the following could be an expression for h(x)",
     "options": [
-      { "label": "A", "value": "A", "text": "(x^2-4x+7)/(-3x^2+5)" },
-      { "label": "B", "value": "B", "text": "(3x^2-5x-2)/(x^2-x+1)" },
-      { "label": "C", "value": "C", "text": "(-3x^3+x-2)/(x^2+5x-6)" },
-      { "label": "D", "value": "D", "text": "(-6x^3+7x^2-12)/(2x^3+11)" }
+      { "label": "A", "value": "A", "text": "$\\frac{x^{2}-4x+7}{-3x^{2}+5}$" },
+      { "label": "B", "value": "B", "text": "$\\frac{3x^{2}-5x-2}{x^{2}-x+1}$" },
+      { "label": "C", "value": "C", "text": "$\\frac{-3x^{3}+x-2}{x^{2}+5x-6}$" },
+      { "label": "D", "value": "D", "text": "$\\frac{-6x^{3}+7x^{2}-12}{2x^{3}+11}$" }
     ],
     "correctAnswer": "D",
     "explanation": "Fits the criteria"
@@ -70,7 +70,7 @@ export const rationalQuestions: Question[] = [
   {
     "id": "rational-6",
     "type": "multiple-choice",
-    "question": "Use the rational function $f(x) = \\frac{(2x-7)(x-2)}{x^2-5x+6}$. $\\lim_{x \\to 3^+} f(x) = $",
+    "question": "Use the rational function $f(x) = \\frac{(2x-7)(x-2)}{x^{2}-5x+6}$. $\\lim_{x \\to 3^{+}} f(x) = $",
     "options": [
       { "label": "A", "value": "A", "text": "2" },
       { "label": "B", "value": "B", "text": "3" },
