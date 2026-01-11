@@ -127,7 +127,7 @@ export const logarithmicQuestions: Question[] = [
   {
     id: "logarithmic-16",
     type: "multiple-choice",
-    question: "Solve $\\frac{1}{2}(3)^{x-1} - 5 = 7$",
+    question: "Solve $\\frac{1}{2}(3)^{x+1} - 5 = 7$",
     options: [{"label":"A","value":"A","text":"$x = -1 + \\log_{3}(24)$"},{"label":"B","value":"B","text":"$x = \\log_{3}(23)$"},{"label":"C","value":"C","text":"$x = -1 + \\log_{3}(6)$"},{"label":"D","value":"D","text":"$x = \\log_{3}(5)$"}],
     correctAnswer: "A",
     explanation: "",
