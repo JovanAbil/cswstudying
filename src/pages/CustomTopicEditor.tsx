@@ -22,6 +22,7 @@ import { ArrowLeft, Plus, Minus, Save, Trash2, Calculator, Image, GripVertical, 
 import { useCustomUnits, CustomTopic } from '@/hooks/useCustomUnits';
 import { Question, MultipleChoiceQuestion, FreeResponseQuestion } from '@/types/quiz';
 import MathBuilderSidebar from '@/components/MathBuilderSidebar';
+import MathQuickInput from '@/components/MathQuickInput';
 import { useToast } from '@/hooks/use-toast';
 
 interface EditingQuestion {
@@ -56,6 +57,7 @@ const CustomTopicEditor = () => {
   const [showMathSidebar, setShowMathSidebar] = useState(false);
   const [activeTextField, setActiveTextField] = useState<string | null>(null);
   const textFieldRefs = useRef<{ [key: string]: HTMLTextAreaElement | HTMLInputElement | null }>({});
+  const answerTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Question being edited
   const [editingQuestion, setEditingQuestion] = useState<EditingQuestion | null>(null);
@@ -512,15 +514,27 @@ const CustomTopicEditor = () => {
                     className="w-20"
                   />
                 ) : (
-                  <Textarea
-                    id="q-answer"
-                    ref={(el) => { textFieldRefs.current['answer'] = el; }}
-                    value={editingQuestion.answer}
-                    onChange={(e) => setEditingQuestion({ ...editingQuestion, answer: e.target.value })}
-                    onFocus={() => setActiveTextField('answer')}
-                    placeholder="Enter the correct answer..."
-                    rows={2}
-                  />
+                  <div>
+                    <Textarea
+                      id="q-answer"
+                      ref={(el) => { 
+                        textFieldRefs.current['answer'] = el; 
+                        (answerTextareaRef as React.MutableRefObject<HTMLTextAreaElement | null>).current = el;
+                      }}
+                      value={editingQuestion.answer}
+                      onChange={(e) => setEditingQuestion({ ...editingQuestion, answer: e.target.value })}
+                      onFocus={() => setActiveTextField('answer')}
+                      placeholder="Enter the correct answer..."
+                      rows={2}
+                    />
+                    {mathEnabled && (
+                      <MathQuickInput
+                        textareaRef={answerTextareaRef as React.RefObject<HTMLTextAreaElement>}
+                        value={editingQuestion.answer}
+                        onChange={(newValue) => setEditingQuestion({ ...editingQuestion, answer: newValue })}
+                      />
+                    )}
+                  </div>
                 )}
               </div>
 
