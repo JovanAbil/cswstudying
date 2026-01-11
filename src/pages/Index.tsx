@@ -1,62 +1,58 @@
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Calculator, BookOpen, FlaskConical, Landmark, Sparkles, ArrowRight, Keyboard, ArrowDown, FolderPlus } from 'lucide-react';
-
-const categories = [
-  {
-    id: 'math',
-    name: 'Mathematics',
-    description: 'Precalculus, Algebra, and more',
-    icon: Calculator,
-    color: 'math',
-    path: '/category/math',
-  },
-  {
-    id: 'english',
-    name: 'English',
-    description: 'Literature, Writing, and Language Arts',
-    icon: BookOpen,
-    color: 'english',
-    path: '/category/english',
-  },
-  {
-    id: 'science',
-    name: 'Science',
-    description: 'Biology, Chemistry, and more',
-    icon: FlaskConical,
-    color: 'science',
-    path: '/category/science',
-  },
-  {
-    id: 'social',
-    name: 'Social Studies',
-    description: 'World History, US History, and more',
-    icon: Landmark,
-    color: 'social',
-    path: '/category/social',
-  },
-  {
-    id: 'other',
-    name: 'Other',
-    description: 'Memory training and miscellaneous',
-    icon: Sparkles,
-    color: 'other',
-    path: '/category/other',
-  },
-];
-
-const controls = [
-  { key: '1-5', description: 'Select answer option (1 for first, 2 for second, etc.)' },
-  { key: 'Enter', description: 'Submit answer / Move to next question' },
-  { key: '← Arrow', description: 'Mark free response as incorrect' },
-  { key: '→ Arrow', description: 'Mark free response as correct' },
-];
-
+const categories = [{
+  id: 'math',
+  name: 'Mathematics',
+  description: 'Precalculus, Algebra, and more',
+  icon: Calculator,
+  color: 'math',
+  path: '/category/math'
+}, {
+  id: 'english',
+  name: 'English',
+  description: 'Literature, Writing, and Language Arts',
+  icon: BookOpen,
+  color: 'english',
+  path: '/category/english'
+}, {
+  id: 'science',
+  name: 'Science',
+  description: 'Biology, Chemistry, and more',
+  icon: FlaskConical,
+  color: 'science',
+  path: '/category/science'
+}, {
+  id: 'social',
+  name: 'Social Studies',
+  description: 'World History, US History, and more',
+  icon: Landmark,
+  color: 'social',
+  path: '/category/social'
+}, {
+  id: 'other',
+  name: 'Other',
+  description: 'Memory training and miscellaneous',
+  icon: Sparkles,
+  color: 'other',
+  path: '/category/other'
+}];
+const controls = [{
+  key: '1-5',
+  description: 'Select answer option (1 for first, 2 for second, etc.)'
+}, {
+  key: 'Enter',
+  description: 'Submit answer / Move to next question'
+}, {
+  key: '← Arrow',
+  description: 'Mark free response as incorrect'
+}, {
+  key: '→ Arrow',
+  description: 'Mark free response as correct'
+}];
 const Index = () => {
   const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
@@ -69,9 +65,7 @@ const Index = () => {
               Master your classes at CSW with interactive practice tests and daily exercises. 
               Choose a subject category to get started.
             </p>
-            <p className="text-sm text-muted-foreground/70 mb-4">
-              Reach out to abilash.jovan@charterschool.org with question banks to add new courses!
-            </p>
+            <p className="text-sm text-muted-foreground/70 mb-4">If you want to add courses, make a subject in "Other" and send the files to abilash.jovan@charterschool.org to add them! Any questions you can also email abilash.jovan@charterschool.org!</p>
             <div className="flex items-center justify-center gap-2 text-primary font-medium animate-bounce">
               <ArrowDown className="h-5 w-5" />
               <span>Scroll down to see how to use the website</span>
@@ -85,14 +79,10 @@ const Index = () => {
       <div className="container mx-auto px-4 pb-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {categories.map((category, index) => {
-            const Icon = category.icon;
-            return (
-              <Card
-                key={category.id}
-                className={`group relative overflow-hidden p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-2 hover:border-${category.color} animate-fade-in`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => navigate(category.path)}
-              >
+          const Icon = category.icon;
+          return <Card key={category.id} className={`group relative overflow-hidden p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border-2 hover:border-${category.color} animate-fade-in`} style={{
+            animationDelay: `${index * 0.1}s`
+          }} onClick={() => navigate(category.path)}>
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-${category.color}/10 mb-6 group-hover:scale-110 transition-transform`}>
                   <Icon className={`w-7 h-7 text-${category.color}`} />
                 </div>
@@ -102,27 +92,32 @@ const Index = () => {
                   Explore
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Card>
-            );
-          })}
+              </Card>;
+        })}
         </div>
 
         {/* Info Section */}
         <div className="mt-16 max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 bg-science/5 border-science/20 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <Card className="p-6 bg-science/5 border-science/20 animate-fade-in" style={{
+            animationDelay: '0.5s'
+          }}>
               <h3 className="text-lg font-display font-semibold mb-2 text-science">📚 Cram Study</h3>
               <p className="text-sm text-muted-foreground">
                 Practice ALL questions in a unit to master the material
               </p>
             </Card>
-            <Card className="p-6 bg-english/5 border-english/20 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <Card className="p-6 bg-english/5 border-english/20 animate-fade-in" style={{
+            animationDelay: '0.6s'
+          }}>
               <h3 className="text-lg font-display font-semibold mb-2 text-english">📝 View All Questions</h3>
               <p className="text-sm text-muted-foreground">
                 Browse questions with IDs without taking a test
               </p>
             </Card>
-            <Card className="p-6 bg-math/5 border-math/20 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            <Card className="p-6 bg-math/5 border-math/20 animate-fade-in" style={{
+            animationDelay: '0.7s'
+          }}>
               <h3 className="text-lg font-display font-semibold mb-2 text-math">🎯 Targeted Practice</h3>
               <p className="text-sm text-muted-foreground">
                 Review questions you got wrong on previous attempts
@@ -144,14 +139,12 @@ const Index = () => {
               Use these keyboard shortcuts during quizzes to navigate quickly:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
-              {controls.map((control, index) => (
-                <div key={index} className="flex items-center gap-4 p-3 bg-background rounded-lg border">
+              {controls.map((control, index) => <div key={index} className="flex items-center gap-4 p-3 bg-background rounded-lg border">
                   <kbd className="px-3 py-2 bg-muted rounded-md font-mono text-sm font-semibold min-w-[80px] text-center">
                     {control.key}
                   </kbd>
                   <span className="text-sm text-muted-foreground">{control.description}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </Card>
         </div>
@@ -195,8 +188,6 @@ const Index = () => {
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
