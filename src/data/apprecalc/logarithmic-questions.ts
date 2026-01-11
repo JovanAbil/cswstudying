@@ -143,8 +143,8 @@ export const logarithmicQuestions: Question[] = [
   {
     id: "logarithmic-18",
     type: "free-response",
-    question: "The functions $j$ and $k$ are given: $j(x) = \\frac{1}{2}\\ln(x) + 5\\ln(x) + \\ln(4)$ and $k(x) = \\log_{5}(\\frac{x^2}{125})$. Rewrite $j(x)$ in the form as a single natural logarith without negative exponents in any part of the expression. Your result should be completely simplified in the form $\\ln$(expression). ",
-    correctAnswer: "$j(x) = \\ln(16\\sqrt{x^{11}})$",
+    question: "The functions $j$ and $k$ are given: $j(x) = \\frac{1}{2}\\ln(x) + 5\\ln(x) + \\ln(4)$ and $k(x) = \\log_{5}(\\frac{x^2}{125})$. Rewrite $j(x)$ in the form as a single natural logarithim without negative exponents in any part of the expression. Your result should be completely simplified in the form $\\ln$(expression). ",
+    correctAnswer: "$j(x) = \\ln(4\\sqrt{x^{11}})$",
     explanation: "",
   },
   {
