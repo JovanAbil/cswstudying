@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import MathQuickInput from '@/components/MathQuickInput';
 import { ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 import useQuizTimer from '@/hooks/useQuizTimer';
 import QuizTimer from '@/components/QuizTimer';
@@ -74,7 +75,10 @@ import { toast } from 'sonner';
 import QuestionTable from '@/components/QuestionTable';
 import MathText from '@/components/MathText';
 
+import { useRef } from 'react';
+
 const Quiz = () => {
+  const frqInputRef = useRef<HTMLInputElement>(null);
   const { subject, unitId, quizType } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -442,6 +446,7 @@ const Quiz = () => {
           ) : (
             <div className="space-y-4">
               <Input
+                ref={frqInputRef}
                 type="text"
                 value={currentAnswer}
                 onChange={(e) => setCurrentAnswer(e.target.value)}
@@ -449,6 +454,13 @@ const Quiz = () => {
                 placeholder="Enter your answer"
                 className="text-lg"
               />
+              {!isSubmitted && (
+                <MathQuickInput
+                  inputRef={frqInputRef}
+                  value={currentAnswer}
+                  onChange={setCurrentAnswer}
+                />
+              )}
             </div>
           )}
 

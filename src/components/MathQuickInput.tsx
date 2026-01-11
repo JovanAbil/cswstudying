@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 
 interface MathQuickInputProps {
-  textareaRef: React.RefObject<HTMLTextAreaElement>;
+  textareaRef?: React.RefObject<HTMLTextAreaElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
   value: string;
   onChange: (value: string) => void;
 }
@@ -75,31 +76,34 @@ const keyboardShortcuts: { pattern: RegExp; replacement: string; cursorOffset: n
   { pattern: /->$/i, replacement: '\\to', cursorOffset: 0 },
 ];
 
-const MathQuickInput = ({ textareaRef, value, onChange }: MathQuickInputProps) => {
-  const insertAtCursor = (latex: string, cursorOffset: number = 0) => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+const MathQuickInput = ({ textareaRef, inputRef, value, onChange }: MathQuickInputProps) => {
+  // Support both textarea and input elements
+  const getElement = () => textareaRef?.current || inputRef?.current;
 
-    const start = textarea.selectionStart || 0;
-    const end = textarea.selectionEnd || 0;
+  const insertAtCursor = (latex: string, cursorOffset: number = 0) => {
+    const element = getElement();
+    if (!element) return;
+
+    const start = element.selectionStart || 0;
+    const end = element.selectionEnd || 0;
     const newValue = value.substring(0, start) + latex + value.substring(end);
     onChange(newValue);
 
     // Set cursor position after insert
     setTimeout(() => {
       const newPos = start + latex.length + cursorOffset;
-      textarea.setSelectionRange(newPos, newPos);
-      textarea.focus();
+      element.setSelectionRange(newPos, newPos);
+      element.focus();
     }, 0);
   };
 
   // Handle keyboard shortcuts
   useEffect(() => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+    const element = getElement();
+    if (!element) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const cursorPos = textarea.selectionStart || 0;
+      const cursorPos = element.selectionStart || 0;
       const textBeforeCursor = value.substring(0, cursorPos);
 
       // Check for special key shortcuts
@@ -141,8 +145,8 @@ const MathQuickInput = ({ textareaRef, value, onChange }: MathQuickInputProps) =
               
               setTimeout(() => {
                 const newPos = matchStart + shortcut.replacement.length + shortcut.cursorOffset;
-                textarea.setSelectionRange(newPos, newPos);
-                textarea.focus();
+                element.setSelectionRange(newPos, newPos);
+                element.focus();
               }, 0);
             }
             return;
@@ -151,9 +155,9 @@ const MathQuickInput = ({ textareaRef, value, onChange }: MathQuickInputProps) =
       }
     };
 
-    textarea.addEventListener('keydown', handleKeyDown);
-    return () => textarea.removeEventListener('keydown', handleKeyDown);
-  }, [value, onChange, textareaRef]);
+    element.addEventListener('keydown', handleKeyDown);
+    return () => element.removeEventListener('keydown', handleKeyDown);
+  }, [value, onChange, textareaRef, inputRef]);
 
   return (
     <TooltipProvider>
