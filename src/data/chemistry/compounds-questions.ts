@@ -176,7 +176,7 @@ export const compoundsQuestions: Question[] = [
   {
     id: "compounds-8",
     type: "free-response",
-    question: "What is the Geometry and Polarity of PF3 and does it have resonance? Draw the structure",
+    question: "What is the Geometry and Polarity of PCl3 and does it have resonance? Draw the structure",
     correctAnswer: "Trigonal Pyramidal, Polar, No Resonance",
     explanation: "PCl3 has 3 bonds and 1 lone pair → trigonal pyramidal. Lone pair causes polarity. No resonance exists."
   },
