@@ -63,17 +63,6 @@ const CourseChallenge = () => {
           { id: 'acidbases', name: 'Unit 8 - Acids & Bases' },
         ];
 
-       case 'chemistryDarone':
-        return [
-          { id: 'metric', name: 'Unit 1 - Metric Conversions' },
-          { id: 'atomic', name: 'Unit 2 - Atomic Structure' },
-          { id: 'compounds', name: 'Unit 3 - Compounds' },
-          { id: 'gases', name: 'Unit 4 - Gases' },
-          { id: 'solutions', name: 'Unit 5 - Solutions' },
-          { id: 'reactions', name: 'Unit 6 - Reactions' },
-          { id: 'stoichiometry', name: 'Unit 7 - Stoichiometry' },
-          { id: 'acidbases', name: 'Unit 8 - Acids & Bases' },
-        ];
       
       case 'world-history':
         return [
@@ -166,16 +155,25 @@ const CourseChallenge = () => {
 
   const totalImportedQuestions = importedSets.reduce((sum, s) => sum + s.questions.length, 0);
 
+  // Determine which category to go back to
+  const getCategoryPath = () => {
+    if (['precalc'].includes(subject || '')) return '/category/math';
+    if (['biology', 'chemistry'].includes(subject || '')) return '/category/science';
+    if (['world-history'].includes(subject || '')) return '/category/social';
+    if (['memory', 'practice'].includes(subject || '')) return '/category/other';
+    return '/';
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="container mx-auto px-4 py-8 max-w-4xl flex-1">
         <Button
           variant="ghost"
-          onClick={() => navigate('/')}
+          onClick={() => navigate(getCategoryPath())}
           className="mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Home
+          Back to Category
         </Button>
 
         <div className="mb-8 text-center">

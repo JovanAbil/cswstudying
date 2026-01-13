@@ -12,12 +12,6 @@ const ScienceCategory = () => {
 
   const subjects = [
     {
-      id: 'apbio',
-      name: 'AP Biology',
-      units: [],
-      hasChallenge: true,
-    },
-    {
       id: 'biology',
       name: 'Biology (Valenti)',
       units: [
@@ -32,28 +26,8 @@ const ScienceCategory = () => {
       ],
     },
     {
-      id: 'apchem',
-      name: 'AP Chemistry',
-      units: [],
-      hasChallenge: true,
-    },
-    {
       id: 'chemistry',
       name: 'Chemistry (Massarotti)',
-      units: [
-        { id: 'metric', name: 'Matter and Measurement' },
-        { id: 'atomic', name: 'Atomic Theory' },
-        { id: 'compounds', name: 'Compounds' },
-        { id: 'gases', name: 'Gases' },
-        { id: 'solutions', name: 'Solutions (Not Updated)' },
-        { id: 'reactions', name: 'Chemical Reactions (Not Updated)' },
-        { id: 'stoichiometry', name: 'Stoichiometry (Not Updated)' },
-        { id: 'acidbases', name: 'Acids and Bases (Not Updated)' },
-      ],
-    },
-    {
-      id: 'chemistryDarone',
-      name: 'Chemistry (Darone)',
       units: [
         { id: 'metric', name: 'Matter and Measurement' },
         { id: 'atomic', name: 'Atomic Theory' },
