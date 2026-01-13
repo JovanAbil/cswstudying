@@ -366,10 +366,31 @@ const Quiz = () => {
         <div className="flex items-center justify-between mb-6">
           <Button
             variant="ghost"
-            onClick={() => navigate(selectedUnits.length > 0 ? `/course-challenge/${subject}` : `/unit/${subject}/${unitId}`)}
+            onClick={() => {
+              // For targeted practice (wrong questions), go back to category
+              if (wrongQuestions.length > 0) {
+                if (['precalc'].includes(subject || '')) navigate('/category/math');
+                else if (['biology', 'chemistry'].includes(subject || '')) navigate('/category/science');
+                else if (['world-history'].includes(subject || '')) navigate('/category/social');
+                else if (['memory', 'practice'].includes(subject || '')) navigate('/category/other');
+                else navigate('/');
+              }
+              // For course challenge, go back to course challenge
+              else if (selectedUnits.length > 0) {
+                navigate(`/course-challenge/${subject}`);
+              }
+              // For custom topics, go back to the custom unit in Other category
+              else if (isCustomTopic) {
+                navigate('/category/other');
+              }
+              // For single unit, go back to unit detail
+              else {
+                navigate(`/unit/${subject}/${unitId}`);
+              }
+            }}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            {selectedUnits.length > 0 ? 'Back to Challenge' : 'Back to Unit'}
+            {wrongQuestions.length > 0 ? 'Back to Category' : selectedUnits.length > 0 ? 'Back to Challenge' : 'Back to Unit'}
           </Button>
           <QuizTimer formatted={timer.formatted} isRunning={timer.isRunning} />
         </div>
