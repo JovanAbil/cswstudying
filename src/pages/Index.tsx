@@ -34,7 +34,7 @@ const categories = [{
 }, {
   id: 'other',
   name: 'Other',
-  description: 'Memory training and miscellaneous',
+  description: 'Memory training and miscellaneous, MAKE CUSTOM COURSES/UNITS HERE',
   icon: Sparkles,
   color: 'other',
   path: '/category/other'
