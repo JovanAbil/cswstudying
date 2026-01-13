@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { DebugModeToggle } from "@/components/DebugModeToggle";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import Index from "./pages/Index";
 import UnitDetail from "./pages/UnitDetail";
 import Quiz from "./pages/Quiz";
@@ -36,6 +37,7 @@ const App = () => {
         <AdPlaceholder position="sidebar-right" />
         <Toaster />
         <Sonner />
+        <CookieConsentBanner />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
