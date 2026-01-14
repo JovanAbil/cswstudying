@@ -55,7 +55,7 @@ const controls = [{
 }];
 const Index = () => {
   const navigate = useNavigate();
-  return <div className="min-h-screen bg-background flex flex-col">
+  return <div className="min-h-screen bg-background flex flex-col relative z-[10]">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
