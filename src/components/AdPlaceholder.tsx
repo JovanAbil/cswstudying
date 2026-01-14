@@ -18,9 +18,9 @@ export const AdPlaceholder = ({ position, className = '' }: AdPlaceholderProps) 
   }
 
   const positionStyles = {
-    // Low z-index so ads appear behind page content
-    'sidebar-left': 'fixed left-2 top-1/2 -translate-y-1/2 w-[160px] h-[600px] z-[6]',
-    'sidebar-right': 'fixed right-2 top-1/2 -translate-y-1/2 w-[160px] h-[600px] z-[6]',
+    // z-index set to -1 so ads don't block content interaction
+    'sidebar-left': 'fixed left-2 top-1/2 -translate-y-1/2 w-[160px] h-[600px] z-[-1]',
+    'sidebar-right': 'fixed right-2 top-1/2 -translate-y-1/2 w-[160px] h-[600px] z-[-1]',
     'bottom': 'w-full h-[90px]',
     'inline': 'w-full h-[250px]',
   };
