@@ -452,7 +452,7 @@ const OtherCategory = () => {
                   <li>Use the Topic Editor to add questions (MCQ or FRQ)</li>
                   <li>Enable <span className="font-medium text-foreground">"Math Mode"</span> for LaTeX rendering</li>
                   <li>Upload images for questions using the image upload button</li>
-                  <li>Make sure if you want this on the website to add the teacher's name and email <p className="text-sm text-muted-foreground truncate">@abilash.jovan@charterschool.org</p></li>
+                  <li>Make sure if you want this on the website to add the teacher's name in the Unit Name and email @abilash.jovan@charterschool.org with the .zip to add it!</li>
                 </ol>
               </div>
 
