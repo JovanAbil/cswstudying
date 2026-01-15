@@ -96,7 +96,7 @@ const UnitDetail = () => {
     'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
     'world-history-unit11': worldHistoryUnit11Questions,
     'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions,
-    'practice-unit1': unit1Questions, 'practice-gases': gasQuestions, 'practice-log': logQuestions,
+    'practice-unit1': unit1Questions,
   }), []);
 
   const questions = questionMap[resourceKey] || [];
