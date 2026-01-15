@@ -67,8 +67,6 @@ import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
 //Practice
 import { unit1Questions } from '@/data/practice/unit1-questions';
-import { gasQuestions } from '@/data/practice/gas-questions';
-import { logQuestions } from '@/data/practice/log-questions';
 //Stock
 import { basicsQuestions } from '@/data/stock/basics-questions';
 //Others
@@ -131,8 +129,7 @@ const Quiz = () => {
     'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
     'world-history-unit11': worldHistoryUnit11Questions, 
     'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions,
-    'practice-unit1': unit1Questions, 'practice-gases': gasQuestions, 'practice-log': logQuestions,
-    'stock-basics': basicsQuestions,
+    'practice-unit1': unit1Questions, 'stock-basics': basicsQuestions,
   }), []);
 
   useEffect(() => {
