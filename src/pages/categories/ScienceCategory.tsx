@@ -42,7 +42,7 @@ const ScienceCategory = () => {
   ];
 
   const practiceUnits = [
-    { id: 'gases', name: 'Gases Practice', subject: 'practice' },
+
   ];
 
   const memoryUnits = [
