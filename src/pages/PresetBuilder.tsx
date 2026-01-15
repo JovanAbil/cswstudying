@@ -76,6 +76,8 @@ import { generalQuestions } from '@/data/memory/general-questions';
 import { general2Questions } from '@/data/memory/general2-questions';
 import { general3Questions } from '@/data/memory/general3-questions';
 import { unit1Questions } from '@/data/practice/unit1-questions';
+import { gasQuestions } from '@/data/practice/gas-questions';
+import { logQuestions } from '@/data/practice/log-questions';
 import { basicsQuestions } from '@/data/stock/basics-questions';
 import { Question } from '@/types/quiz';
 
@@ -166,7 +168,8 @@ const PresetBuilder = () => {
     'world-history-unit9': worldHistoryUnit9Questions, 'world-history-unit10': worldHistoryUnit10Questions,
     'world-history-unit11': worldHistoryUnit11Questions,
     'memory-general': generalQuestions, 'memory-general2': general2Questions, 'memory-general3': general3Questions,
-    'practice-unit1': unit1Questions, 'stock-basics': basicsQuestions,
+    'practice-unit1': unit1Questions, 'practice-gases': gasQuestions, 'practice-log': logQuestions,
+    'stock-basics': basicsQuestions,
   }), []);
 
   const questions = isCustomTopic ? customQuestions : (questionMap[`${subject}-${unitId}`] || []);

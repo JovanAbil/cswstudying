@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Link } from 'react-router-dom';
 
 const TERMS_ACCEPTED_KEY = 'terms-accepted';
 
@@ -21,7 +22,6 @@ interface TermsOfServiceModalProps {
 
 const TermsOfServiceModal = ({ externalOpen = false, onExternalClose }: TermsOfServiceModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showPrivacySummary, setShowPrivacySummary] = useState(false);
 
   useEffect(() => {
     // Only auto-open on first visit if not being controlled externally
@@ -50,66 +50,10 @@ const TermsOfServiceModal = ({ externalOpen = false, onExternalClose }: TermsOfS
 
   const handleClose = () => {
     setIsOpen(false);
-    setShowPrivacySummary(false);
     if (onExternalClose) {
       onExternalClose();
     }
   };
-
-  const handlePrivacySummaryAccept = () => {
-    setShowPrivacySummary(false);
-  };
-
-  // Privacy Summary Modal
-  if (showPrivacySummary) {
-    return (
-      <Dialog open={true} onOpenChange={() => setShowPrivacySummary(false)}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="text-2xl">Privacy Policy Summary</DialogTitle>
-            <DialogDescription>
-              A quick overview of how we handle your data
-            </DialogDescription>
-          </DialogHeader>
-          
-          <ScrollArea className="max-h-[60vh] pr-4">
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                <span className="text-lg">🔒</span>
-                <p className="text-muted-foreground"><strong>Data Storage:</strong> Your quiz progress and preferences are stored locally on your device using browser storage.</p>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                <span className="text-lg">🍪</span>
-                <p className="text-muted-foreground"><strong>Cookies:</strong> We use cookies to remember your preferences and improve your experience.</p>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                <span className="text-lg">📊</span>
-                <p className="text-muted-foreground"><strong>Analytics:</strong> We may collect anonymous usage data to help improve the website.</p>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                <span className="text-lg">📢</span>
-                <p className="text-muted-foreground"><strong>Third-Party Ads:</strong> This site may display ads from third-party networks that have their own privacy practices.</p>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-accent/10 border border-accent/20">
-                <span className="text-lg">📄</span>
-                <p className="text-muted-foreground">For the complete privacy policy, visit the Privacy Policy page from the footer after accepting the terms.</p>
-              </div>
-            </div>
-          </ScrollArea>
-
-          <DialogFooter>
-            <Button onClick={handlePrivacySummaryAccept} className="w-full sm:w-auto">
-              Got it
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    );
-  }
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
@@ -167,14 +111,11 @@ const TermsOfServiceModal = ({ externalOpen = false, onExternalClose }: TermsOfS
 
         <DialogFooter className="flex-col sm:flex-row gap-2">
           {!externalOpen && (
-            <button 
-              onClick={() => setShowPrivacySummary(true)} 
-              className="text-sm text-primary hover:underline bg-transparent border-none cursor-pointer"
-            >
+            <Link to="/privacy" className="text-sm text-primary hover:underline">
               View Privacy Policy
-            </button>
+            </Link>
           )}
-          <Button onClick={externalOpen ? handleClose : handleAccept} className="w-full sm:w-auto">
+          <Button onClick={handleAccept} className="w-full sm:w-auto">
             {externalOpen ? 'Close' : 'I Accept'}
           </Button>
         </DialogFooter>
