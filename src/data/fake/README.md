@@ -2,12 +2,19 @@
 
 This folder contains fake/practice questions that are shown when real test data is locked.
 
-## How it works
+## How It Works
 
-1. Each subject has a subfolder (e.g., `chemistry/`, `biology/`)
-2. Inside each subfolder, create files matching the real data files (e.g., `atomic-questions.ts`)
-3. Export the same variable names as the real files
-4. Configure the test schedule in `src/data/test-schedule-config.ts`
+The fake data system prevents students from seeing actual test questions before the test date. When a topic is "locked":
+- Fake questions are shown instead of real ones
+- This applies to ALL features: Quiz, View All Questions, Build Custom Practice, etc.
+- Visual indicators show "(Practice)" or "Practice Mode Active"
+
+## Architecture
+
+All question loading goes through `src/utils/questionLoader.ts`, which:
+1. Checks the test schedule in `src/data/test-schedule-config.ts`
+2. Determines if the current date allows real data
+3. Returns fake data if locked, real data if unlocked
 
 ## File Structure
 
@@ -33,7 +40,8 @@ src/data/fake/
 
 1. Copy the structure from the real file
 2. Change the questions to be similar but different (practice questions)
-3. Keep the same variable name and export
+3. Keep the **same variable name** and export
+4. Prefix IDs with `fake-` to distinguish them
 
 ### Example: `src/data/fake/chemistry/atomic-questions.ts`
 
@@ -59,25 +67,63 @@ export const atomicQuestions: Question[] = [
 ];
 ```
 
-## Configuring Test Dates
+## Adding a New Protected Test
+
+### Step 1: Create the Fake Data File
+
+Create `src/data/fake/[subject]/[topic]-questions.ts` with practice questions.
+
+### Step 2: Import in questionLoader.ts
+
+Open `src/utils/questionLoader.ts`:
+
+```typescript
+// Add import with alias
+import { atomicQuestions as fakeAtomicQuestions } from '@/data/fake/chemistry/atomic-questions';
+
+// Add to fakeDataMap
+const fakeDataMap: Record<string, Question[]> = {
+  'chemistry-atomic': fakeAtomicQuestions,
+  // Add more...
+};
+```
+
+### Step 3: Configure Test Date
 
 Edit `src/data/test-schedule-config.ts`:
 
 ```typescript
 export const testScheduleConfig: Record<string, TestSchedule> = {
-  'chemistry-atomic': { testDate: '2025-01-20', hasFakeData: true },
+  'chemistry-atomic': { testDate: '2026-01-25', hasFakeData: true },
   // Add more entries...
 };
 ```
 
 ## Timeline Example
 
-For a test with date `2025-01-20`:
+For a test with date `2026-01-25`:
 
 | Period | Data Shown | Reason |
 |--------|-----------|--------|
-| Before Jan 20, 2025 | FAKE | Test hasn't happened yet |
-| Jan 20, 2025 - Aug 31, 2026 | REAL | Test completed, study period |
-| Sep 1, 2026 - Jan 26, 2027 | FAKE | Locked for new semester |
-| Jan 27, 2027 - Aug 31, 2027 | REAL | Next cycle begins (test date + 7 days) |
+| Before Jan 25, 2026 | FAKE | Test hasn't happened yet |
+| Jan 25, 2026 - Aug 31, 2027 | REAL | Test completed, study period |
+| Sep 1, 2027 - Feb 1, 2028 | FAKE | Locked for new semester |
+| Feb 1, 2028 - Aug 31, 2028 | REAL | Next cycle begins (test date + 7 days) |
 | ... | ... | Pattern repeats yearly |
+
+## Visual Indicators When Locked
+
+- **UnitDetail.tsx**: Topic shows "(Practice)" suffix
+- **ViewAllQuestions.tsx**: Orange banner "📚 Practice Mode Active"
+- **PresetBuilder.tsx**: Orange banner with unlock date
+
+## Testing
+
+1. Change the test date in `test-schedule-config.ts` to a future date
+2. Visit the topic's quiz, view all questions, and build custom practice
+3. Verify all show fake data with practice indicators
+4. Check console for `[Test Schedule] Using practice data for...` messages
+
+## Full Documentation
+
+See [10-FAKE-DATA-SYSTEM.md](/src/management/10-FAKE-DATA-SYSTEM.md) for complete details.

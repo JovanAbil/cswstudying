@@ -1,8 +1,8 @@
-# Practice Hub - Technical Handoff Documentation
+# CSW Studying - Technical Handoff Documentation
 
 ## Overview
 
-This folder contains comprehensive documentation for maintaining and extending the Practice Hub application without Lovable.
+This folder contains comprehensive documentation for maintaining and extending the CSW Studying application.
 
 ---
 
@@ -17,6 +17,9 @@ This folder contains comprehensive documentation for maintaining and extending t
 | [05-PERFORMANCE-ASSUMPTIONS.md](./05-PERFORMANCE-ASSUMPTIONS.md) | Expected data sizes, caching, and limits |
 | [06-DEPENDENCIES.md](./06-DEPENDENCIES.md) | All external dependencies and their purposes |
 | [07-LOVABLE-REMOVAL-IMPACT.md](./07-LOVABLE-REMOVAL-IMPACT.md) | What changes when you leave Lovable |
+| [08-GITHUB-HOSTING-GUIDE.md](./08-GITHUB-HOSTING-GUIDE.md) | How to host on GitHub Pages |
+| [09-TROUBLESHOOTING-ERRORS.md](./09-TROUBLESHOOTING-ERRORS.md) | Common errors and how to fix them |
+| [10-FAKE-DATA-SYSTEM.md](./10-FAKE-DATA-SYSTEM.md) | Date-based test protection system |
 
 ---
 
@@ -28,21 +31,27 @@ This folder contains comprehensive documentation for maintaining and extending t
 src/
 ├── components/     # Reusable UI components
 ├── data/          # Question banks and configuration
+│   ├── fake/      # Fake questions for test protection
+│   └── test-schedule-config.ts  # Test date settings
 ├── hooks/         # React hooks for state management
 ├── pages/         # Page components (routes)
+│   └── categories/  # Category pages (Math, Science, etc.)
 ├── types/         # TypeScript type definitions
-└── utils/         # Utility functions
+└── utils/
+    └── questionLoader.ts  # Centralized question loading
 ```
 
 ### 2. Key Files
 
 | Task | Primary File(s) |
 |------|----------------|
-| Add questions | `src/data/{subject}/{topic}-questions.ts` |
+| Add questions | `src/data/{subject}/{topic}-questions.ts` + `questionLoader.ts` |
 | Configure routing | `src/App.tsx` |
 | Quiz logic | `src/pages/Quiz.tsx` |
 | State persistence | `src/hooks/use*.ts` |
 | Types | `src/types/quiz.ts` |
+| Question loading | `src/utils/questionLoader.ts` |
+| Test protection | `src/data/test-schedule-config.ts` |
 
 ### 3. Most Common Tasks
 
@@ -52,11 +61,14 @@ src/
 **Create a new topic/unit:**
 → See [02-CONTENT-AUTHORING-GUIDE.md](./02-CONTENT-AUTHORING-GUIDE.md)
 
+**Protect a test with fake data:**
+→ See [10-FAKE-DATA-SYSTEM.md](./10-FAKE-DATA-SYSTEM.md)
+
 **Debug data issues:**
 → See [03-STATE-AND-STORAGE.md](./03-STATE-AND-STORAGE.md)
 
-**Prepare for Lovable removal:**
-→ See [07-LOVABLE-REMOVAL-IMPACT.md](./07-LOVABLE-REMOVAL-IMPACT.md)
+**Fix common errors:**
+→ See [09-TROUBLESHOOTING-ERRORS.md](./09-TROUBLESHOOTING-ERRORS.md)
 
 ---
 
@@ -109,9 +121,17 @@ This application is entirely client-side:
 
 ---
 
-## Contact
+## Important: Centralized Question Loading
 
-For questions about the original implementation, refer to the in-code comments or the git history.
+All built-in questions are loaded through `src/utils/questionLoader.ts`. This file:
+- Imports all real and fake question data
+- Applies date-based switching for test protection
+- Provides consistent behavior across all pages
+
+**Never import questions directly from data files!** Always use:
+```typescript
+import { getQuestions, getQuestionMap } from '@/utils/questionLoader';
+```
 
 ---
 
