@@ -598,6 +598,7 @@ const OtherCategory = () => {
                   <SelectItem value="English">English</SelectItem>
                   <SelectItem value="Science">Science</SelectItem>
                   <SelectItem value="Social Studies">Social Studies</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>
