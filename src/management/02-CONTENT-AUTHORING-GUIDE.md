@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide provides step-by-step instructions for adding new courses, units, and questions to the Practice Hub application.
+This guide provides step-by-step instructions for adding new courses, units, and questions to the CSW Studying application.
 
 ---
 
@@ -16,20 +16,27 @@ src/
 │   │   ├── rational-questions.ts
 │   │   └── ...
 │   ├── biology/             # Biology questions
-│   ├── chemistry/           # Chemistry (Massarotti) questions
-│   ├── chemistryDarone/     # Chemistry (Darone) questions
+│   ├── chemistry/           # Chemistry questions
 │   ├── worldhistory/        # World History questions
 │   ├── memory/              # Memory training questions
 │   ├── practice/            # Practice/English questions
 │   ├── stock/               # Personal/Stock questions
+│   ├── fake/                # Fake data for test protection
+│   │   ├── chemistry/
+│   │   ├── biology/
+│   │   └── ...
 │   ├── assignments/         # Homework assignments
-│   │   ├── unit-assignments.ts
-│   │   └── assignment-questions.ts
+│   │   └── unit-assignments.ts
+│   ├── test-schedule-config.ts  # Test date configuration
 │   └── study-resources.ts   # External study links
+├── utils/
+│   └── questionLoader.ts    # Centralized question loading
 ├── pages/
-│   ├── Quiz.tsx             # Main quiz component (add imports here)
-│   ├── UnitDetail.tsx       # Unit detail page (add imports here)
-│   ├── ViewAllQuestions.tsx # View all questions (add imports here)
+│   ├── Quiz.tsx             # Main quiz component
+│   ├── UnitDetail.tsx       # Unit detail page
+│   ├── ViewAllQuestions.tsx # View all questions
+│   ├── PresetBuilder.tsx    # Build custom practice
+│   ├── CourseChallenge.tsx  # Course challenge page
 │   └── categories/          # Category pages (Math, Science, etc.)
 └── public/
     └── images/              # Question images
@@ -58,70 +65,36 @@ export const myTopicQuestions: Question[] = [
     type: "multiple-choice",
     question: "Your question text here",
     options: [
-      { label: "A", value: "A", text: "Option A" },
-      { label: "B", value: "B", text: "Option B" },
-      { label: "C", value: "C", text: "Option C" },
-      { label: "D", value: "D", text: "Option D" }
+      { label: "A", value: "a", text: "Option A" },
+      { label: "B", value: "b", text: "Option B" },
+      { label: "C", value: "c", text: "Option C" },
+      { label: "D", value: "d", text: "Option D" }
     ],
-    correctAnswer: "B",
+    correctAnswer: "a",
     explanation: "Optional explanation"
   },
   // Add more questions...
 ];
 ```
 
-### Step 2: Add to Quiz.tsx
+### Step 2: Add to questionLoader.ts
 
-**File:** `src/pages/Quiz.tsx`
+**File:** `src/utils/questionLoader.ts`
 
-1. **Add import at the top (around line 17-72):**
+1. **Add the import** in the "REAL DATA IMPORTS" section:
 ```typescript
 import { myTopicQuestions } from '@/data/{subject}/{topic}-questions';
 ```
 
-2. **Add to questionMap (around line 108-133):**
+2. **Add to the realDataMap**:
 ```typescript
-const questionMap: Record<string, Question[]> = useMemo(() => ({
+const realDataMap: Record<string, Question[]> = {
   // ... existing entries ...
   '{subject}-{topicId}': myTopicQuestions,
-}), []);
+};
 ```
 
-### Step 3: Add to UnitDetail.tsx
-
-**File:** `src/pages/UnitDetail.tsx`
-
-1. **Add import (around line 17-65):**
-```typescript
-import { myTopicQuestions } from '@/data/{subject}/{topic}-questions';
-```
-
-2. **Add to questionMap (around line 75-100):**
-```typescript
-const questionMap: Record<string, Question[]> = useMemo(() => ({
-  // ... existing entries ...
-  '{subject}-{topicId}': myTopicQuestions,
-}), []);
-```
-
-### Step 4: Add to ViewAllQuestions.tsx
-
-**File:** `src/pages/ViewAllQuestions.tsx`
-
-1. **Add import (around line 14-61):**
-```typescript
-import { myTopicQuestions } from '@/data/{subject}/{topic}-questions';
-```
-
-2. **Add to questionMap (around line 82-107):**
-```typescript
-const questionMap: Record<string, Question[]> = useMemo(() => ({
-  // ... existing entries ...
-  '{subject}-{topicId}': myTopicQuestions,
-}), []);
-```
-
-### Step 5: Add Unit to Category Page
+### Step 3: Add Unit to Category Page
 
 **File:** `src/pages/categories/{Category}Category.tsx`
 
@@ -140,7 +113,21 @@ const subjects = [
 ];
 ```
 
-### Step 6: Add to Course Challenge (CourseChallenge.tsx)
+### Step 4: Add to UnitDetail.tsx
+
+**File:** `src/pages/UnitDetail.tsx`
+
+Find the `getUnits()` function and add your unit to the appropriate subject case:
+
+```typescript
+case 'subject-id':
+  return [
+    { id: 'existing-unit', name: 'Unit 1 - Existing' },
+    { id: 'mytopic', name: 'Unit 2 - My Topic' },  // ADD THIS
+  ];
+```
+
+### Step 5: Add to Course Challenge (CourseChallenge.tsx)
 
 **File:** `src/pages/CourseChallenge.tsx`
 
@@ -168,11 +155,28 @@ mkdir src/data/newsubject
 
 Create `.ts` files for each unit in the new subject folder.
 
-### Step 3: Create/Edit Category Page
+### Step 3: Add to questionLoader.ts
+
+Import all question files and add them to `realDataMap`:
+
+```typescript
+// Import
+import { topic1Questions } from '@/data/newsubject/topic1-questions';
+import { topic2Questions } from '@/data/newsubject/topic2-questions';
+
+// Add to realDataMap
+const realDataMap: Record<string, Question[]> = {
+  // ... existing entries ...
+  'newsubject-topic1': topic1Questions,
+  'newsubject-topic2': topic2Questions,
+};
+```
+
+### Step 4: Create/Edit Category Page
 
 Either create a new category page or add to an existing one in `src/pages/categories/`.
 
-### Step 4: Add Route (App.tsx)
+### Step 5: Add Route (App.tsx)
 
 **File:** `src/App.tsx`
 
@@ -181,7 +185,7 @@ If creating a new category:
 <Route path="/category/newcategory" element={<NewCategory />} />
 ```
 
-### Step 5: Add to Index Page (if new category)
+### Step 6: Add to Index Page (if new category)
 
 **File:** `src/pages/Index.tsx`
 
@@ -217,7 +221,7 @@ Place images in: `public/images/{subject}/`
   question: "Based on the diagram shown...",
   image: "/images/mysubject/mytopic1.png",  // Path relative to public folder
   options: [...],
-  correctAnswer: "A"
+  correctAnswer: "a"
 }
 ```
 
@@ -255,6 +259,18 @@ export const courseChallengeResources: Record<string, StudyResource[]> = {
 
 ---
 
+## Protecting Tests with Fake Data
+
+If you want to protect a test from being viewed before the test date, see [10-FAKE-DATA-SYSTEM.md](./10-FAKE-DATA-SYSTEM.md).
+
+Quick summary:
+1. Create fake data file at `src/data/fake/[subject]/[topic]-questions.ts`
+2. Import in `questionLoader.ts` with `as fake[Name]` alias
+3. Add to `fakeDataMap` in `questionLoader.ts`
+4. Add entry to `testScheduleConfig` in `test-schedule-config.ts`
+
+---
+
 ## Naming Conventions
 
 ### File Names
@@ -282,11 +298,15 @@ export const courseChallengeResources: Record<string, StudyResource[]> = {
 
 ## Common Mistakes and How to Avoid Them
 
-### ❌ Mistake: Forgetting to add import in Quiz.tsx
+### ❌ Mistake: Forgetting to add to questionLoader.ts
 **Result:** Questions don't load, empty quiz
-**Fix:** Always add imports to Quiz.tsx, UnitDetail.tsx, and ViewAllQuestions.tsx
+**Fix:** Always add imports to `questionLoader.ts` in the realDataMap
 
-### ❌ Mistake: Mismatched keys in questionMap
+### ❌ Mistake: Importing questions directly instead of using questionLoader
+**Result:** Fake data system doesn't work, bypasses test protection
+**Fix:** Use `getQuestions()` or `getQuestionMap()` from questionLoader.ts
+
+### ❌ Mistake: Mismatched keys in realDataMap
 **Result:** "No questions found" error
 **Fix:** Ensure key format is `{subject}-{unitId}` exactly as used in routes
 
@@ -315,16 +335,14 @@ export const courseChallengeResources: Record<string, StudyResource[]> = {
 ## Checklist for Adding New Content
 
 - [ ] Create question file with proper format
-- [ ] Add import to `Quiz.tsx`
-- [ ] Add to questionMap in `Quiz.tsx`
-- [ ] Add import to `UnitDetail.tsx`
-- [ ] Add to questionMap in `UnitDetail.tsx`
-- [ ] Add import to `ViewAllQuestions.tsx`
-- [ ] Add to questionMap in `ViewAllQuestions.tsx`
+- [ ] Add import to `questionLoader.ts`
+- [ ] Add to `realDataMap` in `questionLoader.ts`
 - [ ] Add unit to category page (`{Category}Category.tsx`)
-- [ ] Add unit to CourseChallenge.tsx (if applicable)
+- [ ] Add unit to `UnitDetail.tsx` `getUnits()` function
+- [ ] Add unit to `CourseChallenge.tsx` `getUnits()` function (if applicable)
 - [ ] Add images to `public/images/{subject}/` (if any)
 - [ ] Add study resources (optional)
 - [ ] Test the quiz works
 - [ ] Test "View All Questions" works
+- [ ] Test "Build Custom Practice" works
 - [ ] Test Course Challenge includes new questions

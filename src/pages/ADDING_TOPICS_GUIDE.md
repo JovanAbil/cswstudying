@@ -9,7 +9,8 @@ This guide explains how to add new topics, units, and subjects to the study app.
 2. [Adding a Topic to an Existing Unit](#adding-a-topic-to-an-existing-unit)
 3. [Adding a New Unit to an Existing Subject](#adding-a-new-unit-to-an-existing-subject)
 4. [Adding a Completely New Subject](#adding-a-completely-new-subject)
-5. [Question Format Reference](#question-format-reference)
+5. [Protecting Tests with Fake Data](#protecting-tests-with-fake-data)
+6. [Question Format Reference](#question-format-reference)
 
 ---
 
@@ -21,10 +22,18 @@ src/
 │   ├── [subject]/
 │   │   ├── [topic]-questions.ts    # Question files
 │   │   └── info.md                 # Subject info
+│   ├── fake/                       # Fake data for test protection
+│   │   └── [subject]/
+│   │       └── [topic]-questions.ts
+│   ├── test-schedule-config.ts     # Test date configuration
 │   └── FORMATTING_GUIDE.md         # Question formatting reference
+├── utils/
+│   └── questionLoader.ts           # Centralized question loading (IMPORTANT!)
 ├── pages/
 │   ├── Quiz.tsx                    # Main quiz component
 │   ├── UnitDetail.tsx              # Unit detail page
+│   ├── ViewAllQuestions.tsx        # View all questions
+│   ├── PresetBuilder.tsx           # Build custom practice
 │   ├── CourseChallenge.tsx         # Course challenge page
 │   └── categories/
 │       ├── MathCategory.tsx
@@ -64,16 +73,16 @@ export const [topicName]Questions: Question[] = [
 ];
 ```
 
-### Step 2: Import in Quiz.tsx
+### Step 2: Add to questionLoader.ts
 
-Open `src/pages/Quiz.tsx` and:
+Open `src/utils/questionLoader.ts` and:
 
-1. Add the import at the top (around line 16-75):
+1. **Add the import** in the "REAL DATA IMPORTS" section:
 ```typescript
 import { [topicName]Questions } from '@/data/[subject]/[topic]-questions';
 ```
 
-2. Add to the `questionMap` object (around line 106-132):
+2. **Add to the realDataMap**:
 ```typescript
 '[subject]-[topic]': [topicName]Questions,
 ```
@@ -90,7 +99,11 @@ Open `src/pages/UnitDetail.tsx` and find the `getUnits()` function. Add your top
 
 Create all necessary question files in `src/data/[subject]/`.
 
-### Step 2: Update UnitDetail.tsx
+### Step 2: Add to questionLoader.ts
+
+Import all question files and add them to `realDataMap`.
+
+### Step 3: Update UnitDetail.tsx
 
 In `src/pages/UnitDetail.tsx`, find the `getUnits()` function and add your new unit:
 
@@ -102,7 +115,7 @@ case '[subject]':
   ];
 ```
 
-### Step 3: Update CourseChallenge.tsx
+### Step 4: Update CourseChallenge.tsx
 
 In `src/pages/CourseChallenge.tsx`, find the `getUnits()` function and add the same unit:
 
@@ -114,10 +127,6 @@ case '[subject]':
   ];
 ```
 
-### Step 4: Update Quiz.tsx
-
-Add imports and questionMap entries as described above.
-
 ---
 
 ## Adding a Completely New Subject
@@ -128,7 +137,19 @@ Add imports and questionMap entries as described above.
 2. Create an `info.md` file with subject description
 3. Create topic question files
 
-### Step 2: Update Category Page
+### Step 2: Add to questionLoader.ts
+
+Import all question files and add them to `realDataMap`:
+
+```typescript
+// Import
+import { topic1Questions } from '@/data/newsubject/topic1-questions';
+
+// Add to realDataMap
+'newsubject-topic1': topic1Questions,
+```
+
+### Step 3: Update Category Page
 
 Choose the appropriate category page in `src/pages/categories/`:
 - `MathCategory.tsx` - for math subjects
@@ -148,7 +169,7 @@ Add the new subject card:
 }
 ```
 
-### Step 3: Update UnitDetail.tsx
+### Step 4: Update UnitDetail.tsx
 
 Add a new case in the `getUnits()` function:
 
@@ -160,15 +181,58 @@ case '[newsubject]':
   ];
 ```
 
-### Step 4: Update CourseChallenge.tsx
+### Step 5: Update CourseChallenge.tsx
 
 Add a new case in the `getUnits()` function similar to above.
 
-### Step 5: Update Quiz.tsx
+---
 
-1. Import all question files
-2. Add entries to `questionMap`
-3. Update the back navigation logic if needed
+## Protecting Tests with Fake Data
+
+To prevent students from seeing test questions before the test date:
+
+### Step 1: Create Fake Data File
+
+Create `src/data/fake/[subject]/[topic]-questions.ts` with practice questions:
+
+```typescript
+import { Question } from '@/types/quiz';
+
+export const [topicName]Questions: Question[] = [
+  {
+    id: 'fake-[topic]-1',
+    type: 'multiple-choice',
+    question: 'Practice: Your practice question here?',
+    options: [...],
+    correctAnswer: 'a',
+    explanation: 'Practice content.',
+  },
+];
+```
+
+### Step 2: Add to questionLoader.ts
+
+Import and add to `fakeDataMap`:
+
+```typescript
+import { [topicName]Questions as fake[TopicName]Questions } from '@/data/fake/[subject]/[topic]-questions';
+
+const fakeDataMap: Record<string, Question[]> = {
+  '[subject]-[topic]': fake[TopicName]Questions,
+};
+```
+
+### Step 3: Configure Test Date
+
+In `src/data/test-schedule-config.ts`:
+
+```typescript
+export const testScheduleConfig: Record<string, TestSchedule> = {
+  '[subject]-[topic]': { testDate: '2026-01-25', hasFakeData: true },
+};
+```
+
+See [10-FAKE-DATA-SYSTEM.md](/src/management/10-FAKE-DATA-SYSTEM.md) for full details.
 
 ---
 
@@ -234,11 +298,13 @@ Use `$$...$$` for display math or `$...$` for inline math:
 {
   id: 'math-1',
   type: 'free-response',
-  question: 'Solve: $$\\\\\\\\frac{x^2 + 1}{2}$$',
+  question: 'Solve: $$\\frac{x^2 + 1}{2}$$',
   correctAnswer: '$x = 5$',
   explanation: 'The solution is $$x = 5$$ because...',
 }
 ```
+
+See [FORMATTING_GUIDE.md](/src/data/FORMATTING_GUIDE.md) for complete LaTeX reference.
 
 ---
 
@@ -246,9 +312,10 @@ Use `$$...$$` for display math or `$...$` for inline math:
 
 | Action | Files to Edit |
 |--------|---------------|
-| Add topic to existing unit | 1. Create `[topic]-questions.ts`<br>2. `Quiz.tsx` (import + questionMap) |
-| Add new unit | 1. Create question files<br>2. `UnitDetail.tsx`<br>3. `CourseChallenge.tsx`<br>4. `Quiz.tsx` |
-| Add new subject | 1. Create `src/data/[subject]/` folder<br>2. Category page<br>3. `UnitDetail.tsx`<br>4. `CourseChallenge.tsx`<br>5. `Quiz.tsx` |
+| Add topic to existing unit | 1. Create `[topic]-questions.ts`<br>2. `questionLoader.ts` (import + realDataMap) |
+| Add new unit | 1. Create question files<br>2. `questionLoader.ts`<br>3. `UnitDetail.tsx`<br>4. `CourseChallenge.tsx` |
+| Add new subject | 1. Create `src/data/[subject]/` folder<br>2. `questionLoader.ts`<br>3. Category page<br>4. `UnitDetail.tsx`<br>5. `CourseChallenge.tsx` |
+| Protect test | 1. Create `src/data/fake/[subject]/[topic]-questions.ts`<br>2. `questionLoader.ts` (import + fakeDataMap)<br>3. `test-schedule-config.ts` |
 
 ---
 
@@ -256,5 +323,6 @@ Use `$$...$$` for display math or `$...$` for inline math:
 
 1. **Question IDs**: Use a consistent format like `[topic]-[number]` (e.g., `biochem-1`, `biochem-2`)
 2. **Images**: Store in `public/images/[subject]/` folder
-3. **LaTeX**: Use KaTeX syntax for math expressions
-4. **Testing**: After adding questions, test in cram mode to verify all questions load correctly
+3. **LaTeX**: Use KaTeX syntax for math expressions (see FORMATTING_GUIDE.md)
+4. **Testing**: After adding questions, test in cram mode, view all questions, and build custom practice to verify all features work
+5. **Always use questionLoader**: Never import questions directly from data files - use `getQuestions()` or `getQuestionMap()`

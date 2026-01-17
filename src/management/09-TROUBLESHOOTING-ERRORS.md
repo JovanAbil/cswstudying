@@ -1,6 +1,6 @@
 # Troubleshooting Guide - Fixing Common Errors
 
-This guide explains common errors you might see and how to fix them. Written so anyone can follow along!
+This guide explains common errors you might see in the CSW Studying app and how to fix them. Written so anyone can follow along!
 
 ---
 
@@ -14,8 +14,9 @@ This guide explains common errors you might see and how to fix them. Written so 
 6. [TypeScript Errors](#typescript-errors)
 7. [Styling Errors](#styling-errors)
 8. [Data/Question Errors](#dataquestion-errors)
-9. [Git Errors](#git-errors)
-10. [Common Fixes for Everything](#common-fixes-for-everything)
+9. [Question Loader Errors](#question-loader-errors)
+10. [Git Errors](#git-errors)
+11. [Common Fixes for Everything](#common-fixes-for-everything)
 
 ---
 
@@ -497,6 +498,58 @@ greet("John");  // Correct
 2. Go to Application tab → Local Storage
 3. Look for `quiz-wrong-answers`
 4. If it's corrupted, delete it and refresh
+
+---
+
+## Question Loader Errors
+
+### Problem: Fake data not showing when it should
+
+**Check these things**:
+
+1. **Test date is in the future** in `src/data/test-schedule-config.ts`:
+   ```typescript
+   'chemistry-atomic': { testDate: '2026-01-25', hasFakeData: true },
+   ```
+
+2. **Fake data file exists** at `src/data/fake/[subject]/[topic]-questions.ts`
+
+3. **Fake data is imported in questionLoader.ts**:
+   ```typescript
+   import { atomicQuestions as fakeAtomicQuestions } from '@/data/fake/chemistry/atomic-questions';
+   ```
+
+4. **Fake data is in fakeDataMap**:
+   ```typescript
+   const fakeDataMap = {
+     'chemistry-atomic': fakeAtomicQuestions,
+   };
+   ```
+
+5. **Check console** for `[Test Schedule] Using practice data for...` messages
+
+---
+
+### Problem: Real data showing in some places but fake in others
+
+**Cause**: Some pages are importing questions directly instead of using questionLoader.
+
+**Fix**: Ensure ALL pages use `getQuestionMap()` or `getQuestions()` from `src/utils/questionLoader.ts`:
+```typescript
+import { getQuestionMap, getTopicLockInfo } from '@/utils/questionLoader';
+
+const questionMap = useMemo(() => getQuestionMap(), []);
+```
+
+---
+
+### Problem: Questions not found after adding new topic
+
+**Check these things**:
+
+1. **Import added to questionLoader.ts** in the REAL DATA IMPORTS section
+2. **Entry added to realDataMap** with correct key format: `'subject-topic'`
+3. **Variable name matches** the export from the questions file
 
 ---
 

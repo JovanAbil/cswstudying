@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Practice Hub application uses browser localStorage for all persistent data. No backend database is used. This document describes how state is managed and when data is read/written.
+The CSW Studying application uses browser localStorage for all persistent data. No backend database is used. This document describes how state is managed and when data is read/written.
 
 ---
 
@@ -49,7 +49,7 @@ The Practice Hub application uses browser localStorage for all persistent data. 
 - If no data exists or parsing fails, defaults to empty object `{}`
 
 **When Data is Written:**
-- **On quiz completion** (`Results.tsx`, line ~32-41): Wrong answers are saved when quiz results are displayed
+- **On quiz completion** (`Results.tsx`): Wrong answers are saved when quiz results are displayed
 - Replaces previous wrong answers for that unit (doesn't append)
 
 **Read Triggers:**
@@ -151,6 +151,36 @@ The Practice Hub application uses browser localStorage for all persistent data. 
 
 ---
 
+## Centralized Question Loading
+
+**File:** `src/utils/questionLoader.ts`
+
+All built-in questions are now loaded through a centralized utility that applies date-based fake/real data switching. This ensures consistent behavior across all pages.
+
+**Key Functions:**
+```typescript
+// Get questions for a specific topic
+getQuestions(questionKey: string): Question[]
+
+// Get all questions as a map
+getQuestionMap(): Record<string, Question[]>
+
+// Check if a topic is locked
+isTopicLocked(questionKey: string): boolean
+
+// Get lock info with unlock date
+getTopicLockInfo(questionKey: string): { isLocked: boolean; unlockDate: Date | null; hasFakeData: boolean }
+```
+
+**Components Using This:**
+- `Quiz.tsx`
+- `ViewAllQuestions.tsx`
+- `UnitDetail.tsx`
+- `PresetBuilder.tsx`
+- `CourseChallengePresetBuilder.tsx`
+
+---
+
 ## Save Triggers Summary
 
 | Action | What is Saved | When |
@@ -191,12 +221,6 @@ Creates a .zip file containing:
 **Function:** `downloadTopic(topic: CustomTopic, unitName: string)`
 
 Downloads a single `.ts` file with all questions.
-
-### Export Built-in Topic
-
-**Function:** `downloadBuiltInTopic(questions: Question[], topicName: string, mathEnabled: boolean)`
-
-Allows exporting any built-in question set as a `.ts` file.
 
 ---
 
