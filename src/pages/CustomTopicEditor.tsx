@@ -18,8 +18,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { ArrowLeft, Plus, Minus, Save, Trash2, Calculator, Image, GripVertical, Pencil } from 'lucide-react';
-import { useCustomUnits, CustomTopic } from '@/hooks/useCustomUnits';
+import { useCustomUnits, CustomTopic, TestType } from '@/hooks/useCustomUnits';
 import { Question, MultipleChoiceQuestion, FreeResponseQuestion } from '@/types/quiz';
 import MathBuilderSidebar from '@/components/MathBuilderSidebar';
 import MathQuickInput from '@/components/MathQuickInput';
@@ -56,8 +63,11 @@ const CustomTopicEditor = () => {
   const [topicName, setTopicName] = useState('');
   const [mathEnabled, setMathEnabled] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [testType, setTestType] = useState<TestType>('homework');
+  const [testDate, setTestDate] = useState(new Date().toISOString().split('T')[0]);
   const [showMathWarning, setShowMathWarning] = useState(false);
   const [showMathSidebar, setShowMathSidebar] = useState(false);
+  const [showBackWarning, setShowBackWarning] = useState(false);
   const [activeTextField, setActiveTextField] = useState<string | null>(null);
   const textFieldRefs = useRef<{ [key: string]: HTMLTextAreaElement | HTMLInputElement | null }>({});
   const answerTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -82,6 +92,8 @@ const CustomTopicEditor = () => {
             setTopicName(topic.name);
             setMathEnabled(topic.mathEnabled);
             setQuestions(topic.questions || []);
+            setTestType(topic.testType || 'homework');
+            setTestDate(topic.testDate || new Date().toISOString().split('T')[0]);
           }
         } catch (e) {
           console.error('Failed to load topic data:', e);
@@ -350,17 +362,55 @@ const CustomTopicEditor = () => {
     }, 0);
   };
 
-  const saveTopic = () => {
+  // Check if form has any data that should be saved
+  const hasUnsavedData = () => {
+    return topicName.trim() !== '' || questions.length > 0;
+  };
+
+  // Validate required fields
+  const validateFields = (): boolean => {
     if (!topicName.trim()) {
-      toast({ title: 'Topic name required', variant: 'destructive' });
-      return;
+      toast({ title: 'Topic name is required', variant: 'destructive' });
+      return false;
     }
+    if (!testType) {
+      toast({ title: 'Please select if this is a test or homework', variant: 'destructive' });
+      return false;
+    }
+    if (!testDate) {
+      toast({ title: 'Test date is required', variant: 'destructive' });
+      return false;
+    }
+    return true;
+  };
+
+  // Handle back button click
+  const handleBackClick = () => {
+    if (hasUnsavedData()) {
+      setShowBackWarning(true);
+    } else {
+      navigate('/category/other');
+    }
+  };
+
+  // Save and go back
+  const handleSaveAndBack = () => {
+    if (validateFields()) {
+      saveTopic();
+    }
+    setShowBackWarning(false);
+  };
+
+  const saveTopic = () => {
+    if (!validateFields()) return;
     if (!unitId) return;
 
     const topicData: Omit<CustomTopic, 'id'> & { id?: string } = {
       name: topicName,
       mathEnabled,
       questions,
+      testType,
+      testDate,
     };
 
     if (isNew) {
@@ -379,7 +429,7 @@ const CustomTopicEditor = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="container mx-auto px-4 py-8 max-w-4xl flex-1">
-        <Button variant="ghost" onClick={() => navigate('/category/other')} className="mb-6">
+        <Button variant="ghost" onClick={handleBackClick} className="mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Other
         </Button>
@@ -392,13 +442,37 @@ const CustomTopicEditor = () => {
         <Card className="p-6 mb-6">
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="topic-name">Topic Name</Label>
+              <Label htmlFor="topic-name">Topic Name *</Label>
               <Input
                 id="topic-name"
                 value={topicName}
                 onChange={(e) => setTopicName(e.target.value)}
                 placeholder="e.g., Quadratic Equations"
               />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="test-type">Type *</Label>
+                <Select value={testType} onValueChange={(value) => setTestType(value as TestType)}>
+                  <SelectTrigger id="test-type">
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="test">Test</SelectItem>
+                    <SelectItem value="homework">Homework</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="test-date">Date Received *</Label>
+                <Input
+                  id="test-date"
+                  type="date"
+                  value={testDate}
+                  onChange={(e) => setTestDate(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="flex items-center justify-between">
@@ -682,7 +756,24 @@ const CustomTopicEditor = () => {
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Bottom Ad Placeholder */}
+      {/* Back Warning Dialog */}
+      <AlertDialog open={showBackWarning} onOpenChange={setShowBackWarning}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Save before leaving?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have unsaved content. Please fill in all required fields (Topic Name, Type, and Date) to save your topic, or cancel to discard changes.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => navigate('/category/other')}>Discard & Leave</AlertDialogCancel>
+            <AlertDialogAction onClick={handleSaveAndBack}>
+              Save Topic
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <div className="container mx-auto px-4 pb-8">
         <AdPlaceholder position="bottom" />
       </div>
