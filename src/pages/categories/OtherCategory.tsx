@@ -22,12 +22,20 @@ import {
 } from '@/components/ui/alert-dialog';
 import { ArrowLeft, Sparkles, Trophy, Brain, Target, Plus, Trash2, Pencil, Download, Upload, AlertTriangle, FolderPlus, ExternalLink, Send } from 'lucide-react';
 import useWrongAnswers from '@/hooks/useWrongAnswers';
-import useCustomUnits, { CustomTopic } from '@/hooks/useCustomUnits';
+import useCustomUnits, { CustomTopic, SubjectType, TestType } from '@/hooks/useCustomUnits';
 import { useToast } from '@/hooks/use-toast';
 import { downloadUnit, downloadTopic, parseTopicFile, parseUnitMetadata } from '@/utils/customUnitsExport';
 import JSZip from 'jszip';
 import { Footer } from '@/components/Footer';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
 
 const OtherCategory = () => {
   const navigate = useNavigate();
@@ -40,6 +48,8 @@ const OtherCategory = () => {
   const [showDeleteUnit, setShowDeleteUnit] = useState<string | null>(null);
   const [showDeleteTopic, setShowDeleteTopic] = useState<{ unitId: string; topicId: string } | null>(null);
   const [unitName, setUnitName] = useState('');
+  const [teacherName, setTeacherName] = useState('');
+  const [unitSubject, setUnitSubject] = useState<SubjectType | ''>('');
   
   const unitUploadRef = useRef<HTMLInputElement>(null);
   const topicUploadRef = useRef<HTMLInputElement>(null);
@@ -62,8 +72,18 @@ const OtherCategory = () => {
       toast({ title: 'Please enter a unit name', variant: 'destructive' });
       return;
     }
-    addUnit(unitName.trim());
+    if (!teacherName.trim()) {
+      toast({ title: 'Please enter the teacher name', variant: 'destructive' });
+      return;
+    }
+    if (!unitSubject) {
+      toast({ title: 'Please select a subject', variant: 'destructive' });
+      return;
+    }
+    addUnit(unitName.trim(), teacherName.trim(), unitSubject);
     setUnitName('');
+    setTeacherName('');
+    setUnitSubject('');
     setShowAddUnit(false);
     toast({ title: 'Unit created!' });
   };
@@ -73,8 +93,18 @@ const OtherCategory = () => {
       toast({ title: 'Please enter a unit name', variant: 'destructive' });
       return;
     }
-    updateUnit(showEditUnit, unitName.trim());
+    if (!teacherName.trim()) {
+      toast({ title: 'Please enter the teacher name', variant: 'destructive' });
+      return;
+    }
+    if (!unitSubject) {
+      toast({ title: 'Please select a subject', variant: 'destructive' });
+      return;
+    }
+    updateUnit(showEditUnit, { name: unitName.trim(), teacherName: teacherName.trim(), subject: unitSubject });
     setUnitName('');
+    setTeacherName('');
+    setUnitSubject('');
     setShowEditUnit(null);
     toast({ title: 'Unit updated!' });
   };
@@ -94,7 +124,10 @@ const OtherCategory = () => {
   };
 
   const openEditUnit = (unitId: string, currentName: string) => {
+    const unit = data.units.find(u => u.id === unitId);
     setUnitName(currentName);
+    setTeacherName(unit?.teacherName || '');
+    setUnitSubject(unit?.subject || '');
     setShowEditUnit(unitId);
   };
 
@@ -145,8 +178,12 @@ const OtherCategory = () => {
         return;
       }
       
-      // Create the unit
-      const newUnit = addUnit(metadata.name);
+      // Create the unit - use metadata for teacher/subject if available, else defaults
+      const newUnit = addUnit(
+        metadata.name, 
+        metadata.teacherName || 'Imported', 
+        (metadata.subject as SubjectType) || 'Math'
+      );
       
       // Import each topic
       for (const topicMeta of metadata.topics) {
@@ -162,6 +199,8 @@ const OtherCategory = () => {
               name: topicMeta.name,
               mathEnabled: topicMeta.mathEnabled,
               questions: parsed.questions,
+              testType: (topicMeta.testType as TestType) || 'homework',
+              testDate: topicMeta.testDate || new Date().toISOString().split('T')[0],
             });
           }
         }
@@ -201,6 +240,8 @@ const OtherCategory = () => {
         name: topicName,
         mathEnabled: parsed.mathEnabled,
         questions: parsed.questions,
+        testType: 'homework', // Default for imported topics
+        testDate: new Date().toISOString().split('T')[0],
       });
       
       toast({ title: `Imported topic: ${topicName}` });
@@ -527,37 +568,89 @@ const OtherCategory = () => {
           <DialogHeader>
             <DialogTitle>Create New Unit</DialogTitle>
           </DialogHeader>
-          <div className="py-4">
-            <Input
-              placeholder="Unit name (e.g., Algebra Practice)"
-              value={unitName}
-              onChange={(e) => setUnitName(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleAddUnit()}
-            />
+          <div className="py-4 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="unit-name">Unit Name *</Label>
+              <Input
+                id="unit-name"
+                placeholder="Unit name (e.g., Algebra Practice)"
+                value={unitName}
+                onChange={(e) => setUnitName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="teacher-name">Teacher Name *</Label>
+              <Input
+                id="teacher-name"
+                placeholder="Teacher name (e.g., Mr. Smith)"
+                value={teacherName}
+                onChange={(e) => setTeacherName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="unit-subject">Subject *</Label>
+              <Select value={unitSubject} onValueChange={(value) => setUnitSubject(value as SubjectType)}>
+                <SelectTrigger id="unit-subject">
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Math">Math</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                  <SelectItem value="Science">Science</SelectItem>
+                  <SelectItem value="Social Studies">Social Studies</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowAddUnit(false)}>Cancel</Button>
+            <Button variant="outline" onClick={() => { setShowAddUnit(false); setUnitName(''); setTeacherName(''); setUnitSubject(''); }}>Cancel</Button>
             <Button onClick={handleAddUnit}>Create Unit</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* Edit Unit Dialog */}
-      <Dialog open={!!showEditUnit} onOpenChange={() => setShowEditUnit(null)}>
+      <Dialog open={!!showEditUnit} onOpenChange={() => { setShowEditUnit(null); setUnitName(''); setTeacherName(''); setUnitSubject(''); }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Edit Unit</DialogTitle>
           </DialogHeader>
-          <div className="py-4">
-            <Input
-              placeholder="Unit name"
-              value={unitName}
-              onChange={(e) => setUnitName(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleEditUnit()}
-            />
+          <div className="py-4 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="edit-unit-name">Unit Name *</Label>
+              <Input
+                id="edit-unit-name"
+                placeholder="Unit name"
+                value={unitName}
+                onChange={(e) => setUnitName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-teacher-name">Teacher Name *</Label>
+              <Input
+                id="edit-teacher-name"
+                placeholder="Teacher name"
+                value={teacherName}
+                onChange={(e) => setTeacherName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-unit-subject">Subject *</Label>
+              <Select value={unitSubject} onValueChange={(value) => setUnitSubject(value as SubjectType)}>
+                <SelectTrigger id="edit-unit-subject">
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Math">Math</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                  <SelectItem value="Science">Science</SelectItem>
+                  <SelectItem value="Social Studies">Social Studies</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowEditUnit(null)}>Cancel</Button>
+            <Button variant="outline" onClick={() => { setShowEditUnit(null); setUnitName(''); setTeacherName(''); setUnitSubject(''); }}>Cancel</Button>
             <Button onClick={handleEditUnit}>Save</Button>
           </DialogFooter>
         </DialogContent>

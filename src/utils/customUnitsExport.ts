@@ -177,16 +177,22 @@ ${questionsWithIds.map((q, i) => formatQuestion(q, '  ', i)).join('\n')}
 // Generate metadata file for a unit
 export const generateUnitMetadata = (unit: CustomUnit): string => {
   return `// Unit: ${unit.name}
+// Teacher: ${unit.teacherName}
+// Subject: ${unit.subject}
 // Topics: ${unit.topics.length}
 // Total Questions: ${unit.topics.reduce((sum, t) => sum + t.questions.length, 0)}
 
 export const unitMetadata = {
   name: ${JSON.stringify(unit.name)},
+  teacherName: ${JSON.stringify(unit.teacherName)},
+  subject: ${JSON.stringify(unit.subject)},
   topics: [
 ${unit.topics.map(t => `    {
       name: ${JSON.stringify(t.name)},
       file: "./${toSafeName(t.name)}-questions.ts",
       mathEnabled: ${t.mathEnabled},
+      testType: ${JSON.stringify(t.testType)},
+      testDate: ${JSON.stringify(t.testDate)},
       questionCount: ${t.questions.length},
     },`).join('\n')}
   ],
@@ -483,15 +489,29 @@ export const parseTopicFile = (content: string): { questions: Question[], mathEn
 };
 
 // Parse unit metadata file
-export const parseUnitMetadata = (content: string): { name: string; topics: { name: string; file: string; mathEnabled: boolean }[] } | null => {
+export const parseUnitMetadata = (content: string): { 
+  name: string; 
+  teacherName?: string;
+  subject?: string;
+  topics: { name: string; file: string; mathEnabled: boolean; testType?: string; testDate?: string }[] 
+} | null => {
   try {
     const nameMatch = content.match(/name:\s*["']([^"']+)["']/);
     if (!nameMatch) return null;
     
-    const topicsMatch = content.match(/topics:\s*\[([\s\S]*?)\]/);
-    if (!topicsMatch) return { name: nameMatch[1], topics: [] };
+    // Extract teacher name and subject
+    const teacherMatch = content.match(/teacherName:\s*["']([^"']+)["']/);
+    const subjectMatch = content.match(/subject:\s*["']([^"']+)["']/);
     
-    const topics: { name: string; file: string; mathEnabled: boolean }[] = [];
+    const topicsMatch = content.match(/topics:\s*\[([\s\S]*?)\]/);
+    if (!topicsMatch) return { 
+      name: nameMatch[1], 
+      teacherName: teacherMatch?.[1],
+      subject: subjectMatch?.[1],
+      topics: [] 
+    };
+    
+    const topics: { name: string; file: string; mathEnabled: boolean; testType?: string; testDate?: string }[] = [];
     const topicRegex = /\{[^{}]+\}/g;
     const topicMatches = topicsMatch[1].match(topicRegex);
     
@@ -500,18 +520,27 @@ export const parseUnitMetadata = (content: string): { name: string; topics: { na
         const tNameMatch = match.match(/name:\s*["']([^"']+)["']/);
         const tFileMatch = match.match(/file:\s*["']([^"']+)["']/);
         const tMathMatch = match.match(/mathEnabled:\s*(true|false)/);
+        const tTestTypeMatch = match.match(/testType:\s*["']([^"']+)["']/);
+        const tTestDateMatch = match.match(/testDate:\s*["']([^"']+)["']/);
         
         if (tNameMatch && tFileMatch) {
           topics.push({
             name: tNameMatch[1],
             file: tFileMatch[1],
             mathEnabled: tMathMatch ? tMathMatch[1] === 'true' : false,
+            testType: tTestTypeMatch?.[1],
+            testDate: tTestDateMatch?.[1],
           });
         }
       }
     }
     
-    return { name: nameMatch[1], topics };
+    return { 
+      name: nameMatch[1], 
+      teacherName: teacherMatch?.[1],
+      subject: subjectMatch?.[1],
+      topics 
+    };
   } catch (error) {
     console.error('Failed to parse unit metadata:', error);
     return null;

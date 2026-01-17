@@ -3,16 +3,25 @@ import { Question } from '@/types/quiz';
 
 const STORAGE_KEY = 'custom-units-data';
 
+export type SubjectType = 'Math' | 'English' | 'Science' | 'Social Studies';
+export type TestType = 'test' | 'homework';
+
 export interface CustomTopic {
   id: string;
   name: string;
   mathEnabled: boolean;
   questions: Question[];
+  // New fields for date-based test visibility
+  testType: TestType;
+  testDate: string; // ISO date string when test was received
+  enableUntil?: string; // Optional: date when to switch to fake data (defaults to August of next year)
 }
 
 export interface CustomUnit {
   id: string;
   name: string;
+  teacherName: string;
+  subject: SubjectType;
   topics: CustomTopic[];
 }
 
@@ -46,10 +55,12 @@ export const useCustomUnits = () => {
   };
 
   // Add a new unit
-  const addUnit = (name: string): CustomUnit => {
+  const addUnit = (name: string, teacherName: string, subject: SubjectType): CustomUnit => {
     const newUnit: CustomUnit = {
       id: generateId(),
       name,
+      teacherName,
+      subject,
       topics: [],
     };
     const newData = { units: [...data.units, newUnit] };
@@ -58,9 +69,9 @@ export const useCustomUnits = () => {
   };
 
   // Update a unit
-  const updateUnit = (unitId: string, name: string) => {
+  const updateUnit = (unitId: string, updates: { name?: string; teacherName?: string; subject?: SubjectType }) => {
     const newData = {
-      units: data.units.map(u => u.id === unitId ? { ...u, name } : u),
+      units: data.units.map(u => u.id === unitId ? { ...u, ...updates } : u),
     };
     saveToStorage(newData);
   };
