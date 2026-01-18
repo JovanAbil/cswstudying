@@ -1,11 +1,20 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, BookOpen, Trophy, Lock, Brain } from 'lucide-react';
 import { Footer } from '@/components/Footer';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { NeededCoursesPopup } from '@/components/NeededCoursesPopup';
 
 const EnglishCategory = () => {
+  const [showNeededCourses, setShowNeededCourses] = useState(false);
+
+  useEffect(() => {
+    // Show popup on page entry
+    setShowNeededCourses(true);
+  }, []);
+
   const subjects = [
     {
       id: 'english',
@@ -23,6 +32,11 @@ const EnglishCategory = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <NeededCoursesPopup 
+        category="english" 
+        isOpen={showNeededCourses} 
+        onClose={() => setShowNeededCourses(false)} 
+      />
       <div className="container mx-auto px-4 py-8 flex-1 max-w-5xl">
         <Link to="/" className="inline-block mb-6">
           <Button variant="ghost">
