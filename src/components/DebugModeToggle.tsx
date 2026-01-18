@@ -7,7 +7,7 @@ export const DebugModeToggle = () => {
   const { isDebugMode, toggleDebugMode } = useDebugMode();
 
   return (
-    <div className="fixed top-4 left-4 z-50">
+    <div className="fixed top-4 right-28 z-50">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -19,7 +19,7 @@ export const DebugModeToggle = () => {
             <Bug className="h-4 w-4" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           <p>Debug Mode: {isDebugMode ? 'ON' : 'OFF'}</p>
           <p className="text-xs text-muted-foreground">Shows ad placements</p>
         </TooltipContent>

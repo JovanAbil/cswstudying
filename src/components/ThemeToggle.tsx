@@ -1,4 +1,4 @@
-import { Moon, Sun, Lock } from 'lucide-react';
+import { Moon, Sun, Lock, Unlock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/useTheme';
 import { useLockInMode } from '@/hooks/usePopupSettings';
@@ -9,7 +9,7 @@ export const ThemeToggle = () => {
   const { isLockIn, toggleLockIn } = useLockInMode();
 
   return (
-    <div className="fixed top-4 left-16 z-50 flex gap-2 items-center">
+    <div className="fixed top-4 right-4 z-50 flex gap-2 items-center">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -43,7 +43,11 @@ export const ThemeToggle = () => {
                 : 'border-border text-foreground'
             }`}
           >
-            <Lock className="h-5 w-5" />
+            {isLockIn ? (
+              <Lock className="h-5 w-5" />
+            ) : (
+              <Unlock className="h-5 w-5" />
+            )}
             <span className="sr-only">Toggle Lock In Mode</span>
           </Button>
         </TooltipTrigger>
