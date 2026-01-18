@@ -5,7 +5,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { useLockInMode } from '@/hooks/usePopupSettings';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-const LOCK_IN_DURATION_MS = 5 * 60 * 60 * 1000; // 5 hours
+const LOCK_IN_DURATION_MS = 3 * 60 * 60 * 1000; // 3 hours
 
 const formatTimeRemaining = (ms: number): string => {
   if (ms <= 0) return 'Expired';

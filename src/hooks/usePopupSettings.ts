@@ -4,7 +4,7 @@ const POPUP_COOLDOWN_KEY = 'popup_last_shown';
 const POPUP_LOCK_IN_KEY = 'popup_lock_in';
 const POPUP_LOCK_IN_TIMESTAMP_KEY = 'popup_lock_in_timestamp';
 const COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes
-const LOCK_IN_DURATION_MS = 5 * 60 * 60 * 1000; // 5 hours
+const LOCK_IN_DURATION_MS = 3 * 60 * 60 * 1000; // 3 hours
 
 const isLockInValid = (): boolean => {
   const lockIn = localStorage.getItem(POPUP_LOCK_IN_KEY) === 'true';
