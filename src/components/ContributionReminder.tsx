@@ -10,27 +10,25 @@ import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
 
 interface ContributionReminderProps {
-  intervalMinutes?: number;
+  isOpen: boolean;
+  onClose: () => void;
   cooldownSeconds?: number;
 }
 
 export const ContributionReminder = ({ 
-  intervalMinutes = 1, 
+  isOpen,
+  onClose,
   cooldownSeconds = 5 
 }: ContributionReminderProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [canClose, setCanClose] = useState(false);
   const [countdown, setCountdown] = useState(cooldownSeconds);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsOpen(true);
+    if (isOpen) {
       setCanClose(false);
       setCountdown(cooldownSeconds);
-    }, intervalMinutes * 60 * 1000);
-
-    return () => clearInterval(interval);
-  }, [intervalMinutes, cooldownSeconds]);
+    }
+  }, [isOpen, cooldownSeconds]);
 
   useEffect(() => {
     if (isOpen && !canClose) {
@@ -51,14 +49,14 @@ export const ContributionReminder = ({
 
   const handleClose = () => {
     if (canClose) {
-      setIsOpen(false);
+      onClose();
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open && canClose) {
-        setIsOpen(false);
+        onClose();
       }
     }}>
       <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => {

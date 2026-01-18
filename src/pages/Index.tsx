@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Calculator, BookOpen, FlaskConical, Landmark, Sparkles, ArrowRight, Keyboard, ArrowDown, FolderPlus } from 'lucide-react';
@@ -58,14 +59,24 @@ const controls = [{
 }];
 
 const Index = () => {
+  const [showContributionReminder, setShowContributionReminder] = useState(false);
+
   return <div className="min-h-screen bg-background flex flex-col">
-      <ContributionReminder intervalMinutes={1} cooldownSeconds={5} />
+      <ContributionReminder 
+        isOpen={showContributionReminder} 
+        onClose={() => setShowContributionReminder(false)} 
+        cooldownSeconds={5} 
+      />
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
         <div className="container mx-auto px-4 py-16 md:py-24 relative">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 gradient-text">
+            <h1 
+              className="text-5xl md:text-7xl font-display font-bold mb-6 gradient-text cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setShowContributionReminder(true)}
+              title="Click to see how you can help!"
+            >
               Practice Hub
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">

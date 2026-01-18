@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -5,10 +6,17 @@ import { ArrowLeft, Landmark, Trophy, Brain, Target } from 'lucide-react';
 import useWrongAnswers from '@/hooks/useWrongAnswers';
 import { Footer } from '@/components/Footer';
 import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { NeededCoursesPopup } from '@/components/NeededCoursesPopup';
 
 const SocialCategory = () => {
   const navigate = useNavigate();
   const { getWrongAnswerCount, getAllWrongQuestionsForSubject } = useWrongAnswers();
+  const [showNeededCourses, setShowNeededCourses] = useState(false);
+
+  useEffect(() => {
+    // Show popup on page entry
+    setShowNeededCourses(true);
+  }, []);
 
   const subjects = [
     {
@@ -40,6 +48,11 @@ const SocialCategory = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <NeededCoursesPopup 
+        category="social" 
+        isOpen={showNeededCourses} 
+        onClose={() => setShowNeededCourses(false)} 
+      />
       <div className="container mx-auto px-4 py-8 flex-1 max-w-5xl">
         <Link to="/" className="inline-block mb-6">
           <Button variant="ghost">
