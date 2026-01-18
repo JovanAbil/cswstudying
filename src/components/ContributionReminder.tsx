@@ -7,7 +7,8 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-react';
+import { Heart, Lock } from 'lucide-react';
+import { useLockInMode } from '@/hooks/usePopupSettings';
 
 interface ContributionReminderProps {
   isOpen: boolean;
@@ -22,16 +23,19 @@ export const ContributionReminder = ({
 }: ContributionReminderProps) => {
   const [canClose, setCanClose] = useState(false);
   const [countdown, setCountdown] = useState(cooldownSeconds);
+  const [showLockInPrompt, setShowLockInPrompt] = useState(false);
+  const { isLockIn, toggleLockIn } = useLockInMode();
 
   useEffect(() => {
     if (isOpen) {
       setCanClose(false);
       setCountdown(cooldownSeconds);
+      setShowLockInPrompt(false);
     }
   }, [isOpen, cooldownSeconds]);
 
   useEffect(() => {
-    if (isOpen && !canClose) {
+    if (isOpen && !canClose && !showLockInPrompt) {
       const timer = setInterval(() => {
         setCountdown(prev => {
           if (prev <= 1) {
@@ -45,17 +49,33 @@ export const ContributionReminder = ({
 
       return () => clearInterval(timer);
     }
-  }, [isOpen, canClose]);
+  }, [isOpen, canClose, showLockInPrompt]);
 
-  const handleClose = () => {
+  const handleGotIt = () => {
     if (canClose) {
-      onClose();
+      if (!isLockIn) {
+        setShowLockInPrompt(true);
+      } else {
+        onClose();
+      }
     }
+  };
+
+  const handleEnableLockIn = () => {
+    toggleLockIn();
+    setShowLockInPrompt(false);
+    onClose();
+  };
+
+  const handleSkipLockIn = () => {
+    setShowLockInPrompt(false);
+    onClose();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open && canClose) {
+        setShowLockInPrompt(false);
         onClose();
       }
     }}>
@@ -64,29 +84,54 @@ export const ContributionReminder = ({
       }} onEscapeKeyDown={(e) => {
         if (!canClose) e.preventDefault();
       }}>
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
-            <Heart className="h-5 w-5 text-red-500" />
-            Help Your Fellow Students!
-          </DialogTitle>
-          <DialogDescription className="text-base pt-2">
-            If you added a course, it would unlock better studying tools forever. 
-            A bit of your time can save others a lot!
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-4 pt-4">
-          <p className="text-sm text-muted-foreground">
-            Head to the <span className="font-semibold text-other">Other</span> category to create custom units and topics that everyone can benefit from.
-          </p>
-          <Button 
-            onClick={handleClose} 
-            disabled={!canClose}
-            variant={canClose ? "default" : "secondary"}
-            className="w-full"
-          >
-            {canClose ? "Got it!" : `Please wait ${countdown}s...`}
-          </Button>
-        </div>
+        {!showLockInPrompt ? (
+          <>
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 text-xl">
+                <Heart className="h-5 w-5 text-red-500" />
+                Help Your Fellow Students!
+              </DialogTitle>
+              <DialogDescription className="text-base pt-2">
+                If you added a course, it would unlock better studying tools forever. 
+                A bit of your time can save others a lot!
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-4 pt-4">
+              <p className="text-sm text-muted-foreground">
+                Head to the <span className="font-semibold text-other">Other</span> category to create custom units and topics that everyone can benefit from.
+              </p>
+              <Button 
+                onClick={handleGotIt} 
+                disabled={!canClose}
+                variant={canClose ? "default" : "secondary"}
+                className="w-full"
+              >
+                {canClose ? "Got it!" : `Please wait ${countdown}s...`}
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 text-xl">
+                <Lock className="h-5 w-5 text-primary" />
+                Enable Lock In Mode?
+              </DialogTitle>
+              <DialogDescription className="text-base pt-2">
+                Lock In mode disables all popups so you can focus on studying without distractions.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-3 pt-4">
+              <Button onClick={handleEnableLockIn} className="w-full">
+                <Lock className="mr-2 h-4 w-4" />
+                Yes, enable Lock In
+              </Button>
+              <Button onClick={handleSkipLockIn} variant="outline" className="w-full">
+                No, keep popups enabled
+              </Button>
+            </div>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
