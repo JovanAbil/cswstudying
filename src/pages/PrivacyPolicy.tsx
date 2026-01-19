@@ -44,7 +44,7 @@ const PrivacyPolicy = () => {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 According to the{' '}
                 <a 
-                  href="https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4151/Wilmington_Charter/eae7b68e-ace8-4fbc-a2cf-d4b99927514e/25-_26_CSW_Student_Handbook.pdf?disposition=inline"
+                  href="https://www.charterschool.org/page/studenthandbook"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline inline-flex items-center gap-1"
