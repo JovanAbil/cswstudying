@@ -62,6 +62,31 @@ npm run preview  # Preview production build locally
 
 ---
 
+## What Continues Working Automatically
+
+### 1. Counter.dev Analytics
+
+**Current State:**
+- Counter.dev script in `index.html` tracks visitors
+- AdBlockDetector component enforces analytics loading
+- Real-time stats available at counter.dev dashboard
+
+**After Removal:**
+- ✅ Continues working with no changes needed
+- Script is loaded from Counter.dev CDN, not Lovable
+- AdBlockDetector component works independently
+
+**Files involved:**
+- `index.html` - Contains the Counter.dev script tag
+- `src/components/AdBlockDetector.tsx` - Adblocker detection logic
+
+**Note:** If you want to stop using Counter.dev after migration, simply:
+1. Remove the script tag from `index.html`
+2. Remove `AdBlockDetector` import from `src/App.tsx`
+3. Delete `src/components/AdBlockDetector.tsx`
+
+---
+
 ## What Requires Manual Replacement
 
 ### 1. Hosting Setup
