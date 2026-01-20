@@ -1,30 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 
 export const AdBlockDetector = () => {
   const [isBlocked, setIsBlocked] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
-    // Don't check on the blocked page itself
-    if (location.pathname === '/blocked') return;
-
     const checkAnalyticsBlocked = async () => {
-      // Wait for the page to fully load first
-      if (document.readyState !== 'complete') {
-        await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
-      }
-      
-      // Additional delay to ensure content is rendered
+      // Wait for page to fully load and Counter.dev to attempt tracking
       await new Promise(resolve => setTimeout(resolve, 2500));
 
       let scriptBlocked = false;
       let trackingBlocked = false;
 
+      // Test 1: Check if the Counter.dev script can be fetched
       try {
         const response = await fetch('https://cdn.counter.dev/script.js', {
           cache: 'no-store',
@@ -42,6 +31,10 @@ export const AdBlockDetector = () => {
         return;
       }
 
+      // Test 2: Check if the tracking domain is reachable.
+      // Important: ResourceTiming is NOT reliable cross-origin (often all sizes are 0),
+      // so we instead use a no-cors fetch probe. If an adblocker blocks the request,
+      // the promise typically rejects with "Failed to fetch".
       const probeTracking = async (): Promise<boolean> => {
         const url = `https://t.counter.dev/track?_=${Date.now()}`;
         try {
@@ -55,6 +48,7 @@ export const AdBlockDetector = () => {
         }
       };
 
+      // Retry once to avoid false positives from transient network hiccups.
       trackingBlocked = await probeTracking();
       if (trackingBlocked) {
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -66,47 +60,18 @@ export const AdBlockDetector = () => {
     };
 
     checkAnalyticsBlocked();
-  }, [location.pathname]);
-
-  // Watch for overlay removal - if removed, redirect to /blocked
-  useEffect(() => {
-    if (!isBlocked || isChecking) return;
-
-    const checkOverlayExists = () => {
-      const overlay = document.getElementById('adblock-overlay');
-      if (!overlay) {
-        navigate('/blocked', { replace: true, state: { returnPath: location.pathname } });
-      }
-    };
-
-    const interval = setInterval(checkOverlayExists, 500);
-
-    const observer = new MutationObserver(() => {
-      checkOverlayExists();
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => {
-      clearInterval(interval);
-      observer.disconnect();
-    };
-  }, [isBlocked, isChecking, navigate, location.pathname]);
+  }, []);
 
   const handleRefresh = () => {
     window.location.reload();
   };
 
-  if (isChecking || !isBlocked || location.pathname === '/blocked') {
+  if (isChecking || !isBlocked) {
     return null;
   }
 
   return (
-    <div 
-      id="adblock-overlay"
-      ref={overlayRef}
-      className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-    >
+    <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-background border-2 border-destructive rounded-xl p-8 max-w-md w-full shadow-2xl">
         <div className="flex items-center justify-center mb-6">
           <div className="p-4 bg-destructive/20 rounded-full">
