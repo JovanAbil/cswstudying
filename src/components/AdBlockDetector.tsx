@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const AdBlockDetector = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Don't check on the blocked page itself
-    if (location.pathname === '/blocked') {
-      return;
-    }
+    if (location.pathname === '/blocked') return;
 
     const checkAnalyticsBlocked = async () => {
       // Wait for page to fully load
@@ -31,7 +29,7 @@ export const AdBlockDetector = () => {
       }
 
       if (scriptBlocked) {
-        navigate('/blocked', { replace: true });
+        navigate('/blocked', { replace: true, state: { returnPath: location.pathname } });
         return;
       }
 
@@ -49,7 +47,6 @@ export const AdBlockDetector = () => {
         }
       };
 
-      // Retry once to avoid false positives
       trackingBlocked = await probeTracking();
       if (trackingBlocked) {
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -57,12 +54,12 @@ export const AdBlockDetector = () => {
       }
 
       if (trackingBlocked) {
-        navigate('/blocked', { replace: true });
+        navigate('/blocked', { replace: true, state: { returnPath: location.pathname } });
       }
     };
 
     checkAnalyticsBlocked();
-  }, [location.pathname, navigate]);
+  }, [navigate, location.pathname]);
 
   return null;
 };
