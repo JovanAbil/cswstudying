@@ -31,19 +31,18 @@ export const StorageUsageBar = () => {
   };
 
   return (
-    <div className="flex items-center gap-3 min-w-[200px]">
-      <HardDrive className="h-4 w-4 text-muted-foreground shrink-0" />
-      <div className="flex-1 space-y-1">
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <span>Storage</span>
-          <span>{formatBytes(usedBytes)} / 5 MB ({percentage.toFixed(1)}%)</span>
-        </div>
-        <div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary">
+    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 border border-border/50">
+      <HardDrive className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+      <div className="flex items-center gap-2">
+        <div className="relative h-1.5 w-24 overflow-hidden rounded-full bg-secondary">
           <div 
             className={`h-full transition-all ${getColorClass()}`}
             style={{ width: `${percentage}%` }}
           />
         </div>
+        <span className="text-xs text-muted-foreground whitespace-nowrap">
+          {formatBytes(usedBytes)} / 5 MB
+        </span>
       </div>
     </div>
   );
