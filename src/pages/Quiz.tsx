@@ -318,79 +318,76 @@ const Quiz = () => {
   const handleSkip = () => {
     const newAttempts = [...attempts];
     
-    // Check if current question was already skipped before (we're revisiting it)
-    const wasAlreadySkipped = newAttempts[currentIndex].skipped && newAttempts[currentIndex].userAnswer === null;
-    
+    // Mark current question as skipped and wrong
     newAttempts[currentIndex] = {
       ...newAttempts[currentIndex],
       userAnswer: 'SKIPPED',
       isCorrect: false,
       skipped: true
     };
-    setAttempts(newAttempts);
     
-    // Find next non-skipped question, or go to first skipped question if at end
-    let nextIndex = currentIndex + 1;
-    
-    // Try to find next unanswered question
-    while (nextIndex < questions.length && newAttempts[nextIndex].userAnswer !== null) {
-      nextIndex++;
+    // Find the next question to show
+    // Priority 1: Next unanswered question after current index
+    let nextIndex = -1;
+    for (let i = currentIndex + 1; i < questions.length; i++) {
+      if (newAttempts[i].userAnswer === null) {
+        nextIndex = i;
+        break;
+      }
     }
     
-    // If we've gone through all questions, check if there are skipped questions to revisit
-    if (nextIndex >= questions.length) {
-      // Find a skipped question that hasn't been finalized yet (userAnswer === 'SKIPPED' means it can be revisited)
-      // But if the user just skipped again while revisiting, we should NOT offer the same question
-      const firstSkippedIndex = newAttempts.findIndex((a, idx) => 
-        a.skipped && a.userAnswer === 'SKIPPED' && idx !== currentIndex
-      );
-      
-      if (firstSkippedIndex !== -1 && !wasAlreadySkipped) {
-        // Reset the skipped question so it can be answered
-        newAttempts[firstSkippedIndex] = {
-          ...newAttempts[firstSkippedIndex],
-          userAnswer: null,
-          isCorrect: null,
-          skipped: true // Keep the skipped tag for display
-        };
-        setAttempts(newAttempts);
-        setCurrentIndex(firstSkippedIndex);
-        setCurrentAnswer('');
-        setIsSubmitted(false);
-        setShowGrading(false);
-        setShuffledOptions([]);
-        return;
+    // Priority 2: Any unanswered question from the beginning (wrap around)
+    if (nextIndex === -1) {
+      for (let i = 0; i < currentIndex; i++) {
+        if (newAttempts[i].userAnswer === null) {
+          nextIndex = i;
+          break;
+        }
       }
-      
-      // If user was revisiting a skipped question and skipped again, find next skipped question or finish
-      if (wasAlreadySkipped) {
-        const nextSkippedIndex = newAttempts.findIndex((a, idx) => 
-          a.skipped && a.userAnswer === 'SKIPPED' && idx !== currentIndex
-        );
-        
-        if (nextSkippedIndex !== -1) {
-          newAttempts[nextSkippedIndex] = {
-            ...newAttempts[nextSkippedIndex],
+    }
+    
+    // Priority 3: Find next skipped question that can be revisited (after current)
+    if (nextIndex === -1) {
+      for (let i = currentIndex + 1; i < questions.length; i++) {
+        if (newAttempts[i].skipped && newAttempts[i].userAnswer === 'SKIPPED') {
+          // Reset it so user can answer
+          newAttempts[i] = {
+            ...newAttempts[i],
             userAnswer: null,
             isCorrect: null,
             skipped: true
           };
-          setAttempts(newAttempts);
-          setCurrentIndex(nextSkippedIndex);
-          setCurrentAnswer('');
-          setIsSubmitted(false);
-          setShowGrading(false);
-          setShuffledOptions([]);
-          return;
+          nextIndex = i;
+          break;
         }
       }
-      
-      // No more questions to answer, go to results
+    }
+    
+    // Priority 4: Find skipped question from beginning (wrap around)
+    if (nextIndex === -1) {
+      for (let i = 0; i < currentIndex; i++) {
+        if (newAttempts[i].skipped && newAttempts[i].userAnswer === 'SKIPPED') {
+          // Reset it so user can answer
+          newAttempts[i] = {
+            ...newAttempts[i],
+            userAnswer: null,
+            isCorrect: null,
+            skipped: true
+          };
+          nextIndex = i;
+          break;
+        }
+      }
+    }
+    
+    setAttempts(newAttempts);
+    
+    // If no next question found, all questions are done - go to results
+    if (nextIndex === -1) {
       const finalTime = timer.stop();
       const score = newAttempts.filter(a => a.isCorrect).length;
       const total = newAttempts.length;
 
-      // Completed quizzes shouldn't be resumable
       clearInProgressQuiz(routeKey);
 
       navigate('/results', { 
