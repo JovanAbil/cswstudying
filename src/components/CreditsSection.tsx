@@ -56,9 +56,9 @@ const contactEmail = 'abilash.jovan@charterschool.org';
  * =============================================================================
  */
 
-const TOTAL_VISITORS = 236 + 18; // 254 total visitors
-const TOTAL_PAGEVIEWS = 1700 + 101; // 1801 total pageviews
-const LAST_UPDATED = "9:35 AM, Jan 19th 2026";
+const TOTAL_VISITORS = 236 + 18 + 22; 
+const TOTAL_PAGEVIEWS = 1700 + 101 + 187; 
+const LAST_UPDATED = "Jan 23th 2026";
 
 export const CreditsSection = () => {
   const [copied, setCopied] = useState(false);
