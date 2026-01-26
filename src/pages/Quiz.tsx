@@ -234,7 +234,28 @@ const Quiz = () => {
 
   const currentQuestion = questions[currentIndex];
   const currentAttempt = attempts[currentIndex];
-  const progress = ((currentIndex + 1) / questions.length) * 100;
+  
+  // Calculate if we're in the "skipped section" (revisiting skipped questions)
+  const isInSkippedSection = attempts.length > 0 && 
+    attempts.every(a => a.userAnswer !== null || a.skipped);
+  
+  // Get skipped questions that are still pending (not finalized)
+  const pendingSkippedIndices = attempts
+    .map((a, i) => (a.skipped && a.userAnswer !== 'SKIPPED_FINAL' ? i : -1))
+    .filter(i => i !== -1);
+  
+  // Calculate progress display
+  const currentSkippedPosition = isInSkippedSection 
+    ? pendingSkippedIndices.indexOf(currentIndex) + 1 
+    : 0;
+  const totalSkipped = pendingSkippedIndices.length;
+  
+  // Progress: answered questions / total, OR if in skipped section, position in skipped
+  const answeredCount = attempts.filter(a => a.userAnswer !== null && a.userAnswer !== 'SKIPPED' && !a.skipped).length;
+  const finalizedSkippedCount = attempts.filter(a => a.userAnswer === 'SKIPPED_FINAL').length;
+  const progress = isInSkippedSection
+    ? ((answeredCount + finalizedSkippedCount + currentSkippedPosition) / questions.length) * 100
+    : ((currentIndex + 1) / questions.length) * 100;
 
   useEffect(() => {
     if (currentQuestion && currentQuestion.type === 'multiple-choice') {
@@ -318,10 +339,16 @@ const Quiz = () => {
   const handleSkip = () => {
     const newAttempts = [...attempts];
     
-    // Mark current question as skipped and wrong
+    // Check if this question was already skipped before (revisiting in skipped section)
+    const wasAlreadySkipped = newAttempts[currentIndex].skipped && 
+      (newAttempts[currentIndex].userAnswer === null || newAttempts[currentIndex].userAnswer === 'SKIPPED');
+    
+    // If skipping again in skipped section, mark as FINAL (no more revisits)
+    const skipMarker = wasAlreadySkipped ? 'SKIPPED_FINAL' : 'SKIPPED';
+    
     newAttempts[currentIndex] = {
       ...newAttempts[currentIndex],
-      userAnswer: 'SKIPPED',
+      userAnswer: skipMarker,
       isCorrect: false,
       skipped: true
     };
@@ -346,7 +373,7 @@ const Quiz = () => {
       }
     }
     
-    // Priority 3: Find next skipped question that can be revisited (after current)
+    // Priority 3: Find next skipped question that can be revisited (userAnswer === 'SKIPPED', not 'SKIPPED_FINAL')
     if (nextIndex === -1) {
       for (let i = currentIndex + 1; i < questions.length; i++) {
         if (newAttempts[i].skipped && newAttempts[i].userAnswer === 'SKIPPED') {
@@ -495,11 +522,22 @@ const Quiz = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-sm font-medium text-muted-foreground">
-              Question {currentIndex + 1} of {questions.length}
-              {attempts[currentIndex]?.skipped && (
-                <span className="ml-2 px-2 py-0.5 bg-warning/20 text-warning text-xs rounded-full font-medium">
-                  [Skipped]
-                </span>
+              {isInSkippedSection && totalSkipped > 0 ? (
+                <>
+                  Skipped Question {currentSkippedPosition} of {totalSkipped}
+                  <span className="ml-2 px-2 py-0.5 bg-warning/20 text-warning text-xs rounded-full font-medium">
+                    Review
+                  </span>
+                </>
+              ) : (
+                <>
+                  Question {currentIndex + 1} of {questions.length}
+                  {attempts[currentIndex]?.skipped && (
+                    <span className="ml-2 px-2 py-0.5 bg-warning/20 text-warning text-xs rounded-full font-medium">
+                      [Skipped]
+                    </span>
+                  )}
+                </>
               )}
             </h2>
             <span className="text-sm font-medium text-primary">
