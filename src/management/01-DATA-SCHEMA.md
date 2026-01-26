@@ -284,3 +284,50 @@ explanation: "Using L'Hôpital's rule: $\\frac{d}{dx}$..."
 When `subject === 'chemistry'`, the MathText component enables chemical formula formatting:
 - Subscripts for numbers after elements (e.g., H2O renders with subscript 2)
 - Superscripts for charges (e.g., Na+ renders with superscript +)
+
+---
+
+## Quiz Attempt Structure
+
+```typescript
+interface QuizAttempt {
+  questionId: string;
+  userAnswer: string | null;  // 'SKIPPED' | 'SKIPPED_FINAL' | actual answer
+  isCorrect: boolean | null;
+  selfGraded?: boolean;       // For free-response questions
+  skipped?: boolean;          // Marks if question was ever skipped
+}
+```
+
+**Skip States:**
+- `userAnswer: 'SKIPPED'` - Question was skipped, can be revisited
+- `userAnswer: 'SKIPPED_FINAL'` - Question was skipped twice, won't be revisited
+- `skipped: true` - Indicates question was skipped at some point (for UI display)
+
+---
+
+## In-Progress Quiz State
+
+```typescript
+interface InProgressQuizState {
+  version: 1;
+  routeKey: string;           // `${subject}|${unitId}|${quizType}`
+  updatedAt: number;
+  questions: Question[];
+  attempts: QuizAttempt[];
+  currentIndex: number;
+  currentAnswer: string;
+  isSubmitted: boolean;
+  showGrading: boolean;
+  timerSeconds: number;
+  meta?: Record<string, unknown>;
+}
+```
+
+This structure is stored in localStorage at `in-progress-quiz-v1` to allow quiz resume after page refresh.
+
+---
+
+## Last Updated
+
+January 2026

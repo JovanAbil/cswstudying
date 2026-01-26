@@ -12,7 +12,7 @@ This folder contains comprehensive documentation for maintaining and extending t
 |------|---------|
 | [01-DATA-SCHEMA.md](./01-DATA-SCHEMA.md) | Complete data structures for courses, questions, and related entities |
 | [02-CONTENT-AUTHORING-GUIDE.md](./02-CONTENT-AUTHORING-GUIDE.md) | Step-by-step instructions for adding new courses and questions |
-| [03-STATE-AND-STORAGE.md](./03-STATE-AND-STORAGE.md) | How application state is managed and persisted |
+| [03-STATE-AND-STORAGE.md](./03-STATE-AND-STORAGE.md) | How application state is managed and persisted (including quiz resume) |
 | [04-EDGE-CASES-AND-FAILURE-MODES.md](./04-EDGE-CASES-AND-FAILURE-MODES.md) | Known edge cases and how to handle them |
 | [05-PERFORMANCE-ASSUMPTIONS.md](./05-PERFORMANCE-ASSUMPTIONS.md) | Expected data sizes, caching, and limits |
 | [06-DEPENDENCIES.md](./06-DEPENDENCIES.md) | All external dependencies and their purposes |
@@ -43,7 +43,9 @@ src/
 │   └── categories/  # Category pages (Math, Science, etc.)
 ├── types/         # TypeScript type definitions
 └── utils/
-    └── questionLoader.ts  # Centralized question loading
+    ├── questionLoader.ts       # Centralized question loading
+    ├── inProgressQuizStorage.ts # Quiz persistence/resume
+    └── customUnitsExport.ts    # ZIP export/import for custom units
 ```
 
 ### 2. Key Files
@@ -53,10 +55,12 @@ src/
 | Add questions | `src/data/{subject}/{topic}-questions.ts` + `questionLoader.ts` |
 | Configure routing | `src/App.tsx` |
 | Quiz logic | `src/pages/Quiz.tsx` |
+| Quiz persistence | `src/utils/inProgressQuizStorage.ts` |
 | State persistence | `src/hooks/use*.ts` |
 | Types | `src/types/quiz.ts` |
 | Question loading | `src/utils/questionLoader.ts` |
 | Test protection | `src/data/test-schedule-config.ts` |
+| Custom unit export | `src/utils/customUnitsExport.ts` |
 
 ### 3. Most Common Tasks
 
@@ -139,6 +143,27 @@ All built-in questions are loaded through `src/utils/questionLoader.ts`. This fi
 ```typescript
 import { getQuestions, getQuestionMap } from '@/utils/questionLoader';
 ```
+
+---
+
+## Key Features Summary
+
+### Quiz System
+- **Skip functionality**: Users can skip questions, then review them at the end
+- **Skip transition screen**: Asks if user wants to review skipped questions
+- **Double-skip to finalize**: Skipping again during review marks as final
+- **Progress display**: Shows "Skipped Question X of Y" during review
+- **Quiz persistence**: Progress auto-saved, can resume after refresh
+
+### Custom Units
+- **ZIP export**: Exports unit with images in public folder
+- **MCQ support**: Handles multiple-choice options with images
+- **Preset builder**: Create custom practice sets
+- **Challenge mode**: Cram mode across all topics
+
+### Results
+- **Wrong answer download**: Export as preset with custom naming
+- **Targeted practice**: Review questions you got wrong
 
 ---
 

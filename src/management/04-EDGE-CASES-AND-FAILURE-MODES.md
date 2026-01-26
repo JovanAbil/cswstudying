@@ -23,33 +23,70 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 2. User Skips All Questions
+### 2. User Skips Questions
 
-**Scenario:** User uses Skip button for every question.
+**Scenario:** User uses Skip button during a quiz.
 
 **Current Behavior:**
-- Skipped questions are marked incorrect
-- Quiz cycles back to allow answering skipped questions
-- If all remain skipped, quiz ends with 0% score
+- Skipped questions are marked as incorrect with `skipped: true`
+- User continues to next unanswered question
+- When all unanswered questions are done, a **transition screen** appears
+- User can choose to review skipped questions or go directly to results
+- If reviewing: skipped questions are presented one by one
+- If user skips again during review: question is marked as `SKIPPED_FINAL` (no more revisits)
+- Progress display shows "Skipped Question X of Y" during review section
 
-**Handling:** Working as designed. Users can skip and return.
+**Handling:** Working as designed with full user control.
 
 ---
 
-### 3. Browser Refresh During Quiz
+### 3. User Skips All Questions Then Spam-Skips in Review
+
+**Scenario:** User skips all questions, chooses to review, then keeps pressing skip.
+
+**Current Behavior:**
+- Each skip in review section marks question as `SKIPPED_FINAL`
+- Questions marked `SKIPPED_FINAL` cannot be revisited
+- After all skipped questions are finalized, quiz ends and goes to results
+- No infinite loops possible
+
+**Handling:** Working as designed. Users can skip through review quickly if desired.
+
+---
+
+### 4. Browser Refresh During Quiz
 
 **Scenario:** User refreshes page mid-quiz.
 
 **Current Behavior:**
-- All quiz progress is lost
-- Timer resets
-- Questions re-shuffle
+- Quiz progress is **preserved** via localStorage
+- Timer state is restored
+- Questions remain in same order
+- User continues from where they left off
 
-**Note:** No quiz state persistence exists. This is by design (prevents cheating by refreshing for new shuffle).
+**Technical Details:**
+- State saved to `in-progress-quiz-v1` key
+- Keyed by route: `{subject}|{unitId}|{quizType}`
+- Includes: questions, attempts, currentIndex, timer, etc.
+
+**Handling:** Working as designed via `inProgressQuizStorage.ts`.
 
 ---
 
-### 4. Network Failure Loading Images
+### 5. Starting New Quiz When Progress Exists
+
+**Scenario:** User has saved progress but explicitly starts a new attempt.
+
+**Current Behavior:**
+- If navigating with `startNewAttempt: true` in location state, old progress is cleared
+- Fresh quiz starts with reshuffled questions
+- Timer resets to zero
+
+**Handling:** Working as designed.
+
+---
+
+### 6. Network Failure Loading Images
 
 **Scenario:** Question images fail to load.
 
@@ -63,7 +100,7 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 5. Very Long Free Response Answers
+### 7. Very Long Free Response Answers
 
 **Scenario:** User types extremely long answer in free response.
 
@@ -75,7 +112,7 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 6. Special Characters in Answers
+### 8. Special Characters in Answers
 
 **Scenario:** User includes special characters, emojis, or Unicode.
 
@@ -128,6 +165,21 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
+### 4. Downloading Wrong Answers as Preset
+
+**Scenario:** User downloads wrong answers from results page.
+
+**Current Behavior:**
+- Dialog appears allowing user to customize preset name
+- Default name: "Wrong Answers - {subject} {unitId}"
+- User can edit before download
+- File name is sanitized from preset name
+- JSON file downloaded with version and preset data
+
+**Handling:** Working as designed with customization.
+
+---
+
 ## Custom Units Edge Cases
 
 ### 1. Importing Malformed .ts File
@@ -142,7 +194,20 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 2. Very Large Custom Topic
+### 2. Importing ZIP with MCQ Questions
+
+**Scenario:** User imports a ZIP file containing multiple-choice questions.
+
+**Current Behavior:**
+- Parser handles both JSON-stringified and TypeScript literal syntax for options
+- MCQ options are correctly restored with label, value, text, and image
+- Images in options are converted to base64 for localStorage storage
+
+**Handling:** Working as designed with robust parsing.
+
+---
+
+### 3. Very Large Custom Topic
 
 **Scenario:** User creates topic with hundreds of questions.
 
@@ -157,7 +222,7 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 3. Images in Custom Topics
+### 4. Images in Custom Topics
 
 **Scenario:** User adds questions with embedded base64 images.
 
@@ -165,6 +230,8 @@ This document describes known edge cases in user interaction, failure scenarios,
 - Images stored as base64 data URLs in localStorage
 - Dramatically increases storage usage
 - Can quickly hit storage limits
+- When exporting: images extracted to public/images/ folder
+- MCQ option images also extracted with naming: `{topic}-q{N}-opt{M}.png`
 
 **Recommended:**
 - Warn about storage impact
@@ -173,7 +240,7 @@ This document describes known edge cases in user interaction, failure scenarios,
 
 ---
 
-### 4. Deleting Unit with Active Quiz
+### 5. Deleting Unit with Active Quiz
 
 **Scenario:** User deletes a custom unit while a quiz from that unit is in progress.
 
@@ -349,3 +416,11 @@ When adding features, consider:
 - [ ] Test browser refresh at each step
 - [ ] Test in private/incognito mode
 - [ ] Test on mobile devices
+- [ ] Test skip functionality (skip all, skip in review, etc.)
+- [ ] Test quiz resume after refresh
+
+---
+
+## Last Updated
+
+January 2026

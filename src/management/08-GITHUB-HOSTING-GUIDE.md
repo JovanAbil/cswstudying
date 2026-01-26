@@ -431,117 +431,32 @@ Final step - tell GitHub to serve your site.
 
 ---
 
-## Step 11: Set Up Cloudflare Analytics (Optional)
+## Step 11: Counter.dev Analytics (Already Configured)
 
-Cloudflare Web Analytics provides free, privacy-focused analytics without cookies.
+The CSW Studying project uses Counter.dev for analytics, which is already configured and works automatically on GitHub Pages.
 
-### 11.1 Create a Cloudflare Account
+### What's Already Set Up
 
-1. Go to [cloudflare.com](https://cloudflare.com)
-2. Click **Sign Up** (it's free)
-3. Enter your email and create a password
-4. Verify your email
+1. **Counter.dev script** in `index.html`:
+   ```html
+   <script src="https://cdn.counter.dev/script.js" data-id="YOUR_ID" data-utcoffset="-5"></script>
+   ```
 
-### 11.2 Add Cloudflare Web Analytics
+2. **AdBlockDetector component** that ensures analytics can load
 
-1. Log in to your Cloudflare dashboard
-2. In the left sidebar, click **Analytics & Logs** → **Web Analytics**
-3. Click **Add a site**
-4. Enter your GitHub Pages URL: `YOUR_USERNAME.github.io/YOUR_REPO_NAME`
-5. Click **Done**
-6. Cloudflare will show you a script tag - copy it
+### After Migration
 
-### 11.3 Add the Script to Your Site
+- Counter.dev continues working with no changes
+- Visit [counter.dev](https://counter.dev) to view your stats
+- SPA navigation is tracked automatically
 
-1. Open **index.html** in VS Code (in the root folder)
-2. Find the closing `</body>` tag at the bottom
-3. Add the Cloudflare script BEFORE the `</body>` tag:
+### Removing Counter.dev (Optional)
 
-```html
-    <script type="module" src="/src/main.tsx"></script>
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN_HERE", "spa": true}'></script>
-    <!-- End Cloudflare Web Analytics -->
-  </body>
-</html>
-```
+If you don't want analytics after migration:
 
-4. Replace `YOUR_TOKEN_HERE` with your actual token from Cloudflare
-5. **IMPORTANT**: Notice the `"spa": true` option - this is required for React apps!
-6. Save the file
-
-### 11.4 Enable SPA Tracking in React
-
-Since this is a Single Page Application (SPA), Cloudflare only tracks the initial page load by default. To track all route changes:
-
-1. Create `src/components/CloudflareAnalytics.tsx`:
-
-```tsx
-import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-
-declare global {
-  interface Window {
-    __cfRl?: {
-      t: (url: string) => void;
-    };
-  }
-}
-
-export const CloudflareAnalytics = () => {
-  const location = useLocation();
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    // Skip initial load - Cloudflare handles that automatically
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    // Send pageview to Cloudflare on route change
-    if (window.__cfRl && typeof window.__cfRl.t === 'function') {
-      window.__cfRl.t(window.location.href);
-    }
-  }, [location.pathname, location.search]);
-
-  return null;
-};
-```
-
-2. Add the component to `App.tsx` inside `BrowserRouter`:
-
-```tsx
-import { CloudflareAnalytics } from '@/components/CloudflareAnalytics';
-
-// Inside BrowserRouter:
-<BrowserRouter>
-  <CloudflareAnalytics />
-  {/* ... rest of your routes */}
-</BrowserRouter>
-```
-
-### 11.5 Push and Verify
-
-1. In GitHub Desktop, commit with summary: `Add Cloudflare Analytics with SPA tracking`
-2. Click **Push origin**
-3. Wait for deployment (check Actions tab)
-4. Visit your site and browse a few pages
-5. Check Cloudflare dashboard after 5-10 minutes to see data
-
-### What Cloudflare Analytics Shows
-
-| Metric | Description |
-|--------|-------------|
-| Visits | Unique visitors to your site |
-| Page Views | Total pages viewed (including SPA navigations) |
-| Top Pages | Most visited pages |
-| Countries | Where visitors are from |
-| Devices | Desktop vs Mobile |
-| Browsers | Chrome, Firefox, Safari, etc. |
-| Referrers | Where traffic comes from |
-
-**Cloudflare Analytics is free forever, doesn't require cookies, and respects user privacy!**
+1. Remove the Counter.dev script from `index.html`
+2. Remove `<AdBlockDetector />` from `src/App.tsx`
+3. Delete `src/components/AdBlockDetector.tsx`
 
 ---
 
@@ -716,24 +631,21 @@ Before you consider yourself done, verify:
 - [ ] Site loads at GitHub Pages URL
 - [ ] All internal links work
 - [ ] All pages load (not 404)
-- [ ] Quiz functionality works
+- [ ] Quiz functionality works (including skip feature)
+- [ ] Quiz progress persists on refresh
+- [ ] Skip transition screen works
 - [ ] Results page shows correctly
+- [ ] Download wrong answers preset works
 - [ ] Data persists (wrong answers saved)
 - [ ] Images load correctly
 - [ ] Theme toggle works
 - [ ] Mobile view works
-- [ ] Cloudflare Analytics tracking (optional)
+- [ ] Counter.dev Analytics tracking
 
 **Congratulations! Your site is now fully independent and hosted for free on GitHub Pages!**
 
 ---
 
-## Appendix: Keeping Cloudflare Analytics When Migrating
+## Last Updated
 
-If your Lovable project already has Cloudflare Analytics installed, make sure you:
-
-1. **Don't delete the script** from index.html during migration
-2. **Keep the same token** - your analytics history will continue
-3. **Update your site URL in Cloudflare** if using a custom domain later
-
-The Cloudflare script works automatically on GitHub Pages with no changes needed!
+January 2026

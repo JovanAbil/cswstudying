@@ -13,6 +13,7 @@ The CSW Studying application uses browser localStorage for all persistent data. 
 | `quiz-wrong-answers` | Stores questions answered incorrectly | `useWrongAnswers.ts` |
 | `quiz-presets` | Stores saved question presets | `usePresets.ts` |
 | `custom-units-data` | Stores user-created units and topics | `useCustomUnits.ts` |
+| `in-progress-quiz-v1` | Stores quiz progress for resume functionality | `inProgressQuizStorage.ts` |
 | `imported-course-questions-{subject}` | Stores imported question sets per subject | `customUnitsExport.ts` |
 | `terms-accepted` | Whether user accepted terms of service | `TermsOfServiceModal.tsx` |
 | `cookie-consent` | Cookie consent status | `CookieConsentBanner.tsx` |
@@ -99,6 +100,8 @@ The CSW Studying application uses browser localStorage for all persistent data. 
     {
       id: "custom-1699000000000-abc123",
       name: "My Custom Unit",
+      teacherName: "Mr. Smith",
+      subject: "Chemistry",
       topics: [
         {
           id: "custom-1699000001000-def456",
@@ -118,7 +121,7 @@ The CSW Studying application uses browser localStorage for all persistent data. 
 
 **When Data is Written:**
 - **addUnit:** Creates new unit
-- **updateUnit:** Renames unit
+- **updateUnit:** Renames unit or updates metadata
 - **deleteUnit:** Removes unit and all its topics
 - **addTopic:** Adds topic to unit
 - **updateTopic:** Updates topic properties or questions
@@ -126,7 +129,55 @@ The CSW Studying application uses browser localStorage for all persistent data. 
 
 ---
 
-### 4. Imported Course Questions (`customUnitsExport.ts`)
+### 4. In-Progress Quiz (`inProgressQuizStorage.ts`)
+
+**Storage Key:** `in-progress-quiz-v1`
+
+**Structure:**
+```typescript
+{
+  "precalc|polynomial|cram": {
+    version: 1,
+    routeKey: "precalc|polynomial|cram",
+    updatedAt: 1699000000000,
+    questions: [/* Question objects */],
+    attempts: [/* QuizAttempt objects */],
+    currentIndex: 5,
+    currentAnswer: "B",
+    isSubmitted: false,
+    showGrading: false,
+    timerSeconds: 342,
+    meta: { subject: "precalc", unitId: "polynomial", quizType: "cram" }
+  }
+}
+```
+
+**Key Functions:**
+```typescript
+buildRouteKey(subject, unitId, quizType): string
+loadInProgressQuiz(routeKey): InProgressQuizState | null
+hasInProgressQuiz(routeKey): boolean
+saveInProgressQuiz(state): void
+clearInProgressQuiz(routeKey): void
+```
+
+**Initialization:**
+- Loaded when Quiz.tsx mounts
+- If valid saved state exists and user hasn't explicitly started new attempt, progress is restored
+
+**When Data is Written:**
+- **On every quiz state change:** Questions, attempts, index, timer, etc. are auto-saved
+- **On quiz completion:** Entry is deleted (completed quizzes shouldn't be resumable)
+- **On explicit new attempt:** Entry is deleted before starting fresh
+
+**Features:**
+- Allows users to leave and resume quizzes
+- Preserves timer state
+- Route-specific (different quizzes have separate saved states)
+
+---
+
+### 5. Imported Course Questions (`customUnitsExport.ts`)
 
 **Storage Key:** `imported-course-questions-{subject}`
 
@@ -186,6 +237,7 @@ getTopicLockInfo(questionKey: string): { isLocked: boolean; unlockDate: Date | n
 | Action | What is Saved | When |
 |--------|---------------|------|
 | Complete a quiz | Wrong answers | On Results page load |
+| Any quiz interaction | In-progress quiz state | On every state change |
 | Save preset | Preset data | Button click |
 | Update preset | Preset data | Button click |
 | Delete preset | Remove from storage | Button click |
@@ -213,8 +265,12 @@ Removes all wrong answers for a specific subject. Currently not exposed in UI bu
 Creates a .zip file containing:
 - `src/data/{unit-name}/index.ts` - Unit metadata
 - `src/data/{unit-name}/{topic}-questions.ts` - Topic question files
-- `public/images/{unit-name}/` - Extracted images
+- `public/images/{unit-name}/` - Extracted images (including MCQ option images)
 - `README.md` - Import instructions
+
+**MCQ Image Handling:**
+- Question images: `{topicPrefix}-q{N}.png`
+- MCQ option images: `{topicPrefix}-q{N}-opt{M}.png`
 
 ### Export Single Topic
 
@@ -321,3 +377,9 @@ Object.keys(backup).forEach(key => {
   localStorage.setItem(key, backup[key]);
 });
 ```
+
+---
+
+## Last Updated
+
+January 2026

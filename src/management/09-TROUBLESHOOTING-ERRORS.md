@@ -746,6 +746,40 @@ When posting on forums or asking someone:
 
 ---
 
+## Quiz-Specific Troubleshooting
+
+### Problem: Quiz progress lost on refresh
+
+**Current behavior**: Quizzes auto-save progress to localStorage.
+
+**If not working**, check:
+1. Browser isn't in private/incognito mode
+2. localStorage isn't full
+3. The `in-progress-quiz-v1` key exists in Application > Storage > Local Storage
+
+### Problem: Skip button not working properly
+
+**Expected behavior**:
+1. First skip: Question marked as skipped, moves to next
+2. All questions answered: Transition screen appears asking about reviewing skipped
+3. In skipped section: Shows "Skipped Question X of Y"
+4. Skip again in review: Marks as SKIPPED_FINAL (won't revisit)
+5. All finalized: Goes to results
+
+**If broken**, check:
+1. `handleSkip` function in Quiz.tsx
+2. Attempt states: `skipped`, `userAnswer: 'SKIPPED'` vs `'SKIPPED_FINAL'`
+
+### Problem: Wrong answers preset download not working
+
+**Expected behavior**: Dialog appears to customize preset name before download.
+
+**If broken**, check:
+1. Dialog imports from `@/components/ui/dialog`
+2. `handleOpenDownloadDialog` and `handleDownloadWrongAnswers` in Results.tsx
+
+---
+
 ## Still Stuck?
 
 1. Take a break! Fresh eyes help.
@@ -753,3 +787,9 @@ When posting on forums or asking someone:
 3. Search the exact error on Google.
 4. Check GitHub Issues for your packages.
 5. Ask on Stack Overflow or Reddit r/reactjs.
+
+---
+
+## Last Updated
+
+January 2026
