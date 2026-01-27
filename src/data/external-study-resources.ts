@@ -31,14 +31,14 @@ export interface ExternalResource {
 
 export const externalStudyResources: ExternalResource[] = [
   // Example entries - replace or add your own:
-  // {
-  //   title: 'Khan Academy',
-  //   url: 'https://www.khanacademy.org',
-  //   description: 'Free courses on math, science, and more'
-  // },
-  // {
-  //   title: 'Quizlet',
-  //   url: 'https://quizlet.com',
-  //   description: 'Flashcards and study sets'
-  // },
+  {
+    title: 'Khan Academy',
+    url: 'https://www.khanacademy.org',
+    description: 'Free courses on math, science, and more'
+  },
+  {
+    title: 'AP FRQs',
+    url: 'https://apfrqs.com/',
+    description: 'FRQs for every AP'
+  },
 ];
