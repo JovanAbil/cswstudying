@@ -1,0 +1,145 @@
+import { Question } from '@/types/quiz';
+
+// Topic: compounds
+// Math Enabled: true
+// Questions: 20
+
+export const compoundsQuestions: Question[] = [
+  {
+    id: "compounds-1",
+    type: "free-response",
+    question: "What makes a bond metallic?",
+    correctAnswer: "2 metals in a sea of valence electrons floating pass eachother",
+    explanation: "",
+  },
+  {
+    id: "compounds-2",
+    type: "free-response",
+    question: "What makes a bond ionic?",
+    correctAnswer: "If the electronegativity is above 1.7",
+    explanation: "",
+  },
+  {
+    id: "compounds-3",
+    type: "free-response",
+    question: "What makes a bond nonpolar covalent?",
+    correctAnswer: "If the electronegativity is below 0.4",
+    explanation: "",
+  },
+  {
+    id: "compounds-4",
+    type: "free-response",
+    question: "What makes a bond polar covalent?",
+    correctAnswer: "If the electronegativity is above 0.4 but below 1.7",
+    explanation: "",
+  },
+  {
+    id: "compounds-5",
+    type: "free-response",
+    question: "If it can easily be dissolved in water and can conduct electricity, what type of bond can this be?",
+    correctAnswer: "Ionic",
+    explanation: "",
+  },
+  {
+    id: "compounds-6",
+    type: "free-response",
+    question: "How does covalent bonding work?",
+    correctAnswer: "Bonds share electrons between the elements bonded.",
+    explanation: "",
+  },
+  {
+    id: "compounds-7",
+    type: "free-response",
+    question: "How does ionic bonding work?",
+    correctAnswer: "Bonds transfer electrons between the elements bonded.",
+    explanation: "",
+  },
+  {
+    id: "compounds-8",
+    type: "free-response",
+    question: "What are all the intermolecular forces?",
+    correctAnswer: "London Dispersion, Dipole Dipole, Hydrogen bonding",
+    explanation: "",
+  },
+  {
+    id: "compounds-9",
+    type: "free-response",
+    question: "What makes an molecule have hydrogen bonding.",
+    correctAnswer: "If the molecule can bond with other molecules if H is bonded with F, O, N",
+    explanation: "",
+  },
+  {
+    id: "compounds-10",
+    type: "free-response",
+    question: "What does london dispersion depend on, does every molecule have london dispersion? ",
+    correctAnswer: "The weight of the molecule, yes.",
+    explanation: "",
+  },
+  {
+    id: "compounds-11",
+    type: "free-response",
+    question: "What does dipole dipole generally mean.",
+    correctAnswer: "That the molecule is polar.",
+    explanation: "",
+  },
+  {
+    id: "compounds-12",
+    type: "free-response",
+    question: "What is the Geometry and Polarity of CO$_{3}$$^{2-}$ and does it have resonance? Draw the structure\n\n",
+    correctAnswer: "Trigonal Planar, Nonpolar, Has Resonance\n",
+    explanation: "",
+  },
+  {
+    id: "compounds-13",
+    type: "free-response",
+    question: "What is the Geometry and Polarity of PCl$_{3}$ and does it have resonance? Draw the structure\n\n",
+    correctAnswer: "Trigonal Pyramidal, Polar, No Resonance\n",
+    explanation: "",
+  },
+  {
+    id: "compounds-14",
+    type: "free-response",
+    question: "What is the Geometry and Polarity of SeBr$_{6}$ and does it have resonance? Draw the structure",
+    correctAnswer: "Octahedral, Nonpolar, No Resonance\n",
+    explanation: "",
+  },
+  {
+    id: "compounds-15",
+    type: "free-response",
+    question: "What is the Geometry and Polarity of CS$_{2}$ and does it have resonance? Draw the structure\n\n",
+    correctAnswer: "Linear, Nonpolar, Has Resonance\n",
+    explanation: "",
+  },
+  {
+    id: "compounds-16",
+    type: "free-response",
+    question: "What is the Geometry and Polarity of BrF$_{5}$ and does it have resonance? Draw the structure",
+    correctAnswer: "Square Pyramidal, Polar, No Resonance\n",
+    explanation: "",
+  },
+  {
+    id: "compounds-17",
+    type: "parts",
+    question: "Identify all of the IMFs",
+    parts: [{"label":"a","type":"free-response","question":"C$_{6}$H$_{14}$","correctAnswer":"It is nonpolar so it only has London Dispersion\n"},{"label":"b","type":"free-response","question":"GeH$_{2}$F$_{2}$","correctAnswer":"It is polar so it has both London Dispersion and Dipole Dipole\n"},{"label":"c","type":"free-response","question":"NH$_{3}$","correctAnswer":"It is polar and H bonds with N so it has London Dispersion, Dipole Dipole, and Hydrogen Bonding"},{"label":"d","type":"free-response","question":"CH$_{3}$OH","correctAnswer":"It is polar and H bonds with O so it has London Dispersion, Dipole Dipole, and Hydrogen Bonding"}],
+  },
+  {
+    id: "compounds-18",
+    type: "parts",
+    question: "Name",
+    parts: [{"label":"a","type":"free-response","question":"Au$_{3}$(PO$_{4}$)$_{2}$","correctAnswer":"Gold (II) Phosphate"},{"label":"b","type":"free-response","question":"N$_{3}$F$_{4}$","correctAnswer":"Trinitrogen tetrafluoride\n"},{"label":"c","type":"free-response","question":"ZnO","correctAnswer":"Zinc Oxide\n"},{"label":"d","type":"free-response","question":"Sc(NO$_{3}$)$_{3}$","correctAnswer":"Scandium (III) nitrate\n"},{"label":"e","type":"free-response","question":"Cs$_{3}$As","correctAnswer":"Cesium Arsenide\n"},{"label":"f","type":"free-response","question":"SiS$_{2}$","correctAnswer":"Silicon Disulfide\n"},{"label":"g","type":"free-response","question":"AgBr","correctAnswer":"Silver Bromide\n"},{"label":"h","type":"free-response","question":"Mn(ClO$_{4}$)$_{4}$","correctAnswer":"Manganese (IV) perchlorate\n"}],
+  },
+  {
+    id: "compounds-19",
+    type: "parts",
+    question: "What is the formula?",
+    parts: [{"label":"a","type":"free-response","question":"Hexachlorine pentafluoride","correctAnswer":"Cl$_{6}$F$_{5}$"},{"label":"b","type":"free-response","question":"Potassium Sulfide","correctAnswer":"K$_{2}$S"},{"label":"c","type":"free-response","question":"Copper (II) cyanide","correctAnswer":"Cu(CN)$_{2}$\n"},{"label":"d","type":"free-response","question":"Cadmium Antimonide","correctAnswer":"Cd$_{3}$Sb$_{2}$"},{"label":"e","type":"free-response","question":"Octanitrogen monoiodide","correctAnswer":"N$_{8}$I"},{"label":"f","type":"free-response","question":"Krypton Disulfide","correctAnswer":"KrS$_{2}$"},{"label":"g","type":"free-response","question":"Cobalt (IV) oxide","correctAnswer":"CoO$_{2}$"},{"label":"h","type":"free-response","question":"Barium hydroxide","correctAnswer":"Ba(OH)$_{2}$"}],
+  },
+  {
+    id: "compounds-20",
+    type: "free-response",
+    question: "Costanzium (Cz) forms a polyatomic ion called costanzate. If calcium costanzate has the formula Ca$_{2}$(CzO$_{5}$), what is the formula of Nickel (V) Coztanzate?",
+    correctAnswer: "Ni$_{4}$(CzO$_{5}$)$_{5}$",
+    explanation: "",
+  },
+];

@@ -1,0 +1,180 @@
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft, Landmark, Trophy, Brain, Target } from 'lucide-react';
+import useWrongAnswers from '@/hooks/useWrongAnswers';
+import { Footer } from '@/components/Footer';
+import { AdPlaceholder } from '@/components/AdPlaceholder';
+import { NeededCoursesPopup } from '@/components/NeededCoursesPopup';
+import { usePopupCooldown } from '@/hooks/usePopupSettings';
+
+const SocialCategory = () => {
+  const navigate = useNavigate();
+  const { getWrongAnswerCount, getAllWrongQuestionsForSubject } = useWrongAnswers();
+  const shouldShowPopup = usePopupCooldown('social');
+  const [showNeededCourses, setShowNeededCourses] = useState(false);
+
+  useEffect(() => {
+    if (shouldShowPopup) {
+      setShowNeededCourses(true);
+    }
+  }, [shouldShowPopup]);
+
+  const subjects = [
+    {
+      id: 'world-history',
+      name: 'World History (Stella)',
+      units: [
+        { id: 'religions', name: 'Religions' },
+        { id: 'islam', name: 'Islam' },
+        { id: 'renaissance', name: 'Renaissance' },
+        { id: 'protestant', name: 'Protestant' },
+        { id: 'eastasia', name: 'East Asia' },
+        { id: 'japan', name: 'Japan' },
+        { id: 'unit7', name: 'Unit 7 (Not Updated)' },
+        { id: 'unit8', name: 'Unit 8 (Not Updated)' },
+        { id: 'unit9', name: 'Unit 9 (Not Updated)' },
+        { id: 'unit10', name: 'Unit 10 (Not Updated)' },
+        { id: 'unit11', name: 'Unit 11 (Not Updated)' },
+      ],
+    },
+    {
+      id: 'worldhistorykohl',
+      name: 'World History (Kohl)',
+      units: [
+        { id: 'chinese', name: 'Chinese Shang - Song' },
+        { id: 'chinese2', name: 'Chinese Yuan - Modern' },
+      ],
+      hasChallenge: true,
+    },
+    {
+      id: 'apush',
+      name: 'AP US History',
+      units: [],
+      hasChallenge: true,
+    },
+  ];
+
+  const memoryUnits: { id: string; name: string; subject: string }[] = [];
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <NeededCoursesPopup 
+        category="social" 
+        isOpen={showNeededCourses} 
+        onClose={() => setShowNeededCourses(false)} 
+      />
+      <div className="container mx-auto px-4 py-8 flex-1 max-w-5xl">
+        <Link to="/" className="inline-block mb-6">
+          <Button variant="ghost">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Home
+          </Button>
+        </Link>
+
+        <div 
+          className="flex items-center gap-4 mb-8 cursor-pointer group" 
+          onClick={() => setShowNeededCourses(true)}
+        >
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-social/10 group-hover:bg-social/20 transition-colors">
+            <Landmark className="w-7 h-7 text-social" />
+          </div>
+          <div>
+            <h1 className="text-4xl font-display font-bold text-social group-hover:underline">Social Studies</h1>
+            <p className="text-muted-foreground">World History, US History, and more</p>
+          </div>
+        </div>
+
+        {subjects.map((subject) => {
+          const wrongCount = getWrongAnswerCount(subject.id);
+          
+          return (
+            <div key={subject.id} className="mb-12">
+              <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+                <h2 className="text-2xl font-display font-bold">{subject.name}</h2>
+                <div className="flex gap-2 flex-wrap">
+                  {wrongCount > 0 && (
+                    <Button
+                      onClick={() => navigate(`/quiz/${subject.id}/wrong/cram`, { 
+                        state: { wrongQuestions: getAllWrongQuestionsForSubject(subject.id) } 
+                      })}
+                      variant="outline"
+                      className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                    >
+                      <Target className="mr-2 h-4 w-4" />
+                      Targeted Practice ({wrongCount})
+                    </Button>
+                  )}
+                  <Link to={`/course-challenge/${subject.id}`}>
+                    <Button
+                      variant="outline"
+                      className="border-social text-social hover:bg-social hover:text-social-foreground"
+                    >
+                      <Trophy className="mr-2 h-4 w-4" />
+                      Course Challenge
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              {subject.units.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {subject.units.map((unit) => (
+                    <Link key={unit.id} to={`/unit/${subject.id}/${unit.id}`}>
+                      <Card
+                        className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-social group"
+                      >
+                        <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                          {unit.name}
+                        </p>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <Card className="p-6 border-dashed text-center">
+                  <p className="text-muted-foreground">Use Course Challenge for practice</p>
+                </Card>
+              )}
+            </div>
+          );
+        })}
+
+        {/* Memory Training */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-6">
+            <Brain className="h-6 w-6 text-other" />
+            <h2 className="text-2xl font-display font-bold">Memory Training</h2>
+          </div>
+          {memoryUnits.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {memoryUnits.map((unit) => (
+                <Link key={unit.id} to={`/unit/${unit.subject}/${unit.id}`}>
+                  <Card
+                    className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-other group bg-other/5"
+                  >
+                    <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {unit.name}
+                    </p>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Card className="p-6 border-dashed text-center bg-muted/30">
+              <p className="text-muted-foreground">No memory training units available yet</p>
+            </Card>
+          )}
+        </div>
+
+        {/* Bottom Ad Placeholder */}
+        <div className="mt-8">
+          <AdPlaceholder position="bottom" />
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default SocialCategory;
