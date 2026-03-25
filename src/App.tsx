@@ -54,7 +54,7 @@ const App = () => {
         <DebugModeToggle />
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/cswstudying">
           <PageViewTracker />
           <AdBlockDetector />
           <CookieConsentBanner />
