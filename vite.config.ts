@@ -5,7 +5,7 @@ import path from "path";
 // IMPORTANT: Replace YOUR_REPO_NAME with your actual GitHub repository name!
 // Example: if your repo is "cswstudying", use "/cswstudying/"
 export default defineConfig({
-  base: "/cswstudying/",
+  base: "/cswstudyingcopy/",
   server: {
     host: "::",
     port: 8080,
